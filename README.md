@@ -57,12 +57,15 @@
 Fui contratado para criar o site da empresa Ladder Pré-moldados, situada em Rio Formoso - PE. <br>
   <a href="https://ladderpremoldados.com.br/" target="_blank"> ladderpremoldados.com.br </a>
   <br>
-  <h3>PRINTS DA PÁGINA</h3>
+  <h3>PRINTS E VÍDEO DA PÁGINA</h3>
   <p> <img src="./img/TelaInicial.png" style= width:350px></p>
   <p><img src="./img/pg2.png" style= width:350px> </p>
   <p> <img src="./img/pg3.png" style= width:350px> </p>
   <p> <img src="./img/pg4.png" style= width:350px> </p>
-  <p> <img src="./img/pg5_SEO.png" style= width:350px> </p>
+  <h4>Resultado da pesquisa GOOGLE</h4>
+ 1º Site na pesquisa, até na frente do perfil do Instagram
+  <p> <img src="./img/pg5_SEO.png" style= width:350px>  </p>
+  
   
 
   </p>
