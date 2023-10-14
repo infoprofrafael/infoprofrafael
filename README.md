@@ -13,15 +13,6 @@
 - 🌐 &nbsp; <strong>( WebDesigner, SEO, FrontEnd )</strong>
 - 🔧 &nbsp; <strong>( VSCODE, GIT, GITHUB )</strong>
 
-
-
-<div align="center">
-  <a href="https://github.com/infoprofrafael">
-    <img height="150em" src="https://github-readme-stats.vercel.app/api?username=infoprofrafael&count_private=true&include_all_commits=true&show_icons=true&theme=dracula&hide_border=false&show_owner=true"/>
-    <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=infoprofrafael&theme=dracula&hide_border=false&&layout=compact"/>
-  </a>
-</div>
-
 <div align="center" valign="top"><br>
   
   <img align="center" alt="Js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
@@ -35,11 +26,22 @@
  
 </div><br>
 
+
 <div align="center">
  <a href="https://www.instagram.com/guimaraesdevweb/" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
   <a href="https://www.linkedin.com/in/guimaraesdevweb/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
   <a href="mailto:guimaraesdevweb@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=red" target="_blank"></a>
 </div>
+
+<br>
+<div align="center">
+  <a href="https://github.com/infoprofrafael">
+    <img height="150em" src="https://github-readme-stats.vercel.app/api?username=infoprofrafael&count_private=true&include_all_commits=true&show_icons=true&theme=dracula&hide_border=false&show_owner=true"/>
+    <img height="150em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=infoprofrafael&theme=dracula&hide_border=false&&layout=compact"/>
+  </a>
+</div>
+
+
 
 <div align="center">
 
@@ -54,16 +56,16 @@
 <div>
 <h2>EXPERIÊNCIA PROFISSIONAL</h2>
 <p>
-Fui contratado para criar o site da empresa Ladder Pré-moldados, situada em Rio Formoso - PE. <br>
+Fui contratado para criar o site e gerenciar o SEO da empresa Ladder Pré-moldados, situada em Rio Formoso - PE. <br>
   <a href="https://ladderpremoldados.com.br/" target="_blank"> ladderpremoldados.com.br </a>
   <br>
-  <h3>PRINTS E VÍDEO DA PÁGINA</h3>
+  <h3>PRINTS DA PÁGINA</h3>
   <p> <img src="./img/TelaInicial.png" style= width:350px></p>
   <p><img src="./img/pg2.png" style= width:350px> </p>
   <p> <img src="./img/pg3.png" style= width:350px> </p>
   <p> <img src="./img/pg4.png" style= width:350px> </p>
   <h4>Resultado da pesquisa GOOGLE</h4>
- 1º Site na pesquisa, até na frente do perfil do Instagram
+🥇 1º Site na pesquisa, até na frente do perfil do Instagram
   <p> <img src="./img/pg5_SEO.png" style= width:350px>  </p>
   
   
