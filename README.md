@@ -58,7 +58,11 @@ Fui contratado para criar o site da empresa Ladder Pré-moldados, situada em Rio
   http://ladderpremoldados.com.br/
   <br>
   <h3>PRINTS DA PÁGINA</h3>
-  <p></p>
+  <p> <img src="./img/TelaInicial.png" style= width:350px> </p>
+  <p> <img src="./img/pg2.png" style= width:350px> </p>
+  <p> <img src="./img/pg3.png" style= width:350px> </p>
+  <p> <img src="./img/pg4.png" style= width:350px> </p>
+  
 
   </p>
 </div>
