@@ -3,14 +3,16 @@
   <h1 align="center">
     Olá Tudo bem? Eu sou o <strong> Rafael Guimarães </strong>  😃️
   </h1>
-  
+  <h2> Estou cursando a graduação de Análise e Desenvolvimento de Sistemas! </h2>
   <h2> Sou Desenvolvedor FrontEnd em aprendizagem constante! </h2>
+  <h2> Amante do Python e aprendendo a aprender mais e mais! </h2>
 </div>
 
 <h3>:atom: Competências Técnicas: </h3>
 
 - 💻 &nbsp; <strong> Projetos no ar em: HTML + CSS + Java Script </strong>
 - 🌐 &nbsp; <strong>( WebDesigner, SEO, FrontEnd )</strong>
+- 🌐 &nbsp; <strong>( BackEnd com Python )</strong>
 - 🔧 &nbsp; <strong>( VSCODE, GIT, GITHUB )</strong>
 
 <div align="center" valign="top"><br>
@@ -19,7 +21,7 @@
   
   <img align="center" alt="HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
   <img align="center" alt="CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
-  <img align="center" alt="nodejs" height="30" width="40" src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg">
+  <img align="center" alt="nodejs" height="30" width="40" src="https://cdn.worldvectorlogo.com/logos/python-4.svg">
   
   <img align="center" alt="git" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg">
   
