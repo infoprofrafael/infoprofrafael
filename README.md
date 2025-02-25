@@ -4,7 +4,7 @@
     Olá Tudo bem? Eu sou o <strong> Rafael Guimarães </strong>  😃️
   </h1>
   <h2> Estou cursando 2 graduações:</h2>
-  <h2> 1. Análise e Desenvolvimento de Sistemas </h2>
+  <h2> 1. Tecnólogo em Análise e Desenvolvimento de Sistemas </h2>
   <h2> 2. Licenciatura da Ciência da Computação </h2>
   <h2> Sou Desenvolvedor FrontEnd em aprendizagem constante! </h2>
   <h2> Amante do Python e aprendendo a aprender mais e mais! </h2>
