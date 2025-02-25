@@ -3,16 +3,18 @@
   <h1 align="center">
     Olá Tudo bem? Eu sou o <strong> Rafael Guimarães </strong>  😃️
   </h1>
-  <h2> Estou cursando a graduação de Análise e Desenvolvimento de Sistemas! </h2>
+  <h2> Estou cursando 2 graduações:</h2>
+  <h2> 1. Análise e Desenvolvimento de Sistemas </h2>
+  <h2> 2. Licenciatura da Ciência da Computação </h2>
   <h2> Sou Desenvolvedor FrontEnd em aprendizagem constante! </h2>
   <h2> Amante do Python e aprendendo a aprender mais e mais! </h2>
 </div>
 
 <h3>:atom: Competências Técnicas: </h3>
 
-- 💻 &nbsp; <strong> Projetos no ar em: HTML + CSS + Java Script </strong>
+- 💻 &nbsp; <strong> Projetos no ar em: HTML + CSS + JavaScript </strong>
 - 🌐 &nbsp; <strong>( WebDesigner, SEO, FrontEnd )</strong>
-- 🌐 &nbsp; <strong>( BackEnd com Python )</strong>
+- 🌐 &nbsp; <strong>( BackEnd com Python e NodeJS )</strong>
 - 🔧 &nbsp; <strong>( VSCODE, GIT, GITHUB )</strong>
 
 <div align="center" valign="top"><br>
