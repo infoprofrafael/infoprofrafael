@@ -69,7 +69,7 @@
         </nav>
 
     </header>
-    <main>
+    <main class="dark:bg-gray-900">
         <div class="relative bg-with-translucent-image">
 
             <!-- Hero Section  -->
@@ -111,11 +111,16 @@
 
         <!-- Div apenas para centralizar a div do carousel -->
         <!-- Início do carousel -->
-        <div class="divcarousel max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 items-center justify-center mx-auto">
 
-            <div id="default-carousel" class="relative max-w-lg " data-carousel="slide">
+
+
+        <div
+            class="relative bg-with-translucent-image2 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 items-center justify-center bg-white dark:bg-gray-900 grid grid-cols-1 md:grid-cols-2 gap-8 divcarousel h-84 md:h-100">
+            <!-- flex flex-row gap-8 -->
+
+            <div id="default-carousel " class="relative w-full max-w-xl md:w1/2 " data-carousel="slide">
                 <!-- Carousel wrapper -->
-                <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                <div class="contimages z-20 relative h-64 overflow-hidden rounded-lg md:h-96">
                     <!-- Item 1 -->
                     <div class="z-2 hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="src/img/Carousel01.png"
@@ -123,24 +128,32 @@
                     </div>
                     <!-- Item 2 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/ProfRafaelGuimaraes_GIMP.png"
+                        <img src="src/img/ProfRafaelGuimaraes_GIMP+logo.png"
                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                     </div>
                     <!-- Item 3 -->
-                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="/docs/images/carousel/carousel-3.svg"
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="src/img/TelaInicial.png"
                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div> -->
+                    </div>
                     <!-- Item 4 -->
-                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="/docs/images/carousel/carousel-4.svg"
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="src/img/pg2.png"
                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div> -->
+                    </div>
                     <!-- Item 5 -->
-                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="/docs/images/carousel/carousel-5.svg"
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="src/img/pg3.png"
                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div> -->
+                    </div>
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="src/img/pg4.png"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="src/img/pg5_SEO.png"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
                 </div>
                 <!-- Slider indicators -->
                 <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
@@ -184,7 +197,34 @@
                 </button>
             </div>
 
+            <div class="text-sm md:text-xl text-center pt-6 text-gray-900 dark:text-gray-300 z-30">
+                <div>
+
+
+                    <h2> <span>
+                            <bold>Experiência como professor:</bold>
+                        </span></h2>
+                </div>
+                <div>
+
+
+                    <p>
+
+
+                    <ul>
+                        <li>Informática para Concursos</li>
+
+                        <li>Informática básica</li>
+
+                        <li>Introdução a Prgramação para crianças e Adolescentes</li>
+                    </ul>
+                    </p>
+                </div>
+
+            </div>
+
         </div>
+
 
         <!-- Fim do carousel -->
 
@@ -195,9 +235,8 @@
                 <div
                     class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
                     <div class="font-light sm:text-lg text-gray-900 dark:text-gray-300">
-                        <h2 class="mb-4 text-4xl font-extrabold text-gray-900 dark:text-gray-300">We
-                            didn't
-                            reinvent the wheel</h2>
+                        <h2 class="mb-4 text-4xl font-extrabold text-gray-900 dark:text-gray-300"> We
+                            didn't reinvent the wheel</h2>
                         <p class="mb-4">We are strategists, designers and developers. Innovators and problem solvers.
                             Small enough to be simple and quick, but big enough to deliver the scope you want at the
                             pace you need. Small enough to be simple and quick, but big enough to deliver the scope you
@@ -326,7 +365,8 @@
 
                             <a
                                 href="mailto:infoprofrafael@gmail.com?subject=Vim%20pelo%20seu%20site=Olá,%20este%20é%20o%20corpo%20do%20e-mail">
-                                <img src="/src/img/email-mail-svgrepo-com.svg" alt="email" class="emailsvg" />
+                                <img src="/infoprofrafael/src/img/email-mail-svgrepo-com.svg" alt="email"
+                                    class="emailsvg" />
                             </a>
 
 

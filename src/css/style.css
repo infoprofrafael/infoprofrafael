@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('src/img/computer-dark.png');
+    background-image: url('/infoprofrafael/src/img/computer-dark.png');
     /* Sua URL da imagem */
     background-size: cover;
     background-position: center;
@@ -15,16 +15,34 @@
     /* Coloca a imagem atrás do conteúdo da seção */
 }
 
-.divcarousel {
-    background-image: url('src/img/codigo.png');
+.bg-with-translucent-image2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/infoprofrafael/src/img/codigo.png');
+    /* Sua URL da imagem */
     background-size: cover;
     background-position: center;
-
-
-
+    opacity: 0.3;
+    /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
+    z-index: 0;
+    /* Coloca a imagem atrás do conteúdo da seção */
 }
 
 
+
+#default-carousel {
+    z-index: 20;
+    opacity: 1;
+}
+
+.contimages {
+    z-index: 20;
+    opacity: 1;
+}
 
 .emailsvg {
     width: 40px;
