@@ -1,0 +1,33 @@
+.bg-with-translucent-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/src/img/computer-dark.png');
+    /* Sua URL da imagem */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
+    z-index: 0;
+    /* Coloca a imagem atrás do conteúdo da seção */
+}
+
+.emailsvg {
+    width: 40px;
+    height: 40px;
+    filter: invert(41%) sepia(83%) saturate(9%) hue-rotate(169deg) brightness(91%) contrast(55%);
+}
+
+.emailsvg:hover {
+    filter: invert(41%) sepia(83%) saturate(0%) hue-rotate(169deg) brightness(1%) contrast(55%);
+}
+
+
+@media (min-width: 768px) {
+    .buttonContact {
+        margin-right: 12px;
+    }
+}
