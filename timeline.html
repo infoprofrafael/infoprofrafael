@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timeline — Prof Rafael Guimarães</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0ea5a4',
+            accent: '#06b6d4'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .timeline-line {
+      width: 3px;
+      background: linear-gradient(180deg, rgba(14,165,164,0.9), rgba(6,182,212,0.6));
+      border-radius: 9999px;
+      margin-left: calc(50% - 1.5px);
+    }
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 9999px;
+      border: 4px solid white;
+      box-shadow: 0 2px 6px rgba(2,6,23,0.2);
+    }
+    .reveal {
+      transform: translateY(30px) scale(0.98);
+      opacity: 0;
+      transition: all 600ms cubic-bezier(.2,.9,.2,1);
+    }
+    .reveal.visible {
+      transform: none;
+      opacity: 1;
+    }
+    .year-label {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0ea5a4;
+    }
+  </style>
+</head>
+
+
+<body class="bg-gray-50 text-slate-800 antialiased">
+  <section class="mx-auto px-6 py-12 lg:py-20" style="max-width: 620px;">
+    <header class="mb-12 text-center">
+      <h2 class="text-3xl lg:text-4xl font-extrabold">Minha Jornada</h2>
+      <p class="mt-2 text-slate-600">Uma linha do tempo mostrando ano a ano minha trajetória desde 2008.</p>
+    </header>
+
+    <div class="relative">
+      <div class="absolute inset-0 flex justify-center">
+        <div class="timeline-line h-full"></div>
+      </div>
+
+      <div id="timeline" class="space-y-12">
+        <!-- Exemplo de item: basta duplicar e alterar ano/título/descrição -->
+
+        <article class="timeline-item flex items-start gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot bg-primary"></div>
+            <span class="year-label mt-2">2008</span>
+          </div>
+          <div class="reveal bg-white p-5 rounded-2xl shadow-lg border border-slate-100 w-full">
+            <h3 class="text-xl font-semibold">Início da Jornada</h3>
+            <p class="mt-2 text-slate-600 text-sm">Primeiros contatos com tecnologia e início do interesse por informática.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item flex items-start gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot bg-accent"></div>
+            <span class="year-label mt-2">2012</span>
+          </div>
+          <div class="reveal bg-white p-5 rounded-2xl shadow-lg border border-slate-100 w-full">
+            <h3 class="text-xl font-semibold">Primeiras Experiências em Ensino</h3>
+            <p class="mt-2 text-slate-600 text-sm">Comecei a compartilhar conhecimento com amigos e colegas, reforçando minha paixão por ensinar.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item flex items-start gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot bg-primary"></div>
+            <span class="year-label mt-2">2016</span>
+          </div>
+          <div class="reveal bg-white p-5 rounded-2xl shadow-lg border border-slate-100 w-full">
+            <h3 class="text-xl font-semibold">Cursos de Informática</h3>
+            <p class="mt-2 text-slate-600 text-sm">Atuei em cursos de informática básica e concursos públicos, ajudando dezenas de alunos a alcançarem seus objetivos.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item flex items-start gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot bg-accent"></div>
+            <span class="year-label mt-2">2020</span>
+          </div>
+          <div class="reveal bg-white p-5 rounded-2xl shadow-lg border border-slate-100 w-full">
+            <h3 class="text-xl font-semibold">Graduação em Análise e Desenvolvimento de Sistemas</h3>
+            <p class="mt-2 text-slate-600 text-sm">Início da graduação focada em programação e desenvolvimento web.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item flex items-start gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot bg-primary"></div>
+            <span class="year-label mt-2">2023</span>
+          </div>
+          <div class="reveal bg-white p-5 rounded-2xl shadow-lg border border-slate-100 w-full">
+            <h3 class="text-xl font-semibold">Licenciatura em Informática</h3>
+            <p class="mt-2 text-slate-600 text-sm">Entrada na licenciatura, unindo tecnologia e educação para formar novos talentos.</p>
+          </div>
+        </article>
+
+        <article class="timeline-item flex items-start gap-6">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot bg-accent"></div>
+            <span class="year-label mt-2">2025</span>
+          </div>
+          <div class="reveal bg-white p-5 rounded-2xl shadow-lg border border-slate-100 w-full">
+            <h3 class="text-xl font-semibold">Projetos Atuais</h3>
+            <p class="mt-2 text-slate-600 text-sm">Concluindo a graduação e atuando em projetos web, além de cursos e oficinas de lógica de programação para jovens.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // animação dos cards ao aparecer na viewport
+    function observeReveal(){
+      const items = document.querySelectorAll('.reveal');
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting) e.target.classList.add('visible');
+        });
+      },{threshold:0.12});
+      items.forEach(i=>obs.observe(i));
+    }
+    observeReveal();
+  </script>
+</body>
+</html>
