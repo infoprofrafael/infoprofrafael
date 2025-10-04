@@ -16,10 +16,51 @@
     /* Coloca a imagem atrás do conteúdo da seção */
 }
 
-#photAbout{
-    max-height: 700px;
+#photAbout {
+    max-height: 800px;
 
 }
+
+.areaTI>span {
+    position: relative;
+    display: inline-block;
+    /*color: rgb(255, 124, 18);*/
+    height: 1.25em;
+    vertical-align: bottom;
+    overflow: hidden;
+
+}
+
+.areaTI>span>span {
+    display: block;
+    animation: animateWords 7s infinite ease-in-out;
+}
+
+@keyframes animateWords {
+    0% {
+        transform: translateY(0%);
+    }
+
+    25% {
+        transform: translateY(-100%);
+    }
+
+    50% {
+        transform: translateY(-200%);
+    }
+
+    75% {
+        transform: translateY(-300%);
+    }
+
+    100% {
+        transform: translateY(-400%);
+    }
+
+
+
+}
+
 
 .bg-with-translucent-image2::before {
     content: "";
@@ -101,6 +142,7 @@
     font-weight: 700;
     color: #0ea5a4;
 }
+
 /* Finalizando a timeline */
 
 
@@ -110,8 +152,8 @@
     }
 }
 
-@media(min-width:760px){
-    #sobre{
+@media(min-width:760px) {
+    #sobre {
         padding-top: 100px;
     }
 }
