@@ -18,7 +18,7 @@
 
 #photAbout {
     max-height: 800px;
-    filter: drop-shadow(-3px -3px 5px gray);
+    filter: drop-shadow(-3px -3px 8px gray);
     animation: reveal 1.5s ease-in-out;
 }
 
