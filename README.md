@@ -3,11 +3,14 @@
   <h1 align="center">
     Olá Tudo bem? Eu sou o <strong> Rafael Guimarães </strong>  😃️
   </h1>
-  <h2> Estou cursando 2 graduações:</h2>
-  <h2> 1. Tecnólogo em Análise e Desenvolvimento de Sistemas </h2>
-  <h2> 2. Licenciatura da Ciência da Computação </h2>
-  <h2> Sou Desenvolvedor FrontEnd em aprendizagem constante! </h2>
-  <h2> Amante do Python e aprendendo a aprender mais e mais! </h2>
+  <h2> Graduações:</h2>
+  <h2> 1. Graduado em Matemática</h2>
+  <h2> 2. Tecnólogo em Análise e Desenvolvimento de Sistemas </h2>
+  <h2> 3. Cursando Licenciatura da Ciência da Computação </h2>
+  <h2> 4. Cursando Tecnólogo em Segurança da Informação </h2>
+  <h2> ------------------------------------------------ </h2>
+  <h2> Apaixonado pela área de TI em geral, Focado em CIBERSEGURANÇA! </h2>
+ 
 </div>
 
 <h3>:atom: Competências Técnicas: </h3>
