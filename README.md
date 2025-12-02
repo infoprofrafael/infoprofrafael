@@ -8,7 +8,7 @@
   <h2> 2. Graduado em Análise e Desenvolvimento de Sistemas (Tecnológo) </h2>
   <h2> 3. Cursando Licenciatura da Ciência da Computação </h2>
   <h2> ------------------------------------------------ </h2>
-  <h2> Apaixonado pela área de TI em geral, Focado em CIBERSEGURANÇA! </h2>
+  <h2> Apaixonado pela área de TI (DevWeb e CIBERSEGURANÇA) </h2>
  
 </div>
 
