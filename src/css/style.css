@@ -17,7 +17,8 @@
 }
 
 #photAbout {
-    max-height: 800px;
+    max-height: 700px;
+    padding-top: 100px;
     filter: drop-shadow(-3px -3px 8px gray);
     animation: reveal 1.5s ease-in-out;
 }
@@ -38,10 +39,10 @@
     animation: reveal 1.6s ease-in-out;
 }
 
+
 .areaTI>span {
     position: relative;
     display: inline-block;
-    /*color: rgb(255, 124, 18);*/
     height: 1.25em;
     vertical-align: bottom;
     overflow: hidden;
@@ -50,8 +51,13 @@
 
 .areaTI>span>span {
     display: block;
-    animation: animateWords 7s infinite ease-in-out;
+    animation: animateWords 9s infinite ease-in-out;
 }
+
+.everything{
+    text-shadow: 1px 2px 1px black;
+}
+
 
 @keyframes animateWords {
     0% {
