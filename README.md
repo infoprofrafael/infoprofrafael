@@ -5,9 +5,8 @@
   </h1>
   <h2> Graduações:</h2>
   <h2> 1. Graduado em Matemática</h2>
-  <h2> 2. Tecnólogo em Análise e Desenvolvimento de Sistemas </h2>
+  <h2> 2. Graduado em Análise e Desenvolvimento de Sistemas (Tecnológo) </h2>
   <h2> 3. Cursando Licenciatura da Ciência da Computação </h2>
-  <h2> 4. Cursando Tecnólogo em Segurança da Informação </h2>
   <h2> ------------------------------------------------ </h2>
   <h2> Apaixonado pela área de TI em geral, Focado em CIBERSEGURANÇA! </h2>
  
