@@ -3,11 +3,13 @@
   <h1 align="center">
     Olá Tudo bem? Eu sou o <strong> Rafael Guimarães </strong>  😃️
   </h1>
-  <h2> Estou cursando 2 graduações:</h2>
-  <h2> 1. Tecnólogo em Análise e Desenvolvimento de Sistemas </h2>
-  <h2> 2. Licenciatura da Ciência da Computação </h2>
-  <h2> Sou Desenvolvedor FrontEnd em aprendizagem constante! </h2>
-  <h2> Amante do Python e aprendendo a aprender mais e mais! </h2>
+  <h2> Graduações:</h2>
+  <h2> 1. Graduado em Matemática</h2>
+  <h2> 2. Graduado em Análise e Desenvolvimento de Sistemas (Tecnológo) </h2>
+  <h2> 3. Cursando Licenciatura da Ciência da Computação </h2>
+  <h2> ------------------------------------------------ </h2>
+  <h2> Apaixonado pela área de TI (DevWeb e CIBERSEGURANÇA) </h2>
+ 
 </div>
 
 <h3>:atom: Competências Técnicas: </h3>
@@ -64,13 +66,13 @@ Fui contratado para criar o site e gerenciar o SEO da empresa Ladder Pré-moldad
   <a href="https://ladderpremoldados.com.br/" target="_blank"> ladderpremoldados.com.br </a>
   <br>
   <h3>PRINTS DA PÁGINA</h3>
-  <p> <img src="./img/TelaInicial.png" style= width:350px></p>
-  <p><img src="./img/pg2.png" style= width:350px> </p>
-  <p> <img src="./img/pg3.png" style= width:350px> </p>
-  <p> <img src="./img/pg4.png" style= width:350px> </p>
+  <p> <img src="https://github.com/infoprofrafael/infoprofrafael/blob/main/src/img/TelaInicial.png" style= width:450px></p>
+  <p><img src="https://github.com/infoprofrafael/infoprofrafael/blob/main/src/img/pg2.png" style= width:450px> </p>
+  <p> <img src="https://github.com/infoprofrafael/infoprofrafael/blob/main/src/img/pg3.png" style= width:450px> </p>
+  <p> <img src="https://github.com/infoprofrafael/infoprofrafael/blob/main/src/img/pg4.png" style= width:450px> </p>
   <h4>Resultado da pesquisa GOOGLE</h4>
 🥇 1º Site na pesquisa, até na frente do perfil do Instagram
-  <p> <img src="./img/pg5_SEO.png" style= width:350px>  </p>
+  <p> <img src="https://github.com/infoprofrafael/infoprofrafael/blob/main/src/img/pg5_SEO.png" style= width:450px>  </p>
   
   
 
