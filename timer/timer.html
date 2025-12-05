@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Simples</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Timer</h1>
+
+        <div class="controls">
+            <label>
+                Tempo (em segundos):
+                <input type="number" id="timeInput" placeholder="Ex: 120">
+            </label>
+
+            <button id="toggleSound" class="sound-btn">🔕 Som</button>
+
+
+            <button id="startBtn">Iniciar</button>
+        </div>
+
+        <div id="timerDisplay" class="timer">00:00</div>
+    </div>
+
+    <!-- Aviso sonoro -->
+    <audio id="alarmSound">
+        <source src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" type="audio/ogg">
+    </audio>
+
+    <script src="src/index.js"></script>
+
+</body>
+
+</html>
