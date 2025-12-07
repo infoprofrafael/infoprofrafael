@@ -10,7 +10,7 @@
     /* Sua URL da imagem */
     background-size: cover;
     background-position: center;
-    opacity: 0.4;
+    opacity: 0.2;
     /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
     z-index: 0;
     /* Coloca a imagem atrás do conteúdo da seção */
@@ -98,7 +98,7 @@
     background-size: cover;
     background-repeat: no-repeat center center fixed;
     /* background-position: center; */
-    opacity: 0.1;
+    opacity: 0.2;
     /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
     z-index: 0;
     /* Coloca a imagem atrás do conteúdo da seção */
@@ -128,7 +128,7 @@
      background-image: url('/src/img/codigo.png');
     /* Sua URL da imagem */
     background-size: cover;
-    background-repeat: no-repeat center center fixed;
+    background-repeat: repeat-y center center fixed;
     opacity: 0.1;
     /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
     z-index: 0;
