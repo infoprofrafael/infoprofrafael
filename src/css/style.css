@@ -1,3 +1,12 @@
+html{
+    overflow-x: hidden;
+
+}
+.logo_GuimDevWeb{
+    height: 57px;
+}
+
+
 .bg-with-translucent-image::before {
     content: "";
     position: absolute;
@@ -17,9 +26,10 @@
 }
 
 #photAbout {
-    max-height: 700px;
-    padding-top: 100px;
-    filter: drop-shadow(-3px -3px 8px gray);
+    max-height: 500px;
+    margin-left: 50px;
+    padding-top: 45px;
+    filter: drop-shadow(-3px -3px 8px rgba(179, 174, 174, 0.5));
     animation: reveal 1.5s ease-in-out;
 }
 
@@ -40,7 +50,7 @@
 }
 
 
-.areaTI>span {
+.areaTI .wrapper{
     position: relative;
     display: inline-block;
     height: 1.25em;
@@ -49,39 +59,49 @@
 
 }
 
-.areaTI>span>span {
+.areaTI .wrapper >span{
     display: block;
-    animation: animateWords 9s infinite ease-in-out;
-}
-
-.everything{
     text-shadow: 1px 2px 1px black;
+    animation: animateWords 8s infinite ease-in-out;
 }
-
 
 @keyframes animateWords {
-    0% {
+    0%{
         transform: translateY(0%);
     }
-
-    25% {
+    25%{
         transform: translateY(-100%);
     }
-
-    50% {
+    50%{
         transform: translateY(-200%);
     }
-
-    75% {
+    75%{
         transform: translateY(-300%);
     }
-
-    100% {
+    100%{
         transform: translateY(-400%);
     }
+    
+}
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: #25d366;   /* verde do WhatsApp */
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
 
-
-
+.whatsapp-btn:hover {
+  background-color: #128c7e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 
@@ -171,14 +191,59 @@
 /* Finalizando a timeline */
 
 
+@media(min-width:1060px) {
+    .logo_GuimDevWeb{
+    min-height: 84px;
+}}
+
+
+
 @media (min-width: 768px) {
     .buttonContact {
         margin-right: 12px;
     }
 }
 
+
+
+
 @media(min-width:760px) {
-    #sobre {
-        padding-top: 100px;
-    }
+    .logo_GuimDevWeb{
+    min-height: 70px;
+}
+
+#photAbout {
+    margin-left: 20px;
+}
+
+#sobre {
+        padding-top: 180px;
+    }  
+}
+
+
+@media(min-width:600px) {
+  
+
+#photAbout {
+    margin-left: 20px;
+}
+
+
+  
+}
+
+@media(min-width:440px) {
+   
+
+#photAbout {
+    margin-left: 26px;
+}
+
+
+#sobre {
+        padding-top: 90px;
+    }  
+ 
+  
 }
