@@ -233,17 +233,21 @@ html{
   
 }
 
-@media(min-width:440px) {
+@media(min-width:330px) {
    
 
 #photAbout {
-    margin-left: 26px;
+    margin: auto;
+    padding-top: 5px;
 }
 
 
 #sobre {
         padding-top: 90px;
     }  
- 
+#sobre h1 {
+    font-size: 2.8em;
+    
+} 
   
 }
