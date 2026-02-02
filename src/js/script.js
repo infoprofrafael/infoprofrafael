@@ -38,3 +38,32 @@ themeToggleBtn.addEventListener('click', function () {
     }
 
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const hero = document.getElementById('hero'); // ajuste o id se for outro
+    const waButton = document.getElementById('whatsapp-floating');
+
+    if (!hero || !waButton) return;
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // HERO visível -> esconde botão flutuante
+                    waButton.classList.remove('visible');
+                } else {
+                    // HERO saiu da viewport -> mostra botão flutuante
+                    waButton.classList.add('visible');
+                }
+            });
+        },
+        {
+            threshold: 0.1 // quando menos de 10% da hero estiver visível, considera "sumiu"
+        }
+    );
+
+    observer.observe(hero);
+});
+
+

@@ -25,10 +25,10 @@ html{
     /* Coloca a imagem atrás do conteúdo da seção */
 }
 
-#photAbout {
+#photAbout{
     max-height: 500px;
     margin-left: 50px;
-    padding-top: 45px;
+    padding-top: 125px;
     filter: drop-shadow(-3px -3px 8px rgba(179, 174, 174, 0.5));
     animation: reveal 1.5s ease-in-out;
 }
@@ -102,6 +102,43 @@ html{
   background-color: #128c7e;
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#whatsapp-floating {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #25d366; /* verde WhatsApp */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out;
+}
+
+#whatsapp-floating.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+#whatsapp-floating:hover{
+    background-color: #128c7e;
+    
+}
+
+#whatsapp-floating:hover svg{
+    width: 40px;
+    height: 40px;
 }
 
 
@@ -226,7 +263,7 @@ html{
   
 
 #photAbout {
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
 
@@ -238,7 +275,7 @@ html{
 
 #photAbout {
     margin: auto;
-    padding-top: 5px;
+    padding-top: 0px;
 }
 
 
