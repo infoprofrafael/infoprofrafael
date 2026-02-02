@@ -62,7 +62,7 @@ html{
 .areaTI .wrapper >span{
     display: block;
     text-shadow: 1px 2px 1px black;
-    animation: animateWords 8s infinite ease-in-out;
+    animation: animateWords 10s infinite ease-in-out;
 }
 
 @keyframes animateWords {
