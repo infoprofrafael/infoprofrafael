@@ -26,7 +26,7 @@ html{
 }
 
 #photAbout{
-    max-height: 500px;
+    max-height: 550px;
     margin-left: 50px;
     padding-top: 125px;
     filter: drop-shadow(-3px -3px 8px rgba(179, 174, 174, 0.5));
@@ -228,10 +228,17 @@ html{
 /* Finalizando a timeline */
 
 
+
 @media(min-width:1060px) {
     .logo_GuimDevWeb{
     min-height: 84px;
-}}
+}
+
+#sobre {
+        padding-top: 0px;
+    }   
+
+}
 
 
 
@@ -239,6 +246,9 @@ html{
     .buttonContact {
         margin-right: 12px;
     }
+     #photAbout img{
+    padding-top:  170px;
+}
 }
 
 
@@ -250,23 +260,26 @@ html{
 }
 
 #photAbout {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 #sobre {
-        padding-top: 180px;
-    }  
+        padding-top: 0px;
+    }   
 }
 
 
+
 @media(min-width:600px) {
+    
+#sobre {
+        padding-top: 10px;
+    }   
   
 
 #photAbout {
     margin-left: 15px;
 }
-
-
   
 }
 
@@ -280,7 +293,7 @@ html{
 
 
 #sobre {
-        padding-top: 90px;
+        padding-top: 70px;
     }  
 #sobre h1 {
     font-size: 2.8em;
