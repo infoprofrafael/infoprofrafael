@@ -84,8 +84,9 @@ html{
     
 }
 .whatsapp-btn {
-  display: inline-flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
   justify-content: center;
   padding: 12px 24px;
   background-color: #25d366;   /* verde do WhatsApp */
