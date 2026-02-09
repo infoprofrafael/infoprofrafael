@@ -154,7 +154,7 @@ html{
     background-image: url('/src/img/codigo.png');
     /* Sua URL da imagem */
     background-size: cover;
-    background-repeat: no-repeat center center fixed;
+    background-repeat:no-repeat center center fixed;
     /* background-position: center; */
     opacity: 0.2;
     /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
@@ -183,11 +183,11 @@ html{
     width: 100%;
     height: 100%;
     /* min-height: 600px; */
-     background-image: url('/src/img/codigo.png');
+    background-image: url('/src/img/Logos/Logo_GuimaraesDevWeb_400px.png'), url('/src/img/codigo.png');
     /* Sua URL da imagem */
-    background-size: cover;
+    background-size: contain, cover;
     background-repeat: repeat-y center center fixed;
-    opacity: 0.1;
+    opacity: 0.15;
     /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
     z-index: 0;
 }
@@ -224,6 +224,9 @@ html{
     font-size: 1.25rem;
     font-weight: 700;
     color: #0ea5a4;
+}
+.imgcall img{
+    max-height: 350px;
 }
 
 /* Finalizando a timeline */
