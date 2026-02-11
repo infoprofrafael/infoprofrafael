@@ -187,7 +187,7 @@ html{
     /* Sua URL da imagem */
     background-size: contain, cover;
     background-repeat: repeat-y center center fixed;
-    opacity: 0.15;
+    opacity: 0.11;
     /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
     z-index: 0;
 }
