@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafael Guimarães | Desenvolvedor Web</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-accent: #00d2ff; /* Ciano Tech para visual de Desenvolvedor */
+            --glass-bg: rgba(20, 20, 25, 0.6);
+            --glass-border: rgba(0, 210, 255, 0.2);
+            --text-light: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Background focado em tecnologia e programação */
+            background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+            /* background: url('/vCard/img/background_vCard_2.png') no-repeat center center fixed; */
+            background-size: cover;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,10,0.7) 0%, rgba(0,0,15,0.95) 100%);
+            z-index: 0;
+        }
+
+        .card-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 400px;
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .card-container.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Perfil */
+        .profile-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-accent);
+            
+            object-fit: container;
+            padding: 4px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: var(--primary-accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .bio {
+            color: #ddd;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Grid de Botões */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn-action {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 15px 10px;
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action i {
+            font-size: 1.3rem;
+            color: var(--primary-accent);
+        }
+
+        .btn-action:active { transform: scale(0.95); }
+        @media (min-width: 768px) {
+            .btn-action:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-3px); }
+        }
+
+        /* Botão Salvar Contato */
+        .btn-save {
+            width: 100%;
+            background: var(--primary-accent);
+            color: #000;
+            border: none;
+            padding: 16px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            transition: 0.3s;
+        }
+
+        .btn-save:hover { filter: brightness(1.1); box-shadow: 0 0 15px rgba(0, 210, 255, 0.4); }
+
+        /* Seção de Hard Skills */
+        .benefits-section {
+            text-align: left;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 210, 255, 0.1);
+        }
+
+        .benefits-title {
+            color: var(--primary-accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .benefit-item { margin-bottom: 12px; }
+        .benefit-item strong { color: white; font-size: 0.8rem; display: block; margin-bottom: 2px; }
+        .benefit-item p { color: #bbb; font-size: 0.75rem; line-height: 1.4; }
+
+        /* Rodapé */
+        .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 10px; }
+        .social-links a { color: white; font-size: 1.5rem; transition: 0.3s; }
+        .social-links a:hover { color: var(--primary-accent); transform: translateY(-2px); }
+
+        /* Modal */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+            z-index: 1000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal.show { display: flex; opacity: 1; }
+        .modal-content {
+            background: #111; padding: 25px; border-radius: 20px; border: 1px solid var(--primary-accent);
+            text-align: left; width: 90%; max-width: 350px; color: white; transform: scale(0.8); transition: 0.3s;
+        }
+        .modal.show .modal-content { transform: scale(1); }
+        .modal-content h3 { color: var(--primary-accent); margin-bottom: 10px; font-size: 1.2rem;}
+        .modal-content p { font-size: 0.85rem; color: #bbb; margin-bottom: 15px; }
+        .modal-info { list-style: none; margin-bottom: 20px; font-size: 0.85rem; color: #ddd; }
+        .modal-info li { margin-bottom: 10px; display: flex; align-items: center; gap: 8px;}
+        .modal-info i { color: var(--primary-accent); width: 15px; text-align: center;}
+        
+        .modal-buttons { display: flex; gap: 10px; }
+        .btn-cancel, .btn-confirm { padding: 12px; border-radius: 12px; border: none; font-weight: 600; cursor: pointer; flex: 1; transition: 0.2s;}
+        .btn-cancel { background: #333; color: white; }
+        .btn-cancel:hover { background: #444; }
+        .btn-confirm { background: var(--primary-accent); color: #000; }
+        .btn-confirm:hover { filter: brightness(1.2); }
+    </style>
+</head>
+<body>
+
+    <div class="card-container" id="card">
+        
+        <header>
+            <div class="profile-wrapper">
+                <img src="/vCard/img/GuimaraesDevWeb_foto_s_fundo.png" alt="Rafael Guimarães" class="profile-img">
+            </div>
+            <h1>Rafael Guimarães</h1>
+            <h2>Desenvolvedor Web & Tech</h2>
+            
+            <p class="bio">
+                Criando ecossistemas digitais de alta performance.<br>
+                <strong>Foco em:</strong> Código limpo, SEO e Segurança.
+            </p>
+        </header>
+
+        <div class="action-grid">
+            <a href="https://wa.me/5581996678813?text=Olá+Rafael,+gostaria+de+falar+sobre+um+projeto+web" target="_blank" rel="noopener" class="btn-action">
+                <i class="fas fa-code"></i>
+                <span>Solicitar Projeto</span>
+            </a>
+            
+            <a href="https://guimaraesdevweb.com.br" target="_blank" rel="noopener" class="btn-action">
+                <i class="fas fa-globe"></i>
+                <span>Meu Site</span>
+            </a>
+        </div>
+
+        <img src="/vCard/img/Logo_GuimaraesDevWeb_200px_c-sombra.png" alt="Código">
+
+        <a href="#" class="btn-save" id="saveVcard">
+            <i class="fas fa-id-card"></i>
+            SALVAR CONTATO
+        </a>
+
+        <div class="benefits-section">
+            <div class="benefits-title">
+                <i class="fas fa-terminal"></i> Stack & Especialidades
+            </div>
+            
+            <div class="benefit-item">
+                <strong>Desenvolvimento Web Frontend</strong>
+                <p>Interfaces modernas e responsivas utilizando HTML5, CSS3 avançado e JavaScript (Single Page Applications).</p>
+            </div>
+
+            <div class="benefit-item">
+                <strong>Lógica & Automação</strong>
+                <p>Estruturação de dados robusta e automação de processos com Python e modelagem de bancos MySQL.</p>
+            </div>
+
+            <div class="benefit-item">
+                <strong>Cybersecurity & Infraestrutura</strong>
+                <p>Aplicação de boas práticas de Segurança da Informação, versionamento seguro com Git e noções de DevOps.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/guimaraesdevweb/" target="_blank" rel="noopener" title="GitHub" arial-label="Acessar o meu perfil no GitHub" ><i class="fab fa-github"></i></a>
+                <a href="https://instagram.com/guimaraesdevweb/" target="_blank" rel="noopener" title="Instagram" arial-label="Acessar o meu perfil no Instagram" ><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com/in/guimaraesdevweb" target="_blank" rel="noopener" title="LinkedIn" arial-label="Acessar o meu perfil no LinkedIn" ><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/5581996678813?text=Olá+Rafael,+gostaria+de+falar+sobre+um+projeto+web" arial-label="Acessar o meu WhatsApp" title="WhatsApp" rel="noopener" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="vcardModal" class="modal">
+        <div class="modal-content">
+            <h3>Salvar na Agenda?</h3>
+            <p>Os seguintes dados serão salvos no seu celular:</p>
+            <ul class="modal-info">
+                <li><i class="fas fa-user"></i> <strong>Nome:</strong> Rafael Guimarães</li>
+                <li><i class="fas fa-laptop-code"></i> <strong>Cargo:</strong> Desenvolvedor Web</li>
+                <li><i class="fas fa-globe"></i> <strong>Site:</strong> guimaraesdevweb.com.br</li>
+            </ul>
+            <div class="modal-buttons">
+                <button id="cancelVcard" class="btn-cancel">Cancelar</button>
+                <button id="confirmVcard" class="btn-confirm">Baixar Contato</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.getElementById('card');
+            if (card) { setTimeout(() => { card.classList.add('active'); }, 150); }
+
+            const btnSaveApp = document.getElementById('saveVcard');
+            const modalConfig = document.getElementById('vcardModal');
+            const btnCancel = document.getElementById('cancelVcard');
+            const btnConfirm = document.getElementById('confirmVcard');
+
+            // --- SEUS DADOS PARA A AGENDA DO CLIENTE ---
+            const vcardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Rafael Guimarães
+ORG:Guimarães Dev Web
+TITLE:Desenvolvedor Web & TI
+TEL;TYPE=CELL:+5581996678813
+URL:https://guimaraesdevweb.com.br
+NOTE:Desenvolvimento de Sites, Cartões Virtuais e Soluções em Tecnologia.
+END:VCARD`;
+
+            if (btnSaveApp && modalConfig) {
+                btnSaveApp.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modalConfig.classList.add('show');
+                });
+            }
+
+            if (btnCancel) {
+                btnCancel.addEventListener('click', () => {
+                    modalConfig.classList.remove('show');
+                });
+            }
+
+            if (btnConfirm) {
+                btnConfirm.addEventListener('click', () => {
+                    const blob = new Blob([vcardData], { type: 'text/vcard' });
+                    const url = window.URL.createObjectURL(blob);
+                    
+                    const a = document.createElement('a');
+                    a.setAttribute('style', 'display: none;');
+                    a.href = url;
+                    a.download = 'Rafael_Guimaraes_Dev.vcf'; 
+                    document.body.appendChild(a);
+                    a.click();
+                    
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                    modalConfig.classList.remove('show');
+                }); 
+            }
+
+            const elements = document.querySelectorAll('.btn-action, .btn-save');
+            elements.forEach(el => {
+                el.addEventListener('touchstart', () => { el.style.opacity = '0.7'; }, {passive: true});
+                el.addEventListener('touchend', () => { el.style.opacity = '1'; }, {passive: true});
+            });
+        });
+    </script>
+</body>
+</html>
