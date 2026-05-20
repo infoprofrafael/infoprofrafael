@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowbite como usar?</title>
+
+     <!-- Flowbite Quickstart: https://flowbite.com/docs/getting-started/quickstart/ -->
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Tailwind CDN (modo rápido para protótipo e landPages rápidas) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+<!-- Script para Dark Mode==> https://flowbite.com/docs/customize/dark-mode/ -->
+  <script>
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+
+</head>
+<!-- Escolha das cores  (Aqui você altera de acordo com a paleta de cores do seu cliente ) -->
+<body class="bg-white text-gray-900 dark:bg-gray-950 dark:text-white">
+    <header>
+    
+  <!-- Navbar: https://flowbite.com/docs/components/navbar/ -->
+  <nav class="fixed top-0 z-20 w-full border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-800 dark:bg-gray-950/90">
+    <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
+      <a href="#hero" class="flex items-center gap-3">
+        <span class="text-xl font-semibold">Flowbite Demo</span>
+      </a>
+
+      <div class="flex items-center gap-2 md:order-2">
+        <!-- Dark mode: https://flowbite.com/docs/customize/dark-mode/ -->
+        <button id="theme-toggle" type="button" class="rounded-lg p-2.5 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-800 dark:focus:ring-gray-700">
+          <svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0M17 11a1 1 0 100-2h-1a1 1 0 100 2h1m-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1M5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707m1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414M4 11a1 1 0 100-2H3a1 1 0 000 2h1"></path>
+          </svg>
+        </button>
+
+        <a href="#cards" class="rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800">
+          Ver cards
+        </a>
+
+        <button data-collapse-toggle="navbar-demo" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden dark:hover:bg-gray-800 dark:focus:ring-gray-700" aria-controls="navbar-demo" aria-expanded="false">
+          <span class="sr-only">Abrir menu</span>
+          <svg class="h-5 w-5" aria-hidden="true" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="navbar-demo">
+        <ul class="mt-4 flex flex-col rounded-lg border border-gray-200 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent dark:border-gray-700 dark:bg-gray-900 md:dark:bg-transparent">
+          <li><a href="#hero" class="block rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800">Hero</a></li>
+          <li><a href="#cards" class="block rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800">Cards</a></li>
+          <li><a href="#links" class="block rounded px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800">Links</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  </header>
+
+  <!-- Hero: https://flowbite.com/blocks/marketing/hero/ -->
+  <main class="pt-24">
+<!-- Aqui eu inseri uma animação vamos ver como ficou?  (class="hero-section")/-->
+
+    <section id="hero" class=" hero-section mx-auto max-w-screen-xl px-4 py-16">
+      <div class="grid items-center gap-10 lg:grid-cols-2">
+        <div>
+          <span class="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+            Demonstração Flowbite
+          </span>
+          <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+            Uma landing page para apresentar componentes Flowbite
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+            Esta subpágina foi criada para mostrar navbar, dark mode, cards e blocos prontos do Flowbite com Tailwind via CDN.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#cards" class="rounded-lg bg-blue-700 px-5 py-3 text-sm font-medium text-white hover:bg-blue-800">
+              Ver cards
+            </a>
+            <a href="#links" class="rounded-lg border border-gray-300 px-5 py-3 text-sm font-medium hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-800">
+              Explorar seções
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+          <h2 class="text-xl font-semibold">O que esta página demonstra</h2>
+          <ul class="mt-4 space-y-3 text-gray-600 dark:text-gray-300">
+            <li>• Navbar responsiva</li>
+            <li>• Botão de dark mode</li>
+            <li>• Cards com CTA</li>
+            <li>• Estrutura pronta para incrementar</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards: https://flowbite.com/docs/components/card/ -->
+    <section id="cards" class="mx-auto max-w-screen-xl px-4 py-16">
+      <h2 class="text-2xl font-bold">Cards Flowbite</h2>
+      <p class="mt-3 max-w-2xl text-gray-600 dark:text-gray-300">
+        Você pode trocar esses cards por qualquer bloco do Flowbite depois.
+      </p>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+          <h3 class="text-xl font-semibold">Card simples</h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Um bloco direto para destacar informação curta.
+          </p>
+          <a href="https://flowbite.com/docs/components/card/" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex text-sm font-medium text-blue-700 hover:underline">
+            Ver referência
+          </a>
+        </div>
+
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+          <h3 class="text-xl font-semibold">Card com botão</h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Bom para chamar para uma ação, serviço ou contato.
+          </p>
+          <a href="#" class="mt-5 inline-flex rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800">
+            Ação
+          </a>
+        </div>
+
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+          <h3 class="text-xl font-semibold">Card com lista</h3>
+          <ul class="mt-3 space-y-2 text-gray-600 dark:text-gray-300">
+            <li>• Item 1</li>
+            <li>• Item 2</li>
+            <li>• Item 3</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção de links para escolha -->
+    <section id="links" class="mx-auto max-w-screen-xl px-4 py-16">
+      <h2 class="text-2xl font-bold">Seções que você pode escolher depois</h2>
+      <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <a class="rounded-xl border border-gray-200 p-5 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900" href="https://flowbite.com/docs/components/navbar/" target="_blank" rel="noopener noreferrer">
+          Navbar
+        </a>
+        <a class="rounded-xl border border-gray-200 p-5 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900" href="https://flowbite.com/blocks/marketing/hero" target="_blank" rel="noopener noreferrer">
+          Hero
+        </a>
+        <a class="rounded-xl border border-gray-200 p-5 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900" href="https://flowbite.com/docs/components/card/" target="_blank" rel="noopener noreferrer">
+          Cards
+        </a>
+        <a class="rounded-xl border border-gray-200 p-5 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900" href="https://flowbite.com/docs/customize/dark-mode/" target="_blank" rel="noopener noreferrer">
+          Dark mode
+        </a>
+        <a class="rounded-xl border border-gray-200 p-5 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900" href="https://flowbite.com/blocks/" target="_blank" rel="noopener noreferrer">
+          Blocks
+        </a>
+        <a class="rounded-xl border border-gray-200 p-5 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900" href="https://flowbite.com/docs/components/sidebar/" target="_blank" rel="noopener noreferrer">
+          Sidebar
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      themeToggleLightIcon.classList.remove('hidden');
+    } else {
+      themeToggleDarkIcon.classList.remove('hidden');
+    }
+
+    var themeToggleBtn = document.getElementById('theme-toggle');
+
+    themeToggleBtn.addEventListener('click', function() {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+
+      if (localStorage.getItem('color-theme')) {
+        if (localStorage.getItem('color-theme') === 'light') {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
+        }
+      } else {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
+        }
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+  <script src="js/animatescript.js"></script>
+</body>
+</html>

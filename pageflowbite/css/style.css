@@ -1,0 +1,12 @@
+/* Estado inicial: escondido e deslocado para baixo */
+.hero-section {
+  opacity: 0.9;
+  transform: translateY(-50px);
+  transition: opacity 0.8s ease-in, transform 0.8s ease-in;
+}
+
+/* Estado final: visível e na posição original */
+.hero-section.mostrar {
+  opacity: 1;
+  transform: translateY(0);
+}
