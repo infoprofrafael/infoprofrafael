@@ -1,0 +1,307 @@
+html{
+    overflow-x: hidden;
+
+}
+.logo_GuimDevWeb{
+    height: 57px;
+}
+
+
+.bg-with-translucent-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/src/img/computer-dark.png');
+    background-repeat: no-repeat center center fixed;
+    /* Sua URL da imagem */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
+    z-index: 0;
+    /* Coloca a imagem atrás do conteúdo da seção */
+}
+
+#photAbout{
+    max-height: 550px;
+    margin-left: 50px;
+    padding-top: 125px;
+    filter: drop-shadow(-3px -3px 8px rgba(179, 174, 174, 0.5));
+    animation: reveal 1.5s ease-in-out;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+#sobre{
+    animation: reveal 1.6s ease-in-out;
+}
+
+
+.areaTI .wrapper{
+    position: relative;
+    display: inline-block;
+    height: 1.25em;
+    vertical-align: bottom;
+    overflow: hidden;
+
+}
+
+.areaTI .wrapper >span{
+    display: block;
+    text-shadow: 1px 2px 1px black;
+    animation: animateWords 10s infinite ease-in-out;
+}
+
+@keyframes animateWords {
+    0%{
+        transform: translateY(0%);
+    }
+    25%{
+        transform: translateY(-100%);
+    }
+    50%{
+        transform: translateY(-200%);
+    }
+    75%{
+        transform: translateY(-300%);
+    }
+    100%{
+        transform: translateY(-400%);
+    }
+    
+}
+.whatsapp-btn {
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: #25d366;   /* verde do WhatsApp */
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  background-color: #128c7e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#whatsapp-floating {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #25d366; /* verde WhatsApp */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out;
+}
+
+#whatsapp-floating.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+#whatsapp-floating:hover{
+    background-color: #128c7e;
+    
+}
+
+#whatsapp-floating:hover svg{
+    width: 40px;
+    height: 40px;
+}
+
+
+.bg-with-translucent-image2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* min-height: 700px; */
+    background-image: url('src/img/computer-dark.png');
+    /* Sua URL da imagem */
+    background-size: cover;
+    background-repeat:no-repeat center center fixed;
+    /* background-position: center; */
+    opacity: 0.2;
+    /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
+    z-index: 0;
+    /* Coloca a imagem atrás do conteúdo da seção */
+    padding-bottom: 20px;
+    margin-bottom: 5;
+}
+
+#default-carousel {
+    z-index: 20;
+    opacity: 1;
+}
+
+.contimages {
+    z-index: 20;
+    opacity: 1;
+}
+
+.contsection::before {
+    /* margin-top: 250px; */
+    content: "";
+    position: absolute;
+    /* top: 0; */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* min-height: 600px; */
+    background-image: url('/src/img/Logos/Logo_GuimaraesDevWeb_400px.png'), url('/src/img/codigo.png');
+    /* Sua URL da imagem */
+    background-size: contain, cover;
+    background-repeat: repeat-y center center fixed;
+    opacity: 0.11;
+    /* Ajuste este valor para controlar a transparência (0.1 = 10% opaco, 0.5 = 50% opaco) */
+    z-index: 0;
+}
+
+/* Inserindo a timeline */
+
+.timeline-line {
+    width: 3px;
+    background: linear-gradient(180deg, rgba(14, 165, 164, 0.9), rgba(6, 182, 212, 0.6));
+    border-radius: 9999px;
+    margin-left: calc(50% - 1.5px);
+}
+
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    border: 4px solid white;
+    box-shadow: 0 2px 6px rgba(2, 6, 23, 0.2);
+}
+
+.reveal {
+    transform: translateY(30px) scale(0.98);
+    opacity: 0;
+    transition: all 600ms cubic-bezier(.2, .9, .2, 1);
+}
+
+.reveal.visible {
+    transform: none;
+    opacity: 1;
+}
+
+.year-label {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0ea5a4;
+}
+.imgcall img{
+    max-height: 350px;
+}
+
+/* Finalizando a timeline */
+
+
+
+@media(min-width:1060px) {
+    .logo_GuimDevWeb{
+    min-height: 84px;
+}
+
+#sobre {
+        padding-top: 0px;
+    }   
+
+}
+
+
+
+@media (min-width: 768px) {
+    .buttonContact {
+        margin-right: 12px;
+    }
+     #photAbout img{
+    padding-top:  170px;
+}
+}
+
+
+
+
+@media(min-width:760px) {
+    .logo_GuimDevWeb{
+    min-height: 70px;
+}
+
+#photAbout {
+    margin-left: 10px;
+}
+
+#sobre {
+        padding-top: 0px;
+    }   
+}
+
+
+
+@media(min-width:600px) {
+    
+#sobre {
+        padding-top: 10px;
+    }   
+  
+
+#photAbout {
+    margin-left: 15px;
+}
+  
+}
+
+@media(min-width:330px) {
+   
+
+#photAbout {
+    margin: auto;
+    padding-top: 0px;
+}
+
+
+#sobre {
+        padding-top: 70px;
+    }  
+#sobre h1 {
+    font-size: 2.8em;
+    
+} 
+  
+}

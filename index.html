@@ -4,669 +4,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
-     <link rel="icon" href="src/img/Logos/Logo_GuimaraesDevWeb_400px_site.svg" type="image/svg+xml">
+    <link rel="icon" href="src/img/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="src/css/style.css">
-    <script src="/src/js/head.js"></script>
-    <title>Guimarães DevWeb | Criação de Sites e SEO em Vitória de Santo Antão</title>
+    <script src="src/js/head.js"></script>
+    <title>Prof. Rafael Guimarães | Professor de Matemática e Informática</title>
 
-<meta name="description" content="Desenvolvimento de sites profissionais, landing pages e consultoria SEO em Vitória de Santo Antão, PE. Coloque sua empresa no topo do Google com a Guimarães DevWeb.">
+    <meta name="description" content="Rafael Silva Guimarães — Professor de Matemática e Informática com mais de 10 anos de experiência em ensino básico, concursos públicos e ensino técnico em Vitória de Santo Antão, PE.">
+    <meta name="keywords" content="professor de matemática, professor de informática, aulas particulares, concursos públicos, ensino técnico, lógica de programação, Vitória de Santo Antão">
 
-<meta name="keywords" content="criação de sites Vitória de Santo Antão, SEO Pernambuco, desenvolvedor web, landing pages, marketing digital Vitória">
-
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.guimaraesdevweb.com.br/">
-<meta property="og:title" content="Guimarães DevWeb | Sites Profissionais e SEO">
-<meta property="og:description" content="Sua presença digital em Vitória de Santo Antão começa aqui. Criação de sites focados em conversão e SEO.">
-<meta property="og:image" content="https://www.guimaraesdevweb.com.br/#logo_guimaraesdevweb_400px">
-
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.guimaraesdevweb.com.br/">
+    <meta property="og:title" content="Prof. Rafael Guimarães | Matemática e Informática">
+    <meta property="og:description" content="Mais de 10 anos formando alunos em Matemática, Informática, concursos públicos e ensino técnico.">
 </head>
 
 <body>
-    <header>
-        <nav
-            class="bg-white dark:bg-gray-900 fixed w-full z-40 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto pl-2 sm:p-2">
-                <a href="https://www.guimaraesdevweb.com.br" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="src/img/Logos/Logo_GuimaraesDevWeb_200px.png" class=" logo_GuimDevWeb pl-4"
-                        alt="Logo Programador Rafael Guimarães" />
 
-                </a>
-                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header">
+        <div class="container">
+            <a href="#hero" class="brand">
+                <span class="brand-badge" aria-hidden="true">RG</span>
+                <span class="brand-text">
+                    <strong>Rafael Guimarães</strong>
+                    <span>Matemática &amp; Informática</span>
+                </span>
+            </a>
 
-                    <a href="#redessociais">
+            <ul class="nav-links">
+                <li><a href="#hero">Início</a></li>
+                <li><a href="#trajetoria">Trajetória</a></li>
+                <li><a href="#formacao">Formação</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+            </ul>
 
+            <div class="header-actions">
+                <a href="#contato" class="btn btn-primary btn-sm">Contato</a>
 
-                        <button type="button"
-                            class="buttonContact text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border">Contato</button>
+                <button id="theme-toggle" type="button" class="icon-btn" aria-label="Alternar modo claro e escuro">
+                    <svg id="theme-toggle-dark-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg id="theme-toggle-light-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
 
-                    </a>
-                    <button id="theme-toggle" type="button" aria-label="Altera modo Claro e Escuro"
-                        class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 ">
-                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 md:ml-4" fill="currentColor"
-                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                        </svg>
-                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                                fill-rule="evenodd" clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                    <button data-collapse-toggle="navbar-sticky" type="button"
-                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                        aria-controls="navbar-sticky" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 17 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 1h15M1 7h15M1 13h15" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                    <ul
-                        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                        <li>
-                            <a href="#sobre"
-                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Início</a>
-                        </li>
-                        <li>
-                            <a href="#sejavisto"
-                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Seja Visto</a>
-                        </li>
-                         <li>
-                            <a href="#seobase"
-                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">SEO Base</a>
-                        </li>
-                        <li>
-                            <a href="#seoia"
-                                class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">SEO na IA</a>
-                        </li>
-
-                    </ul>
-                </div>
+                <button id="menu-toggle" type="button" class="icon-btn menu-toggle" aria-label="Abrir menu" aria-controls="mobile-nav" aria-expanded="false">
+                    <svg viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
             </div>
-        </nav>
-
+        </div>
     </header>
-    <main class="dark:bg-gray-900">
-        <div class="relative bg-with-translucent-image">
 
-            <!-- Hero Section  -->
-            <section id="hero" class="bg-white dark:bg-gray-900">
-              <div class="hidden md:block h-10"></div>
-              
-                <div
-                    class="flex flex-col gap-8 max-w-screen-xl z-10 px-4 py-14 mt-6 mx-auto md:flex-row lg:gap-8 xl:gap-10 lg:py-16 lg:grid-cols-12">
-                    <div id="sobre"
-                        class="z-20 text-gray-900 dark:text-gray-300 ">
-                        <h2 class="max-w-2xl mb-4 text-5xl font-extrabold leading-none md:text-5xl " >Converta visitas em clientes </h2>
-                        <h2 class="text-2xl font-extrabold text-gray-900 dark:text-gray-300 md:text-3xl xl:text-3xl pb-2">
-                        <span><i> Criação de Sites</i></span> em Vitória de Santo Antão e Região
-                        </h2> 
-                        
-                        <h2 class="text-2xl font-extrabold text-gray-900 dark:text-gray-300 md:text-3xl xl:text-4xl">
-                            Seja encontrado nas <span><i><b class="text-blue-500 dark:text-orange-200 "> Pesquisas do Google
-                                    </b></i></span></h2>
+    <nav id="mobile-nav" class="mobile-nav">
+        <ul>
+            <li><a href="#hero">Início</a></li>
+            <li><a href="#trajetoria">Trajetória</a></li>
+            <li><a href="#formacao">Formação</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
 
-                        <h2
-                            class=" areaTI my-2 text-xl font-bold text-gray-900 dark:text-gray-300 md:text-2xl xl:text-3xl">
-                            Criação de sites focado em
-                            <span class="font-bold text-blue-600 dark:text-orange-300 wrapper">
-                                <span class="everything">RANKEAR NO GOOGLE</span>
-                                <span class="everything">PERFORMANCE</span>
-                                <span class="everything">EXPERIÊNCIA DO USUÁRIO</span>
-                                <span class="everything">RESULTADOS REAIS</span>
-                                <span class="everything">RANKEAR NO GOOGLE</span>
+    <main>
 
-                            </span>
+        <!-- ===================== HERO ===================== -->
+        <section id="hero" class="hero">
+            <div class="container">
 
-                        </h2>
-                        <h2
-                            class="mb-2 text-xl font-extrabold text-gray-900 dark:text-gray-300 md:text-3xl xl:text-4xl ">
-                            <b> <span><i>Criação de sites</i>
-                                </span> modernos, rápidos, responsivos e otimizados para SEO para aumentar as suas
-                                vendas!</b>
+                <div class="hero-copy">
+                    <span class="kicker">professor@matematica:~$ informática --run</span>
 
-                        </h2>
-                        <h2
-                            class="mb-2 text-xl font-extrabold text-gray-900 dark:text-gray-300 md:text-3xl xl:text-4xl ">
-                            <b> <span><i>Atualizações Períodicas no site ou Landing page</i>
-                                </span> que converte!</b>
+                    <h1>Da lógica dos números à <span class="headline-accent">lógica da programação</span></h1>
 
-                        </h2>
+                    <p class="hero-sub">Professor de <b>Matemática</b> e <b>Informática</b> com mais de 10 anos de sala de aula</p>
 
-
-                        <br>
-                        <div class="buttconfi flex flex-col text-center items-center ">
-                            <div class="buttconforcgrat">
-
-                                <h2
-                                    class=" mb-4 text-2xl font-extrabold text-gray-900 dark:text-green-400 text-green-800 md:text-3xl xl:text-4xl">
-                                    Orçamento Gratuito</h2>
-                            </div>
-
-                                <div class="but01">
-
-                                    <a rel="noopener noreferrer"
-                                        href="https://wa.me/5581996678813?text=Olá,%20vim%20da%20sua%20landing%20page%20e%20gostaria%20de%20mais%20informações"
-                                        target="_blank" class="whatsapp-btn ">
-                                        <svg class="w-8 h-8 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path fill="currentColor" fill-rule="evenodd"
-                                                d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z"
-                                                clip-rule="evenodd" />
-                                            <path fill="currentColor"
-                                                d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z" />
-                                        </svg>
-            
-                                        Fale comigo no WhatsApp
-                                    </a>
-                                </div>
-                        </div>
+                    <div class="rotator-line">
+                        Aulas para
+                        <span class="rotator">
+                            <span>ENSINO BÁSICO</span>
+                            <span>CONCURSOS PÚBLICOS</span>
+                            <span>ENSINO TÉCNICO</span>
+                            <span>PROGRAMAÇÃO DESDE O ZERO</span>
+                            <span>ENSINO BÁSICO</span>
+                        </span>
                     </div>
-                    <div class="flex-col mt-8 lg:max-w-8 z-10 mx-2 lg:mt-10 lg:flex">
 
-                        <div>
+                    <p class="lede">
+                        Já lecionei em escolas públicas e privadas, cursos preparatórios para concursos e escolas técnicas
+                        estaduais — unindo o raciocínio lógico-matemático à prática de programação, do primeiro algoritmo
+                        ao primeiro emprego.
+                    </p>
 
-                            <img id="photAbout" src="src/img/GuimaraesDevWeb_foto_s_fundo_ref_IA.png"
-                                alt="Programador Rafael Guimarães">
-                        </div>
-                        <div
-                            class=" descr-sobre text-center text-xl font-extrabold text-gray-900 dark:text-gray-300 md:text-3xl xl:text-4xl">
-                            <h2>Rafael Guimarães</h2>
-
-                            <h2>Desenvolvedor Web | SEO</h2>
-                        </div>
-
-
-                    </div>
-                </div>
-            </section>
-            <br>
-        </div>
-
-
-
-
-
-        <!-- Tecnologias que Domino-->
-        <div id="sejavisto" class="contsection">
-            <section class="bg-white dark:bg-gray-900">
-                <div class=" gap-16 items-center px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-                    <div class="font-medium sm:text-lg text-gray-900 dark:text-gray-300 pb-6">
-                        <h2
-                            class=" pt-4 mb-4 text-3xl font-extrabold text-gray-900 dark:text-gray-300 md:text-4xl xl:text-5xl ">
-                            Seja Visto, no Google organicamente<h2>
-                                <p class="mb-4">
-                                    Se o seu site não aparece no Google, ele praticamente não existe para o seu cliente.
-                                    <br>
-                                    Hoje, <span> <i><b>
-                                                a maioria das decisões de compra começa com uma busca.
-                                            </b></i></span>
-                                    Sites lentos, mal
-                                    estruturados ou sem otimização técnica perdem posições, tráfego orgânico e
-                                    oportunidades diariamente.
-                                    <br>
-
-                                    <span> <i><b>
-                                                SEO (Otimização para Motores de Busca)
-
-                                            </b></i></span> não é detalhe visual. É estrutura, performance e estratégia
-                                    trabalhando juntas
-                                    para gerar visibilidade contínua.
-                                </p>
-
-
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <img class="z-10 rounded-lg" src="/src/img/languages.png" alt="office content 1">
-                        <img class="z-10 mt-4 lg:mt-10 rounded-lg" src="/src/img/languages2.png"
-                            alt="office content 2">
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Div apenas para centralizar title do carousel -->
-
-        <!-- Dobra 3 ==> A soluçõa -->
-
-
-
-        <div id="seobase" class="relative bg-with-translucent-image2 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 flex flex-col ">
-            <!-- flex flex-row gap-8 -->
-            <div class="title-experience justify-center mb-10">
-                <h2 class="text-3xl font-extrabold text-gray-900 dark:text-gray-300 md:text-4xl xl:text-5xl">
-                    SEO desde a Base <h2>
-
-            </div>
-            <h2 class="z-30 font-bold  sm:text-lg text-gray-900 dark:text-gray-300 mb-2" > SEO não é um ajuste posterior. Ele nasce junto com o site.</h2>
-
-            <div id="default-carousel" class=" place-self-center relative w-full max-w-xl" data-carousel="slide">
-                <!-- Carousel wrapper -->
-                <div class="contimages z-20 relative h-80 md:h-100 overflow-hidden rounded-lg md:h-96">
-                    <!-- Item 1 -->
-                    <div class="z-2 hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/GuimaraesDevWeb_foto_s_fundo_ref_IA.png"
-                            class="absolute block h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Fazemos o seu site aparecer na pesquisa Google">
-                    </div>
-                     <!-- Item 2 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/ApenasPesquisa_search_premoldados.png"
-                            class="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Resultado de uma pesquisa Google do meu serviço">
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/search_premoldados.png"
-                            class="absolute block h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Resultado de uma pesquisa Google do meu serviço">
-                    </div>
-                    <!-- Item 4 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/ApenasPesquisa_search_regional.png"
-                            class="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2  "
-                            alt="Resultado de uma pesquisa Google do meu serviço">
-                    </div>
-                    <!-- Item 5 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/search_regional.png"
-                            class="absolute block h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Resultado de uma pesquisa Google do meu serviço">
-                    </div>
-                     <!-- Item 6 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/ApenasPesquisa_search_produto_regional.png"
-                            class="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Resultado de uma pesquisa Google do meu serviço">
-                    </div>
-                    <!-- Item 7 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/search_produto_regional.png"
-                            class="absolute block h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Resultado de uma pesquisa Google do meu serviço">
-                    </div>
-                    <!-- Item 8 -->
-                    <div id="logo_guimaraesdevweb_400px" class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/Logos/Logo_GuimaraesDevWeb_400px.png"
-                            class="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Melhor resultado da pesquisa no Google">
-                    </div>
-                   
-                    
-                </div>
-                <!-- Slider indicators -->
-                <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
-                        data-carousel-slide-to="0"></button>
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
-                        data-carousel-slide-to="1"></button>
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
-                        data-carousel-slide-to="2"></button>
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
-                        data-carousel-slide-to="3"></button>
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
-                        data-carousel-slide-to="4"></button>
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 6"
-                        data-carousel-slide-to="5"></button>
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 7"
-                        data-carousel-slide-to="6"></button>
-                </div>
-                <!-- Slider controls -->
-                <button type="button"
-                    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                    data-carousel-prev>
-                    <span
-                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 dark:bg-blue-600  group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 1 1 5l4 4" />
-                        </svg>
-                        <span class="sr-only">Previous</span>
-                    </span>
-                </button>
-                <button type="button"
-                    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                    data-carousel-next>
-                    <span
-                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 dark:bg-blue-600 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 9 4-4-4-4" />
-                        </svg>
-                        <span class="sr-only">Next</span>
-                    </span>
-                </button>
-            </div>
-
-            <div class="z-30 font-light  sm:text-lg text-gray-900 dark:text-gray-300 pb-6 mb-2 mt-6">
-
-
-                <bold><em><b>Desenvolvemos sites pensando desde o início para perfomar bem nas buscas orgânicas.</b></em></bold>
-                <br>
-                <bold class="font-bold">
-                Isso Significa:
-                </bold>
-                
-                <br>
-                <p class="mb-4 text-2xl font-medium text-yellow dark:text-gray-300">
-                <ul class="text-blue-800 dark:text-orange-300">
-                    <li>
-                        <span>
-                            <bold><em><b>Estrutura técnica alinhada às diretrizes do Google</b></em></bold>
-                        
-                    </li>
-                    <li>
-                        <span>
-                            <bold><em><b>Código limpo e semântico
-
-                                    </b></em></bold>
-                        </span> 
-                    </li>
-
-                    <li>
-                        <span>
-                            <bold><em><b>Performance otimizada</b></em></bold>
-                        </span> 
-                    </li>
-                    <li>
-                        <span>
-                            <bold><em><b>Experiência mobile como prioridade</b></em></bold>
-                        </span> 
-                    </li>
-                     <li>
-                        <span>
-                            <bold><em><b>Conteúdo preparado para ranqueamento</b></em></bold>
-                        </span> 
-                    </li>
-                </ul>
-                
-                </p>
-                <br>
-
-                
-
-
-            </div>
-
-           
-
-        </div>
-        <!-- Fim do carousel -->
-
-        <div id="seoia" class="relative bg-with-translucent-image2 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 flex flex-col ">
-            <!-- flex flex-row gap-8 -->
-            <div class="title-experience justify-center mb-10">
-                <h2 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-gray-300 md:text-4xl xl:text-5xl">
-                    Diferenciais como Especialista em SEO <h2>
-            <h3 class="mb-4 text-2xl font-extrabold text-gray-900 dark:text-gray-300 md:text-3xl xl:text-5xl">
-                    Seja recomendada pela IA do GOOGLE <h3>
-
-            </div>
-
-            <div id="default-carousel" class=" place-self-center relative w-full max-w-xl" data-carousel="slide">
-                <!-- Carousel wrapper -->
-                <div class="contimages z-20 relative h-80 md:h-100 overflow-hidden rounded-lg md:h-96">
-                    <!-- Item 1 -->
-                    <div class="z-2 hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/Logos/Logo_GuimaraesDevWeb_400px.png"
-                            class="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Fazemos o seu site aparecer na pesquisa Google">
-                    </div>
-                     <!-- Item 2 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/ApenasPesquisa_search_IA_recomend.png"
-                            class="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Resultado de uma pesquisa Google do meu serviço">
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/search_IA_recomend.png"
-                            class="absolute block h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Resultado de uma pesquisa Google do meu serviço">
-                    </div>
-                    <!-- Item 4 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="src/img/search_IA_recomend_completo.png"
-                            class="absolute block h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2  "
-                            alt="Resultado de uma pesquisa Google do meu serviço">
-                    </div>
-                    
-                    
-                </div>
-                <!-- Slider indicators -->
-                <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
-                        data-carousel-slide-to="0"></button>
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
-                        data-carousel-slide-to="1"></button>
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
-                        data-carousel-slide-to="2"></button>
-                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
-                        data-carousel-slide-to="3"></button>
-                    
-                </div>
-                <!-- Slider controls -->
-                <button type="button"
-                    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                    data-carousel-prev>
-                    <span
-                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 dark:bg-blue-600  group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 1 1 5l4 4" />
-                        </svg>
-                        <span class="sr-only">Previous</span>
-                    </span>
-                </button>
-                <button type="button"
-                    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                    data-carousel-next>
-                    <span
-                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 dark:bg-blue-600 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 9 4-4-4-4" />
-                        </svg>
-                        <span class="sr-only">Next</span>
-                    </span>
-                </button>
-            </div>
-
-            <div class="z-30 font-bold sm:text-lg text-gray-900 dark:text-gray-300 pb-6 mb-2 mt-6">
-
-
-                <bold><em><b>Além do site do Google estamos focados em busca orgânica também nas Inteligências Artificiais (IAs) </b></em></bold>
-                <br>
-                <bold class="font-bold">
-                Estamos sempre nos atualizando para servir o melhor para os nossos clientes
-                </bold>
-                
-                <br>
-                <p class="mb-4 text-2xl font-medium text-yellow dark:text-gray-300">
-                <ul class="text-blue-800 dark:text-orange-300">
-                    <li>
-                        <span>
-                            <bold><em><b>Mobile First seguindo o padrão do Google</b></em></bold>
-                        
-                    </li>
-                    <li>
-                        <span>
-                            <bold><em><b>Estrutura preparada para escalar no SEO
-
-                                    </b></em></bold>
-                        </span> 
-                    </li>
-
-                    <li>
-                        <span>
-                            <bold><em><b>Decisões técnicas baseadas em boas práticas de ranqueamento</b></em></bold>
-                        </span> 
-                    </li>
-                   
-                </ul>
-                <h2 class="z-30 font-bold  sm:text-lg text-gray-900 dark:text-gray-300 pb-6 mb-2 mt-6" > Nosso objetivo não é apenas criar um site bonito, mas fazer ele ser encontrado.</h2>
-                </p>
-                <br>
-
-                
-
-
-            </div>
-
-           
-
-        </div>
-        
-                
-<div class="calltoac w-full bg-gray-200 dark:bg-gray-600 text-center p-2 border border-default rounded-base shadow-xs">
-    <div class="contcall">
-        <h5 class="mb-1 text-3xl tracking-tight font-semibold text-heading text-gray-900 dark:text-gray-300  items-center">Quer parar de depender apenas de anúncios pagos?</h5>
-        <p class="mb-2 text-base text-body sm:text-lg text-gray-900 dark:text-gray-100 ">Solicite agora uma análise inicial e descubra como melhorar sua presença no Google.</p>
-
-    </div>
-    <div class="imgcall flex flex-row flex-wrap justify-center">
-        <div class="imgcallcol">
-
-            <img class="center" src="src/img/GuimaraesDevWeb_foto_s_fundo_ref_IA.png" alt="Guimaraes Desenvolvedor Web e SEO" srcset="">
-        </div>
-        <div class="buttoncallcol flex flex-col justify-center">
-            <h2
-                            class="my-4 text-2xl font-extrabold text-gray-900 dark:text-green-400 text-green-800 md:text-3xl xl:text-4xl">
-                            Orçamento Gratuito</h2>
-                        <a rel="noopener noreferrer"
-                            href="https://wa.me/5581996678813?text=Olá,%20vim%20da%20sua%20landing%20page%20e%20gostaria%20de%20mais%20informações"
-                            target="_blank" class="whatsapp-btn">
-                            <svg class="w-8 h-8 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24">
-                                <path fill="currentColor" fill-rule="evenodd"
-                                    d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z"
-                                    clip-rule="evenodd" />
-                                <path fill="currentColor"
-                                    d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z" />
+                    <div class="hero-actions">
+                        <a rel="noopener noreferrer" class="btn btn-whatsapp"
+                            href="https://wa.me/5581996678813?text=Olá,%20professor%20Rafael!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20mais%20informações"
+                            target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:20px;height:20px">
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z" clip-rule="evenodd" />
+                                <path fill="currentColor" d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z" />
                             </svg>
-
                             Fale comigo no WhatsApp
                         </a>
+                        <a href="src/curriculo-rafael-guimaraes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                            Baixar currículo
+                        </a>
+                    </div>
 
-        </div>
+                    <div class="trust-row">
+                        <span class="trust-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 4 6v6c0 4.8 3.4 8.4 8 9 4.6-.6 8-4.2 8-9V6l-8-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                            +10 anos de docência
+                        </span>
+                        <span class="trust-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6.5 12 3l8 3.5-8 3.5-8-3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7 10.5V16c0 1.5 2.2 3 5 3s5-1.5 5-3v-5.5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                            Ensino básico ao técnico
+                        </span>
+                        <span class="trust-item">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 17V7l8-4 8 4v10l-8 4-8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 7l8 4 8-4M12 11v10" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+                            Matemática + Informática
+                        </span>
+                    </div>
+                </div>
 
-    </div>
-</div>
+                <div class="hero-visual">
+                    <div class="portrait-frame">
+                        <img src="src/img/portrait-hero.png" alt="Professor Rafael Guimarães">
 
+                        <div class="board-card" aria-hidden="true">
+                            <div class="board-body">
+                                <div class="board-line" data-board-math></div>
+                                <div class="board-arrow">↓ na prática, isso vira código</div>
+                                <div class="board-code" data-board-code><span class="cursor">&nbsp;</span></div>
+                            </div>
+                            <div class="board-tray">
+                                <span class="chalk"></span>
+                                <span class="chalk"></span>
+                            </div>
+                        </div>
 
-        
+                        <div class="badge-float">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3 4 6v6c0 4.8 3.4 8.4 8 9 4.6-.6 8-4.2 8-9V6l-8-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                            +10 anos ensinando
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+        </section>
 
+        <!-- ===================== TRAJETÓRIA ===================== -->
+        <section id="trajetoria" class="section section--alt">
+            <div class="container">
+                <div class="section-head center reveal">
+                    <span class="eyebrow">trajetória docente</span>
+                    <h2 class="section-title">Mais de uma década em sala de aula</h2>
+                    <p class="section-lede mx-auto">De escolas públicas a cursos técnicos, sempre conectando teoria e prática.</p>
+                </div>
+
+                <div class="timeline reveal-stagger">
+                    <div class="timeline-item">
+                        <span class="timeline-year">2008 – 2010</span>
+                        <div class="timeline-role">Professor de Informática Básica</div>
+                        <div class="timeline-org">Microlins — Palmares, PE</div>
+                        <p class="timeline-desc">Início da carreira docente, com turmas de informática básica para o público geral.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-year">2011 – 2016</span>
+                        <div class="timeline-role">Professor de Informática para Concursos Públicos</div>
+                        <div class="timeline-org">Diversas instituições — Escada, Ribeirão e Palmares, PE</div>
+                        <p class="timeline-desc">Preparação de candidatos a concursos públicos no conteúdo de informática.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-year">2013</span>
+                        <div class="timeline-role">Professor de Informática</div>
+                        <div class="timeline-org">Colégio Cenecista — Palmares, PE</div>
+                        <p class="timeline-desc">Aulas de informática no ensino regular.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-year">2014 – 2016</span>
+                        <div class="timeline-role">Professor de Disciplinas Técnicas</div>
+                        <div class="timeline-org">Escolas Técnicas Estaduais — Palmares e Recife, PE</div>
+                        <p class="timeline-desc">Lecionei Lógica de Programação, Banco de Dados e linguagens básicas para criação de sites (HTML, CSS e JavaScript).</p>
+                    </div>
+
+                    <div class="timeline-item is-current">
+                        <span class="timeline-year">2026 — atual</span>
+                        <div class="timeline-role">Professor de Informática, Curso Técnico em Informática</div>
+                        <div class="timeline-org">Grau Técnico</div>
+                        <p class="timeline-desc">Atuação atual no curso técnico em informática.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== FORMAÇÃO ===================== -->
+        <section id="formacao" class="section">
+            <div class="container">
+                <div class="section-head center reveal">
+                    <span class="eyebrow">formação acadêmica</span>
+                    <h2 class="section-title">Duas formações, uma só lógica</h2>
+                    <p class="section-lede mx-auto">Matemática e Informática caminhando juntas — em sala de aula e em código.</p>
+                </div>
+
+                <div class="tracks reveal-stagger">
+                    <div class="track-card math">
+                        <div class="track-icon">π</div>
+                        <h3>Matemática</h3>
+                        <ul class="track-list">
+                            <li>Graduação em Matemática <span class="tag">FAMASUL · 2004</span></li>
+                            <li>Pós-Graduação em Ensino da Matemática <span class="tag">FAMASUL</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="track-card tech">
+                        <div class="track-icon">&lt;/&gt;</div>
+                        <h3>Informática</h3>
+                        <ul class="track-list">
+                            <li>Técnico em Informática <span class="tag">2014</span></li>
+                            <li>Tecnólogo em Análise e Desenvolvimento de Sistemas <span class="tag">conclusão 2025</span></li>
+                            <li>Licenciatura em Computação <span class="tag">cursando</span></li>
+                            <li>Pós-Graduação em Inteligência Artificial <span class="tag">2026</span></li>
+                            <li>Pós-Graduação em Segurança da Informação <span class="tag">2026</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== QUALIFICAÇÕES / PROJETOS ===================== -->
+        <section id="projetos" class="section section--alt">
+            <div class="container">
+                <div class="split-block reveal" style="display:grid;gap:48px;align-items:center;grid-template-columns:1fr;">
+                    <div>
+                        <span class="eyebrow">prática, não só teoria</span>
+                        <h2 class="section-title">Quem ensina programação, também programa</h2>
+                        <p class="section-lede" style="margin-top:16px;">
+                            Além da sala de aula, aplico na prática o que ensino — desenvolvendo e colaborando em projetos reais
+                            com as tecnologias que faço parte do dia a dia dos meus alunos.
+                        </p>
+
+                        <ul class="check-list" style="max-width:640px;">
+                            <li><span class="check-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 12 13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Microsoft Office Avançado (Word, Excel, PowerPoint)</li>
+                            <li><span class="check-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 12 13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Inglês básico</li>
+                            <li><span class="check-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 12 13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Resolução de problemas</li>
+                            <li><span class="check-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.2 12 13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>HTML5, CSS3, Bootstrap, Tailwind, JavaScript, Node.js e MySQL</li>
+                        </ul>
+                    </div>
+
+                    <div class="code-panel">
+                        <div class="code-panel-head">
+                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                            <span class="filename">stack.js</span>
+                        </div>
+                        <div class="code-panel-body">
+                            <div><span class="kw">const</span> <span class="var">stack</span> <span class="punct">= [</span></div>
+                            <div>&nbsp;&nbsp;<span class="str">"HTML5"</span><span class="punct">,</span> <span class="str">"CSS3"</span><span class="punct">,</span> <span class="str">"Bootstrap"</span><span class="punct">,</span></div>
+                            <div>&nbsp;&nbsp;<span class="str">"Tailwind"</span><span class="punct">,</span> <span class="str">"JavaScript"</span><span class="punct">,</span></div>
+                            <div>&nbsp;&nbsp;<span class="str">"Node.js"</span><span class="punct">,</span> <span class="str">"MySQL"</span></div>
+                            <div><span class="punct">];</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="project-info">
+                        <span class="eyebrow">projeto em destaque</span>
+                        <h4>Site do Campeonato de eFootball</h4>
+                        <p>Auxiliei na criação do site oficial de um campeonato do jogo mobile eFootball, colocando em prática o que levo para a sala de aula.</p>
+                    </div>
+                    <a href="https://copadosdeuses.com.br/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">Ver projeto</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== IMPACTO / CITAÇÃO ===================== -->
+        <section class="section">
+            <div class="container">
+                <div class="section-head center reveal">
+                    <span class="eyebrow">impacto</span>
+                    <h2 class="section-title">Levando tecnologia para onde ela ainda não chegou</h2>
+                </div>
+
+                <div class="quote-card reveal">
+                    <p>
+                        Ministrei minicursos na escola municipal de Cucaú, distrito de Rio Formoso, apresentando aos
+                        alunos a introdução à programação com Scratch — uma ferramenta que ensina lógica de programação
+                        através de blocos de encaixe, sem precisar escrever código.
+                    </p>
+                    <footer>— Escola Municipal de Cucaú, Rio Formoso/PE</footer>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== CTA BAND ===================== -->
+        <section id="contato" class="section section--tight">
+            <div class="container">
+                <div class="cta-band reveal">
+                    <div class="cta-photo">
+                        <img src="src/img/portrait-hero.png" alt="Professor Rafael Guimarães">
+                    </div>
+                    <div class="cta-text">
+                        <h3>Precisa de um professor de Matemática ou Informática?</h3>
+                        <p>Aulas particulares, preparação para concursos ou parceria com instituições de ensino — vamos conversar.</p>
+                    </div>
+                    <div class="cta-actions">
+                        <a rel="noopener noreferrer" class="btn btn-whatsapp"
+                            href="https://wa.me/5581996678813?text=Olá,%20professor%20Rafael!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20mais%20informações"
+                            target="_blank">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:20px;height:20px">
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z" clip-rule="evenodd" />
+                                <path fill="currentColor" d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z" />
+                            </svg>
+                            Fale comigo no WhatsApp
+                        </a>
+                        <a href="src/curriculo-rafael-guimaraes.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">
+                            Baixar currículo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
-    <footer>
-        <div class="footerFlow">
-            <footer class="p-4 bg-white sm:p-6 dark:bg-gray-800">
-                <div class="mx-auto max-w-screen-xl">
-                    <div class="md:flex md:justify-between">
-                        <div class="mb-6 md:mb-0">
-                            <a href="#" class="flex justify-center items-center">
-                                <img src="src/img/Logos/Logo_GuimaraesDevWeb_200px.png" class="logo_GuimDevWeb mr-3"
-                                    alt="Logo GuimaraesDevWeb" />
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="#hero" class="brand">
+                    <span class="brand-badge" aria-hidden="true">RG</span>
+                    <span class="brand-text">
+                        <strong>Rafael Guimarães</strong>
+                        <span>Matemática &amp; Informática</span>
+                    </span>
+                </a>
 
-                            </a>
-                            
-                        </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/guimaraesdevweb" target="_blank" rel="noopener noreferrer" aria-label="Perfil do LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.114 20.452H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
 
-                    </div>
-                    <hr class="my-6 border-gray-800 sm:mx-auto dark:border-blue-600 lg:my-8" />
-                    <div id="redessociais"
-                        class="sm:flex sm:items-center sm:justify-between text-center justify-center">
+                    <a href="https://github.com/guimaraesdevweb/" target="_blank" rel="noopener noreferrer" aria-label="Perfil no Github">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
 
-                        <div class="flex justify-center mb-4 mt-4 space-x-6 sm:justify-center sm:mt-0">
+                    <a href="mailto:guimaraesdevweb@gmail.com?subject=Vim%20pelo%20seu%20site" aria-label="Enviar E-mail para o Professor Rafael Guimarães">
+                        <svg viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
+                            <path d="M423.795,31.763H88.205C39.363,31.763,0,71.571,0,119.966v192.679c0,48.711,39.699,88.205,88.205,88.205h54.841v18.531c0,10.656,8.638,19.292,19.292,19.292h84.429v22.253c0,17.109,20.595,25.661,32.752,13.821l83.601-81.417c7.765-7.561,7.783-20.063,0-27.643l-83.601-81.416c-12.196-11.883-32.752-3.204-32.752,13.821v22.251h-84.429c-10.656,0-19.292,8.638-19.292,19.292v18.533H88.205c-11.198,0-21.458-4.072-29.396-10.802l140.826-129.077c58.265,38.135,67.367,29.69,112.731,0l140.826,129.077c-7.938,6.73-18.198,10.802-29.396,10.802h-8.808c-11.785,0-21.339,9.554-21.339,21.339s9.554,21.34,21.339,21.34h8.808C472.247,400.85,512,361.406,512,312.645V119.966C512,71.476,472.549,31.763,423.795,31.763z M42.679,304.258V119.966c0-1.44,0.075-2.862,0.206-4.268l119.899,78.474L42.679,304.258z M266.284,197.444c-6.247,4.089-14.32,4.089-20.567-0.001L66.347,80.046c6.491-3.568,13.94-5.604,21.857-5.604c364.554,0,343.118-2.273,357.449,5.604L266.284,197.444z M469.321,304.258L349.215,194.174l119.9-78.475c0.131,1.406,0.206,2.828,0.206,4.268V304.258z"/>
+                        </svg>
+                    </a>
 
-                            <a href="https://www.instagram.com/guimaraesdevweb/"
-                                class=" text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                                aria-label="Perfil do Instagram">
-                                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-
-                            <a href="https://github.com/guimaraesdevweb/"
-                                class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                                aria-label="Perfil para o Github">
-                                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-
-                            <a href="mailto:guimaraesdevweb@gmail.com?subject=Vim%20pelo%20seu%20site=Olá,%20este%20é%20o%20corpo%20do%20e-mail"
-                                class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                                aria-label="Enviar E-mail para o Programador Rafael Guimarães">
-                                
-                                <svg class="w-10 h-10" fill="currentColor" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 512 512"
-                                    xml:space="preserve">
-                                    <g>
-                                        <g>
-                                            <path
-                                                d="M423.795,31.763H88.205C39.363,31.763,0,71.571,0,119.966v192.679    c0,48.711,39.699,88.205,88.205,88.205h54.841v18.531c0,10.656,8.638,19.292,19.292,19.292h84.429v22.253    c0,17.109,20.595,25.661,32.752,13.821l83.601-81.417c7.765-7.561,7.783-20.063,0-27.643l-83.601-81.416    c-12.196-11.883-32.752-3.204-32.752,13.821v22.251h-84.429c-10.656,0-19.292,8.638-19.292,19.292v18.533H88.205    c-11.198,0-21.458-4.072-29.396-10.802l140.826-129.077c58.265,38.135,67.367,29.69,112.731,0l140.826,129.077    c-7.938,6.73-18.198,10.802-29.396,10.802h-8.808c-11.785,0-21.339,9.554-21.339,21.339s9.554,21.34,21.339,21.34h8.808    C472.247,400.85,512,361.406,512,312.645V119.966C512,71.476,472.549,31.763,423.795,31.763z M42.679,304.258V119.966    c0-1.44,0.075-2.862,0.206-4.268l119.899,78.474L42.679,304.258z M266.284,197.444c-6.247,4.089-14.32,4.089-20.567-0.001    L66.347,80.046c6.491-3.568,13.94-5.604,21.857-5.604c364.554,0,343.118-2.273,357.449,5.604L266.284,197.444z M469.321,304.258    L349.215,194.174l119.9-78.475c0.131,1.406,0.206,2.828,0.206,4.268V304.258z" />
-                                        </g>
-                                    </g>
-                                </svg>
-                            </a>
-                            <a href="https://wa.me/5581996678813?text=Ol%C3%A1%2C%20vim%20pelo%20seu%20site!"
-                                class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                                aria-label="Mensagens via WhatsApp">
-                                <svg class="w-10 h-10" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor" fill-rule="evenodd"
-                                        d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z"
-                                        clip-rule="evenodd" />
-                                    <path fill="currentColor"
-                                        d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z" />
-                                </svg>
-
-
-                            </a>
-
-
-                        </div>
-                        <div class=" mb-4">
-
-                            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="#"
-                                    class="hover:underline">Programador Rafael Guimarães™</a>. All Rights Reserved.
-                            </span><br>
-                            <h2 class="text-sm text-gray-500 sm:text-center dark:text-gray-400" >Desenvolvedor Web | SEO</h2>
-                        </div>
-
-
-                    </div>
+                    <a rel="noopener noreferrer" href="https://wa.me/5581996678813?text=Ol%C3%A1%2C%20professor%20Rafael!%20Vim%20pelo%20seu%20site." target="_blank" aria-label="Mensagens via WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z" clip-rule="evenodd" />
+                            <path fill="currentColor" d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z" />
+                        </svg>
+                    </a>
                 </div>
-            </footer>
+            </div>
 
+            <div class="footer-bottom">
+                © 2026 <strong>Prof. Rafael Silva Guimarães</strong>. Todos os direitos reservados.<br>
+                Professor de Matemática e Informática | Vitória de Santo Antão – PE
+            </div>
         </div>
-
     </footer>
 
     <a rel="noopener noreferrer"
-        href="https://wa.me/5581996678813?text=Olá,%20vim%20da%20sua%20landing%20page%20e%20gostaria%20de%20mais%20informações"
+        href="https://wa.me/5581996678813?text=Olá,%20professor%20Rafael!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20mais%20informações"
         target="_blank" id="whatsapp-floating" aria-label="Fale comigo no WhatsApp">
-        <svg class="w-8 h-8 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <path fill="currentColor" fill-rule="evenodd"
-                d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z"
-                clip-rule="evenodd" />
-            <path fill="currentColor"
-                d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z" />
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z" clip-rule="evenodd" />
+            <path fill="currentColor" d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z" />
         </svg>
-
-
     </a>
 
     <script src="src/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-
 </body>
 
 </html>
