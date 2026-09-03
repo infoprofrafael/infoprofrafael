@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Geometria Analítica: Circunferência | Prof. Rafael Guimarães</title>
+  <style>
+    .input-custom {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .input-custom:focus {
+      outline: 2px solid var(--brand);
+      border-color: transparent;
+    }
+    .range-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .range-group input[type="range"] {
+      width: 100%;
+      accent-color: var(--brand);
+      cursor: pointer;
+    }
+    .math-card-info {
+      background: var(--surface-2);
+      border-left: 4px solid var(--brand);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: var(--ink);
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+    .section-divider {
+      border: 0;
+      height: 1px;
+      background: var(--line);
+      margin: 48px 0;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-badge">RG</span>
+        <span class="brand-text">
+          <strong>Rafael Guimarães</strong>
+          <span>Geometria Analítica</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="../index.html" class="btn btn-ghost btn-sm">← Voltar às Aulas</a>
+        <button id="theme-toggle" type="button" class="icon-btn" aria-label="Alternar tema">
+          <svg id="theme-toggle-dark-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.951.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: 110px; padding-bottom: 80px;">
+    <div class="container">
+      <span class="eyebrow">Ensino Médio / Geometria Analítica</span>
+      <h1 class="section-title">Estudo da Circunferência no Plano Cartesiano</h1>
+      <p class="section-lede">Analise a Equação Reduzida e Geral no primeiro quadro. No segundo quadro, teste a posição relativa de um ponto arbitrário $P(x,y)$ em relação à circunferência.</p>
+
+      <!-- QUADRO 1: EQUAÇÃO DA CIRCUNFERÊNCIA -->
+      <section style="margin-top: 40px;">
+        <h2 style="font-size: 1.5rem; color: var(--brand-strong); margin-bottom: 8px;">1. Centro, Raio e Equações</h2>
+        <p style="color: var(--ink-light); margin-bottom: 24px;">Altere as coordenadas do Centro $C(a, b)$ e o Raio $R$ para observar a expansão e o deslocamento no quadro de giz.</p>
+
+        <div class="lab-container">
+          <div class="canvas-card">
+            <canvas id="circleCanvas1" width="400" height="400"></canvas>
+          </div>
+
+          <div class="control-panel">
+            <div class="control-group range-group">
+              <label for="zoom1" style="display: flex; justify-content: space-between;">
+                <span>Zoom do Quadro:</span>
+                <strong id="zoomVal1" style="color:var(--brand-strong);">1.0x</strong>
+              </label>
+              <input type="range" id="zoom1" min="0.4" max="2.5" value="1.0" step="0.1">
+            </div>
+
+            <div class="control-group">
+              <label for="centerX">Centro $X_0$ ($a$):</label>
+              <input type="number" id="centerX" class="input-custom" value="2" step="1">
+            </div>
+
+            <div class="control-group">
+              <label for="centerY">Centro $Y_0$ ($b$):</label>
+              <input type="number" id="centerY" class="input-custom" value="3" step="1">
+            </div>
+
+            <div class="control-group">
+              <label for="radiusR">Raio ($R$):</label>
+              <input type="number" id="radiusR" class="input-custom" value="5" min="0.5" step="0.5">
+            </div>
+
+            <div class="math-readout" id="eqReduzidaReadout">
+              $(x - 2)^2 + (y - 3)^2 = 25$
+            </div>
+
+            <div class="math-card-info">
+              <strong>Equação Geral:</strong><br>
+              <span id="eqGeralReadout" style="color:var(--brand-strong);">x² + y² - 4x - 6y - 12 = 0</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- QUADRO 2: POSIÇÃO RELATIVA DE UM PONTO -->
+      <section>
+        <h2 style="font-size: 1.5rem; color: var(--brand-strong); margin-bottom: 8px;">2. Posição Relativa de um Ponto $P(x, y)$</h2>
+        <p style="color: var(--ink-light); margin-bottom: 24px;">Compare a distância $d(P, C)$ entre o ponto $P$ e o centro $C$ com o valor do raio $R$.</p>
+
+        <div class="lab-container">
+          <div class="canvas-card">
+            <canvas id="circleCanvas2" width="400" height="400"></canvas>
+          </div>
+
+          <div class="control-panel">
+            <div class="control-group">
+              <label for="pointX">Ponto $P_x$:</label>
+              <input type="number" id="pointX" class="input-custom" value="5" step="1">
+            </div>
+
+            <div class="control-group">
+              <label for="pointY">Ponto $P_y$:</label>
+              <input type="number" id="pointY" class="input-custom" value="7" step="1">
+            </div>
+
+            <div class="math-readout" id="distReadout">
+              $d(P, C) = 5.00$
+            </div>
+
+            <div style="margin-top: 12px; text-align: center;">
+              <span id="positionBadge" class="status-badge" style="background:#2ecc71; color:#fff;">PONTO PERTENCE À CIRCUNFERÊNCIA</span>
+            </div>
+
+            <div class="math-card-info">
+              • <strong>Condição Espacial:</strong><br>
+              <span id="conditionText">d(P, C) = R $\rightarrow$ Pertence</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../../../src/js/aula-base.js"></script>
+  <script>
+    // ELEMENTOS QUADRO 1
+    const canvas1 = document.getElementById('circleCanvas1');
+    const ctx1 = canvas1.getContext('2d');
+    const inputCenterX = document.getElementById('centerX');
+    const inputCenterY = document.getElementById('centerY');
+    const inputRadius = document.getElementById('radiusR');
+    const zoom1 = document.getElementById('zoom1');
+    const zoomVal1 = document.getElementById('zoomVal1');
+
+    // ELEMENTOS QUADRO 2
+    const canvas2 = document.getElementById('circleCanvas2');
+    const ctx2 = canvas2.getContext('2d');
+    const inputPointX = document.getElementById('pointX');
+    const inputPointY = document.getElementById('pointY');
+
+    const width = 400;
+    const height = 400;
+    const originX = width / 2;
+    const originY = height / 2;
+
+    function drawBaseGrid(ctx, gridScale) {
+      ctx.clearRect(0, 0, width, height);
+      ctx.strokeStyle = '#2b4234';
+      ctx.lineWidth = 1;
+
+      for (let x = originX; x <= width; x += gridScale) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+      }
+      for (let x = originX; x >= 0; x -= gridScale) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+      }
+      for (let y = originY; y <= height; y += gridScale) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+      }
+      for (let y = originY; y >= 0; y -= gridScale) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+      }
+
+      ctx.strokeStyle = '#f4efe0';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0, originY); ctx.lineTo(width, originY); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(originX, 0); ctx.lineTo(originX, height); ctx.stroke();
+    }
+
+    function renderModule() {
+      const a = parseFloat(inputCenterX.value) || 0;
+      const b = parseFloat(inputCenterY.value) || 0;
+      const r = Math.max(0.1, parseFloat(inputRadius.value) || 1);
+      const z1 = parseFloat(zoom1.value) || 1.0;
+
+      zoomVal1.innerText = `${z1.toFixed(1)}x`;
+
+      // --- CÁLCULO DE ESCALA COM ZOOM ---
+      let maxReach = Math.max(Math.abs(a) + r, Math.abs(b) + r, 12);
+      maxReach += 2;
+      const gridScale = (originX / maxReach) * z1;
+
+      // ==========================================
+      // RENDEREIZAÇÃO QUADRO 1
+      // ==========================================
+      drawBaseGrid(ctx1, gridScale);
+
+      const cx1 = originX + a * gridScale;
+      const cy1 = originY - b * gridScale;
+      const rPx = r * gridScale;
+
+      // Desenho da Circunferência no Quadro 1
+      ctx1.strokeStyle = '#d99a1f';
+      ctx1.lineWidth = 3;
+      ctx1.beginPath();
+      ctx1.arc(cx1, cy1, rPx, 0, Math.PI * 2);
+      ctx1.stroke();
+
+      // Centro C(a,b)
+      ctx1.fillStyle = '#3498db';
+      ctx1.beginPath(); ctx1.arc(cx1, cy1, 5, 0, Math.PI * 2); ctx1.fill();
+
+      // Raio R
+      ctx1.strokeStyle = '#3498db';
+      ctx1.lineWidth = 2;
+      ctx1.beginPath(); ctx1.moveTo(cx1, cy1); ctx1.lineTo(cx1 + rPx, cy1); ctx1.stroke();
+
+      // Textos
+      ctx1.font = '600 12px "JetBrains Mono", monospace';
+      ctx1.fillStyle = '#f4efe0';
+      ctx1.textAlign = 'left';
+      ctx1.fillText(`C(${a}, ${b})`, cx1 + 8, cy1 - 8);
+      ctx1.textAlign = 'center';
+      ctx1.fillText(`R = ${r}`, cx1 + rPx / 2, cy1 - 6);
+
+      // Atualização dos Textos de Equação
+      const signA = a >= 0 ? `- ${a}` : `+ ${Math.abs(a)}`;
+      const signB = b >= 0 ? `- ${b}` : `+ ${Math.abs(b)}`;
+      const r2 = r * r;
+      document.getElementById('eqReduzidaReadout').innerText = `(x ${signA})² + (y ${signB})² = ${r2.toFixed(1)}`;
+
+      const coefD = -2 * a;
+      const coefE = -2 * b;
+      const termF = a * a + b * b - r2;
+      const strD = coefD >= 0 ? `+ ${coefD}x` : `- ${Math.abs(coefD)}x`;
+      const strE = coefE >= 0 ? `+ ${coefE}y` : `- ${Math.abs(coefE)}y`;
+      const strF = termF >= 0 ? `+ ${termF.toFixed(1)}` : `- ${Math.abs(termF).toFixed(1)}`;
+      document.getElementById('eqGeralReadout').innerText = `x² + y² ${strD} ${strE} ${strF} = 0`;
+
+      // ==========================================
+      // RENDEREIZAÇÃO QUADRO 2
+      // ==========================================
+      const px = parseFloat(inputPointX.value) || 0;
+      const py = parseFloat(inputPointY.value) || 0;
+
+      let maxReach2 = Math.max(Math.abs(a) + r, Math.abs(b) + r, Math.abs(px), Math.abs(py), 12) + 2;
+      const gridScale2 = (originX / maxReach2) * z1;
+
+      drawBaseGrid(ctx2, gridScale2);
+
+      const cx2 = originX + a * gridScale2;
+      const cy2 = originY - b * gridScale2;
+      const rPx2 = r * gridScale2;
+
+      // Circunferência
+      ctx2.strokeStyle = '#d99a1f';
+      ctx2.lineWidth = 3;
+      ctx2.beginPath(); ctx2.arc(cx2, cy2, rPx2, 0, Math.PI * 2); ctx2.stroke();
+
+      // Centro C
+      ctx2.fillStyle = '#3498db';
+      ctx2.beginPath(); ctx2.arc(cx2, cy2, 5, 0, Math.PI * 2); ctx2.fill();
+
+      // Ponto P
+      const ptX = originX + px * gridScale2;
+      const ptY = originY - py * gridScale2;
+
+      // Distância d(P, C)
+      const dist = Math.sqrt((px - a) ** 2 + (py - b) ** 2);
+
+      // Linha de Conexão d(P, C)
+      ctx2.strokeStyle = '#e74c3c';
+      ctx2.lineWidth = 2;
+      ctx2.setLineDash([4, 4]);
+      ctx2.beginPath(); ctx2.moveTo(cx2, cy2); ctx2.lineTo(ptX, ptY); ctx2.stroke();
+      ctx2.setLineDash([]);
+
+      // Cor do Ponto P conforme posição
+      const badge = document.getElementById('positionBadge');
+      const condText = document.getElementById('conditionText');
+
+      if (Math.abs(dist - r) < 0.05) {
+        ctx2.fillStyle = '#2ecc71'; // Verde: Pertence
+        badge.style.background = '#2ecc71';
+        badge.innerText = 'PONTO PERTENCE À CIRCUNFERÊNCIA';
+        condText.innerText = `d(P, C) = ${dist.toFixed(2)} e R = ${r} → d = R`;
+      } else if (dist < r) {
+        ctx2.fillStyle = '#3498db'; // Azul: Interior
+        badge.style.background = '#3498db';
+        badge.innerText = 'PONTO INTERNO À CIRCUNFERÊNCIA';
+        condText.innerText = `d(P, C) = ${dist.toFixed(2)} < R = ${r} → d < R`;
+      } else {
+        ctx2.fillStyle = '#e74c3c'; // Vermelho: Exterior
+        badge.style.background = '#e74c3c';
+        badge.innerText = 'PONTO EXTERNO À CIRCUNFERÊNCIA';
+        condText.innerText = `d(P, C) = ${dist.toFixed(2)} > R = ${r} → d > R`;
+      }
+
+      ctx2.beginPath(); ctx2.arc(ptX, ptY, 6, 0, Math.PI * 2); ctx2.fill();
+
+      // Textos
+      ctx2.font = '600 12px "JetBrains Mono", monospace';
+      ctx2.fillStyle = '#f4efe0';
+      ctx2.textAlign = 'left';
+      ctx2.fillText(`P(${px}, ${py})`, ptX + 8, ptY - 8);
+      ctx2.fillText(`C(${a}, ${b})`, cx2 + 8, cy2 + 16);
+
+      document.getElementById('distReadout').innerText = `d(P, C) = ${dist.toFixed(2)}`;
+    }
+
+    // Listeners
+    inputCenterX.addEventListener('input', renderModule);
+    inputCenterY.addEventListener('input', renderModule);
+    inputRadius.addEventListener('input', renderModule);
+    zoom1.addEventListener('input', renderModule);
+    inputPointX.addEventListener('input', renderModule);
+    inputPointY.addEventListener('input', renderModule);
+
+    renderModule();
+  </script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Trigonometria: Laboratório Completo | Prof. Rafael Guimarães</title>
+  <style>
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      background: var(--surface-2);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+    
+    @media (max-width: 768px) {
+      .dashboard { grid-template-columns: 1fr; }
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .input-select {
+      background: var(--background);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+    }
+    
+    .range-group { display: flex; flex-direction: column; gap: 6px; }
+    .range-group input[type="range"] { width: 100%; accent-color: var(--brand); cursor: pointer; }
+    
+    .math-readout {
+      background: var(--background);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--ink);
+      text-align: center;
+      border: 1px solid var(--line);
+    }
+    
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    
+    .data-point { font-family: var(--font-mono); font-size: 1rem; }
+    .data-label {
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: block;
+      font-family: var(--font-sans);
+    }
+
+    .canvas-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      background: var(--surface-2);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      padding: 16px;
+      box-sizing: border-box;
+    }
+    canvas {
+      display: block;
+      margin: 0 auto;
+      background: #1e2e24; 
+      border-radius: 8px;
+      touch-action: none; 
+      cursor: grab;
+      max-width: 100%;
+      height: auto;
+    }
+    canvas:active { cursor: grabbing; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-badge">RG</span>
+        <span class="brand-text">
+          <strong>Rafael Guimarães</strong>
+          <span>Trigonometria Avançada</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="../index.html" class="btn btn-ghost btn-sm">← Voltar às Aulas</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: 110px; padding-bottom: 80px;">
+    <div class="container">
+      <span class="eyebrow">Ensino Médio / Funções Circulares</span>
+      <h1 class="section-title">Laboratório de Ondas Trigonométricas</h1>
+      <p class="section-lede">Configure a função e os parâmetros no painel abaixo. Em seguida, <strong>arraste o ponto no círculo</strong> no quadro para gerar a onda em tempo real.</p>
+
+      <!-- PAINEL DE CONTROLE (Agora no topo) -->
+      <div class="dashboard">
+        <!-- Coluna 1: Controles -->
+        <div>
+          <div class="control-group">
+            <label class="data-label">Escolha a Função</label>
+            <select id="funcSelect" class="input-select">
+              <option value="sin">Seno (Projeção no Eixo Y)</option>
+              <option value="cos">Cosseno (Projeção no Eixo X)</option>
+              <option value="tan">Tangente (Projeção na reta x=1)</option>
+            </select>
+          </div>
+          
+          <div class="control-group range-group">
+            <label for="ampSlider" style="display: flex; justify-content: space-between;">
+              <span class="data-label">Amplitude (A)</span>
+              <strong id="ampVal" style="color:var(--brand-strong);">1.0</strong>
+            </label>
+            <input type="range" id="ampSlider" min="0.5" max="2.5" value="1.0" step="0.1">
+          </div>
+
+          <div class="control-group range-group">
+            <label for="freqSlider" style="display: flex; justify-content: space-between;">
+              <span class="data-label">Frequência (B)</span>
+              <strong id="freqVal" style="color:var(--brand-strong);">1.0</strong>
+            </label>
+            <input type="range" id="freqSlider" min="0.5" max="3.0" value="1.0" step="0.5">
+          </div>
+        </div>
+
+        <!-- Coluna 2: Matemática e Dados -->
+        <div>
+          <div class="math-readout" id="eqReadout">
+            $f(x) = 1.0 \cdot \sin(1.0 \cdot x)$
+          </div>
+          
+          <div class="data-grid">
+            <div class="data-point">
+              <span class="data-label">Ângulo Atual ($\theta$)</span>
+              <span id="angleText">45° / 0.79 rad</span>
+            </div>
+            <div class="data-point">
+              <span class="data-label">Valor $f(\theta)$</span>
+              <span id="funcValueText" style="color:var(--brand-strong); font-weight:bold;">0.71</span>
+            </div>
+            <div class="data-point">
+              <span class="data-label">Período (T)</span>
+              <span id="periodText">2π</span>
+            </div>
+            <div class="data-point">
+              <span class="data-label">Imagem (Im)</span>
+              <span id="imageText">[-1.0, 1.0]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUADRO INTERATIVO  -->
+      <div class="canvas-wrapper">
+        <canvas id="trigoCanvas" width="900" height="400"></canvas>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../../../src/js/aula-base.js"></script>
+  <script>
+    const canvas = document.getElementById('trigoCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    const funcSelect = document.getElementById('funcSelect');
+    const ampSlider = document.getElementById('ampSlider');
+    const freqSlider = document.getElementById('freqSlider');
+    
+    const w = canvas.width;
+    const h = canvas.height;
+    const cx = 180;
+    const cy = 200;
+    const R = 100; 
+    
+    const waveStartX = 380;
+    const waveEndX = 850;
+    const waveWidth = waveEndX - waveStartX;
+    const waveCenterY = 200;
+
+    let theta = Math.PI / 4; 
+    let isDragging = false;
+
+    const colors = { sin: '#e74c3c', cos: '#3498db', tan: '#2ecc71' };
+
+    function calculateTrig(type, angle) {
+      if (type === 'sin') return Math.sin(angle);
+      if (type === 'cos') return Math.cos(angle);
+      if (type === 'tan') return Math.tan(angle);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      
+      const funcType = funcSelect.value;
+      const A = parseFloat(ampSlider.value);
+      const B = parseFloat(freqSlider.value);
+      const color = colors[funcType];
+
+      // --- 1. GRADE E EIXOS ---
+      ctx.strokeStyle = '#2b4234'; ctx.lineWidth = 1;
+      for(let i = 0; i <= w; i += 40) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,h); ctx.stroke(); }
+      for(let i = 0; i <= h; i += 40) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(w,i); ctx.stroke(); }
+
+      ctx.strokeStyle = '#f4efe0'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(40, cy); ctx.lineTo(320, cy); ctx.stroke(); 
+      ctx.beginPath(); ctx.moveTo(cx, 40); ctx.lineTo(cx, 360); ctx.stroke(); 
+      
+      ctx.beginPath(); ctx.moveTo(waveStartX, waveCenterY); ctx.lineTo(waveEndX + 20, waveCenterY); ctx.stroke(); 
+      ctx.beginPath(); ctx.moveTo(waveStartX, 20); ctx.lineTo(waveStartX, 380); ctx.stroke(); 
+
+      // --- 2. VALORES FIXOS NO QUADRO (Marcadores Numéricos) ---
+      ctx.font = '12px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#a8b5aa';
+      // Círculo Unitário
+      ctx.fillText('1', cx + R + 4, cy + 14);
+      ctx.fillText('-1', cx - R - 16, cy + 14);
+      ctx.fillText('1', cx - 12, cy - R - 6);
+      ctx.fillText('-1', cx - 16, cy + R + 14);
+      // Eixos da Onda
+      ctx.fillText(A.toFixed(1), waveStartX - 28, waveCenterY - (A * R) + 4);
+      ctx.fillText('-' + A.toFixed(1), waveStartX - 32, waveCenterY + (A * R) + 4);
+
+      // --- 3. CÍRCULO E RETA TANGENTE ---
+      ctx.strokeStyle = 'rgba(244, 239, 224, 0.4)'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+
+      if (funcType === 'tan') {
+        ctx.strokeStyle = 'rgba(244, 239, 224, 0.3)';
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath(); ctx.moveTo(cx + R, 20); ctx.lineTo(cx + R, 380); ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      const px = cx + Math.cos(theta) * R;
+      const py = cy - Math.sin(theta) * R;
+
+      // Raio
+      ctx.strokeStyle = '#d99a1f'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, py); ctx.stroke();
+
+      // Ângulo no Círculo
+      ctx.fillStyle = '#d99a1f';
+      let deg = Math.round((theta * 180) / Math.PI);
+      ctx.fillText(deg + '°', cx + 15, cy - 10);
+
+      // --- 4. PROJEÇÕES VISUAIS ---
+      let projX, projY;
+      ctx.strokeStyle = color; ctx.lineWidth = 4;
+      ctx.beginPath();
+      
+      if (funcType === 'sin') {
+        ctx.moveTo(px, cy); ctx.lineTo(px, py);
+        projX = cx; projY = py; 
+      } 
+      else if (funcType === 'cos') {
+        ctx.moveTo(cx, cy); ctx.lineTo(px, cy);
+        projX = px; projY = cy - Math.cos(theta)*R; 
+      } 
+      else if (funcType === 'tan') {
+        const tVal = Math.tan(theta);
+        let clampedT = Math.max(-1.8, Math.min(1.8, tVal)); 
+        ctx.moveTo(cx + R, cy); ctx.lineTo(cx + R, cy - clampedT * R);
+        
+        ctx.strokeStyle = 'rgba(217, 154, 31, 0.5)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + R, cy - clampedT * R);
+        projX = cx + R; projY = cy - clampedT * R;
+      }
+      ctx.stroke();
+
+      // --- 5. DESENHO DA ONDA ---
+      function getWaveY(angle) {
+        let val = calculateTrig(funcType, B * angle);
+        if (funcType === 'tan') val = Math.max(-10, Math.min(10, val));
+        return waveCenterY - (A * val) * R;
+      }
+
+      ctx.strokeStyle = `${color}40`; 
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      let prevY = getWaveY(0);
+      for (let a = 0; a <= Math.PI * 2; a += 0.02) {
+        let wx = waveStartX + (a / (Math.PI * 2)) * waveWidth;
+        let wy = getWaveY(a);
+        if (a === 0) ctx.moveTo(wx, wy); 
+        else if (Math.abs(wy - prevY) > 100) ctx.moveTo(wx, wy); 
+        else ctx.lineTo(wx, wy);
+        prevY = wy;
+      }
+      ctx.stroke();
+
+      ctx.strokeStyle = color; ctx.lineWidth = 4;
+      ctx.beginPath();
+      prevY = getWaveY(0);
+      for (let a = 0; a <= theta; a += 0.02) {
+        let wx = waveStartX + (a / (Math.PI * 2)) * waveWidth;
+        let wy = getWaveY(a);
+        if (a === 0) ctx.moveTo(wx, wy);
+        else if (Math.abs(wy - prevY) > 100) ctx.moveTo(wx, wy);
+        else ctx.lineTo(wx, wy);
+        prevY = wy;
+      }
+      ctx.stroke();
+
+      // --- 6. CONEXÃO E PONTOS ---
+      const currentWaveX = waveStartX + (theta / (Math.PI * 2)) * waveWidth;
+      const currentWaveY = getWaveY(theta);
+
+      ctx.strokeStyle = '#f1c40f'; ctx.lineWidth = 2; ctx.setLineDash([4, 4]);
+      ctx.beginPath(); ctx.moveTo(projX, projY); ctx.lineTo(currentWaveX, currentWaveY); ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = '#f4efe0'; ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI*2); ctx.fill(); 
+      ctx.fillStyle = color; ctx.beginPath(); ctx.arc(currentWaveX, currentWaveY, 6, 0, Math.PI*2); ctx.fill(); 
+
+      // Valores Dinâmicos no Quadro
+      ctx.font = 'bold 14px "JetBrains Mono", monospace';
+      let rawVal = calculateTrig(funcType, B * theta);
+      let finalVal = A * rawVal;
+      let valText = (funcType === 'tan' && Math.abs(rawVal) > 10) ? '∞' : finalVal.toFixed(2);
+      ctx.fillText(valText, currentWaveX + 12, currentWaveY - 12);
+
+      ctx.font = '12px "JetBrains Mono", monospace'; ctx.fillStyle = '#a8b5aa';
+      ctx.fillText('0', waveStartX - 15, waveCenterY + 15);
+      ctx.fillText('2π', waveEndX - 5, waveCenterY + 15);
+
+      updateUI(funcType, A, B, finalVal, rawVal);
+    }
+
+    function updateUI(funcType, A, B, finalVal, rawVal) {
+      document.getElementById('ampVal').innerText = A.toFixed(1);
+      document.getElementById('freqVal').innerText = B.toFixed(1);
+      
+      const funcName = funcType === 'sin' ? 'sin' : funcType === 'cos' ? 'cos' : 'tan';
+      document.getElementById('eqReadout').innerText = `f(x) = ${A.toFixed(1)} · ${funcName}(${B.toFixed(1)} · x)`;
+
+      let deg = Math.round((theta * 180) / Math.PI);
+      document.getElementById('angleText').innerText = `${deg}° / ${theta.toFixed(2)} rad`;
+
+      if (funcType === 'tan' && Math.abs(rawVal) > 10) {
+        document.getElementById('funcValueText').innerText = "Tende ao Infinito";
+      } else {
+        document.getElementById('funcValueText').innerText = finalVal.toFixed(2);
+      }
+
+      let pBase = funcType === 'tan' ? Math.PI : 2 * Math.PI;
+      let period = pBase / B;
+      document.getElementById('periodText').innerText = period === Math.PI ? 'π' : period === 2*Math.PI ? '2π' : `${period.toFixed(2)} rad`;
+
+      if (funcType === 'tan') {
+        document.getElementById('imageText').innerText = 'Reais (R)';
+      } else {
+        document.getElementById('imageText').innerText = `[${-A.toFixed(1)}, ${A.toFixed(1)}]`;
+      }
+    }
+
+    function getMousePos(evt) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      let clientX = evt.clientX; let clientY = evt.clientY;
+      if (evt.touches && evt.touches.length > 0) {
+        clientX = evt.touches[0].clientX; clientY = evt.touches[0].clientY;
+      }
+      return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+    }
+
+    function updateAngle(pos) {
+      let dx = pos.x - cx;
+      let dy = cy - pos.y; 
+      let angle = Math.atan2(dy, dx);
+      if (angle < 0) angle += Math.PI * 2;
+      theta = angle;
+      draw();
+    }
+
+    canvas.addEventListener('mousedown', (e) => { isDragging = true; updateAngle(getMousePos(e)); });
+    window.addEventListener('mousemove', (e) => { if (isDragging) updateAngle(getMousePos(e)); });
+    window.addEventListener('mouseup', () => isDragging = false);
+    canvas.addEventListener('touchstart', (e) => { e.preventDefault(); isDragging = true; updateAngle(getMousePos(e)); }, { passive: false });
+    window.addEventListener('touchmove', (e) => { if (isDragging) { e.preventDefault(); updateAngle(getMousePos(e)); } }, { passive: false });
+    window.addEventListener('touchend', () => isDragging = false);
+
+    funcSelect.addEventListener('change', draw);
+    ampSlider.addEventListener('input', draw);
+    freqSlider.addEventListener('input', draw);
+
+    draw();
+  </script>
+</body>
+</html>

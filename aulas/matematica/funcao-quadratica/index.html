@@ -1,0 +1,573 @@
+<!-- <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Função Quadrática & Parábola | Prof. Rafael Guimarães</title>
+  <style>
+    .input-number-custom {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .input-number-custom:focus {
+      outline: 2px solid var(--brand);
+      border-color: transparent;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-2);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--brand-strong);
+      font-weight: 600;
+    }
+    .checkbox-container input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--brand);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-badge">RG</span>
+        <span class="brand-text">
+          <strong>Rafael Guimarães</strong>
+          <span>Função Quadrática</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="../index.html" class="btn btn-ghost btn-sm">← Voltar às Aulas</a>
+        <button id="theme-toggle" type="button" class="icon-btn" aria-label="Alternar tema">
+          <svg id="theme-toggle-dark-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.951.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: 110px;">
+    <div class="container">
+      <span class="eyebrow">Ensino Fundamental II / Ensino Médio</span>
+      <h1 class="section-title">Estudo da Parábola: $f(x) = ax^2 + bx + c$</h1>
+      <p class="section-lede">Digite os coeficientes da equação do 2º grau. Ative o modo desafio para ocultar o Vértice, o Delta e as Raízes Reais.</p>
+
+      <div class="lab-container">
+        <div class="canvas-card">
+          <canvas id="quadCanvas" width="400" height="400"></canvas>
+        </div>
+
+        <div class="control-panel">
+          <label class="checkbox-container">
+            <input type="checkbox" id="hideAnswer">
+            <span>Ocultar Vértice e Raízes (Modo Desafio)</span>
+          </label>
+
+          <div class="control-group">
+            <label for="coeffA">Coeficiente $a$:</label>
+            <input type="number" id="coeffA" class="input-number-custom" value="1" step="any">
+          </div>
+
+          <div class="control-group">
+            <label for="coeffB">Coeficiente $b$:</label>
+            <input type="number" id="coeffB" class="input-number-custom" value="0" step="any">
+          </div>
+
+          <div class="control-group">
+            <label for="coeffC">Coeficiente $c$:</label>
+            <input type="number" id="coeffC" class="input-number-custom" value="-4" step="any">
+          </div>
+
+          <div class="math-readout" id="eqOutput">
+            $f(x) = 1.0x^2 - 4.0$
+          </div>
+
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-light); line-height: 1.6;">
+            • Delta ($\Delta$): <span id="deltaVal" style="color:var(--brand-strong);">16.00</span><br>
+            • Vértice $(X_v, Y_v)$: <span id="vertexVal" style="color:var(--brand-strong);">(0.00, -4.00)</span><br>
+            • Raízes ($x_1, x_2$): <span id="rootsVal" style="color:var(--brand-strong); font-weight:bold;">-2.00, 2.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../../src/js/aula-base.js"></script>
+  <script>
+    const canvas = document.getElementById('quadCanvas');
+    const ctx = canvas.getContext('2d');
+    const inputA = document.getElementById('coeffA');
+    const inputB = document.getElementById('coeffB');
+    const inputC = document.getElementById('coeffC');
+    const hideAnswer = document.getElementById('hideAnswer');
+
+    const width = canvas.width;
+    const height = canvas.height;
+    const originX = width / 2;
+    const originY = height / 2;
+
+    function drawGrid(gridScale) {
+      ctx.clearRect(0, 0, width, height);
+      ctx.strokeStyle = '#2b4234';
+      ctx.lineWidth = 1;
+
+      for (let x = originX; x <= width; x += gridScale) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+      }
+      for (let x = originX; x >= 0; x -= gridScale) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+      }
+      for (let y = originY; y <= height; y += gridScale) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+      }
+      for (let y = originY; y >= 0; y -= gridScale) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+      }
+
+      ctx.strokeStyle = '#f4efe0';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0, originY); ctx.lineTo(width, originY); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(originX, 0); ctx.lineTo(originX, height); ctx.stroke();
+    }
+
+    function renderParabola() {
+      let a = parseFloat(inputA.value);
+      if (isNaN(a) || a === 0) a = 0.01; 
+      const b = parseFloat(inputB.value) || 0;
+      const c = parseFloat(inputC.value) || 0;
+      const isHidden = hideAnswer.checked;
+
+      const xv = -b / (2 * a);
+      const yv = a * xv * xv + b * xv + c;
+      const delta = b * b - 4 * a * c;
+
+      // --- ZOOM AUTOMÁTICO ---
+      let limit = 15;
+      if (Math.abs(c) > limit) limit = Math.ceil(Math.abs(c));
+      if (Math.abs(xv) > limit) limit = Math.ceil(Math.abs(xv));
+      if (Math.abs(yv) > limit) limit = Math.ceil(Math.abs(yv));
+
+      if (delta >= 0) {
+        const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+        if (Math.abs(x1) > limit) limit = Math.ceil(Math.abs(x1));
+        if (Math.abs(x2) > limit) limit = Math.ceil(Math.abs(x2));
+      }
+
+      limit += 2;
+      const gridScale = originX / limit;
+
+      drawGrid(gridScale);
+
+      // --- CURVA DA PARÁBOLA ---
+      ctx.strokeStyle = '#d99a1f';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+
+      let first = true;
+      for (let px = 0; px <= width; px += 2) {
+        const x = (px - originX) / gridScale;
+        const y = a * x * x + b * x + c;
+        const py = originY - y * gridScale;
+
+        if (first) {
+          ctx.moveTo(px, py);
+          first = false;
+        } else {
+          ctx.lineTo(px, py);
+        }
+      }
+      ctx.stroke();
+
+      ctx.font = '600 13px "JetBrains Mono", monospace';
+
+      // --- PONTO Y (0, c) ---
+      const yPtX = originX;
+      const yPtY = originY - c * gridScale;
+      ctx.fillStyle = '#f4efe0';
+      ctx.beginPath(); ctx.arc(yPtX, yPtY, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
+      ctx.fillText(isHidden ? '(0, ?)' : `(0, ${c})`, yPtX + 8, yPtY - 4);
+
+      // --- VÉRTICE V(Xv, Yv) ---
+      const cvX = originX + xv * gridScale;
+      const cvY = originY - yv * gridScale;
+      ctx.fillStyle = '#d99a1f';
+      ctx.beginPath(); ctx.arc(cvX, cvY, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.textAlign = 'center'; ctx.textBaseline = a > 0 ? 'top' : 'bottom';
+      ctx.fillText(isHidden ? 'V(?, ?)' : `V(${xv.toFixed(1)}, ${yv.toFixed(1)})`, cvX, cvY + (a > 0 ? 10 : -10));
+
+      // --- RAÍZES (EIXO X) ---
+      if (delta >= 0) {
+        const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+        ctx.fillStyle = '#659c76';
+        const cx1 = originX + x1 * gridScale;
+        ctx.beginPath(); ctx.arc(cx1, originY, 5, 0, Math.PI * 2); ctx.fill();
+        ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+        ctx.fillText(isHidden ? '?' : x1.toFixed(1), cx1, originY + 8);
+
+        if (delta > 0) {
+          const cx2 = originX + x2 * gridScale;
+          ctx.beginPath(); ctx.arc(cx2, originY, 5, 0, Math.PI * 2); ctx.fill();
+          ctx.fillText(isHidden ? '?' : x2.toFixed(1), cx2, originY + 8);
+        }
+      }
+
+      // --- ATUALIZAÇÃO DO PAINEL ---
+      const bSign = b >= 0 ? `+ ${b}` : `- ${Math.abs(b)}`;
+      const cSign = c >= 0 ? `+ ${c}` : `- ${Math.abs(c)}`;
+      document.getElementById('eqOutput').innerText = `f(x) = ${a}x² ${bSign}x ${cSign}`;
+
+      if (isHidden) {
+        document.getElementById('deltaVal').innerText = '?';
+        document.getElementById('vertexVal').innerText = '(?, ?)';
+        document.getElementById('rootsVal').innerText = '?';
+      } else {
+        document.getElementById('deltaVal').innerText = delta.toFixed(2);
+        document.getElementById('vertexVal').innerText = `(${xv.toFixed(2)}, ${yv.toFixed(2)})`;
+        if (delta > 0) {
+          const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+          const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+          document.getElementById('rootsVal').innerText = `${x1.toFixed(2)}, ${x2.toFixed(2)}`;
+        } else if (delta === 0) {
+          document.getElementById('rootsVal').innerText = `x = ${xv.toFixed(2)}`;
+        } else {
+          document.getElementById('rootsVal').innerText = 'Sem raízes reais';
+        }
+      }
+    }
+
+    inputA.addEventListener('input', renderParabola);
+    inputB.addEventListener('input', renderParabola);
+    inputC.addEventListener('input', renderParabola);
+    hideAnswer.addEventListener('change', renderParabola);
+
+    renderParabola();
+  </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Função Quadrática & Parábola | Prof. Rafael Guimarães</title>
+  <style>
+    .input-number-custom {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .input-number-custom:focus {
+      outline: 2px solid var(--brand);
+      border-color: transparent;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-2);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--brand-strong);
+      font-weight: 600;
+    }
+    .checkbox-container input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--brand);
+      cursor: pointer;
+    }
+    .zoom-control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .zoom-control-group input[type="range"] {
+      width: 100%;
+      accent-color: var(--brand);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-badge">RG</span>
+        <span class="brand-text">
+          <strong>Rafael Guimarães</strong>
+          <span>Função Quadrática</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="../index.html" class="btn btn-ghost btn-sm">← Voltar às Aulas</a>
+        <button id="theme-toggle" type="button" class="icon-btn" aria-label="Alternar tema">
+          <svg id="theme-toggle-dark-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.951.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: 110px;">
+    <div class="container">
+      <span class="eyebrow">Ensino Fundamental II / Ensino Médio</span>
+      <h1 class="section-title">Estudo da Parábola: $f(x) = ax^2 + bx + c$</h1>
+      <p class="section-lede">Ajuste os coeficientes e use o controle de zoom para aproximar a visão dos pontos de intersecção nos eixos X e Y no quadro de giz.</p>
+
+      <div class="lab-container">
+        <!-- Quadro de Giz -->
+        <div class="canvas-card">
+          <canvas id="quadCanvas" width="400" height="400"></canvas>
+        </div>
+
+        <!-- Painel Lateral -->
+        <div class="control-panel">
+          <label class="checkbox-container">
+            <input type="checkbox" id="hideAnswer">
+            <span>Ocultar Vértice e Raízes (Modo Desafio)</span>
+          </label>
+
+          <div class="control-group zoom-control-group">
+            <label for="zoomScale" style="display: flex; justify-content: space-between;">
+              <span>Zoom do Quadro:</span>
+              <strong id="zoomVal" style="color:var(--brand-strong);">1.0x</strong>
+            </label>
+            <input type="range" id="zoomScale" min="0.4" max="3.0" step="0.1" value="1.0">
+          </div>
+
+          <div class="control-group">
+            <label for="coeffA">Coeficiente $a$:</label>
+            <input type="number" id="coeffA" class="input-number-custom" value="1" step="any">
+          </div>
+
+          <div class="control-group">
+            <label for="coeffB">Coeficiente $b$:</label>
+            <input type="number" id="coeffB" class="input-number-custom" value="0" step="any">
+          </div>
+
+          <div class="control-group">
+            <label for="coeffC">Coeficiente $c$:</label>
+            <input type="number" id="coeffC" class="input-number-custom" value="-4" step="any">
+          </div>
+
+          <div class="math-readout" id="eqOutput">
+            $f(x) = 1x² - 4$
+          </div>
+
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-light); line-height: 1.6;">
+            • Delta ($\Delta$): <span id="deltaVal" style="color:var(--brand-strong);">16.00</span><br>
+            • Vértice $(X_v, Y_v)$: <span id="vertexVal" style="color:var(--brand-strong);">(0.00, -4.00)</span><br>
+            • Raízes ($x_1, x_2$): <span id="rootsVal" style="color:var(--brand-strong); font-weight:bold;">-2.00, 2.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../../src/js/aula-base.js"></script>
+  <script>
+    const canvas = document.getElementById('quadCanvas');
+    const ctx = canvas.getContext('2d');
+    const inputA = document.getElementById('coeffA');
+    const inputB = document.getElementById('coeffB');
+    const inputC = document.getElementById('coeffC');
+    const hideAnswer = document.getElementById('hideAnswer');
+    const zoomScale = document.getElementById('zoomScale');
+    const zoomVal = document.getElementById('zoomVal');
+
+    const width = canvas.width;
+    const height = canvas.height;
+    const originX = width / 2;
+    const originY = height / 2;
+
+    function drawGrid(gridScale) {
+      ctx.clearRect(0, 0, width, height);
+      
+      // Linhas de Grade (Verde Escuro do Quadro)
+      ctx.strokeStyle = '#2b4234';
+      ctx.lineWidth = 1;
+
+      for (let x = originX; x <= width; x += gridScale) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+      }
+      for (let x = originX; x >= 0; x -= gridScale) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+      }
+      for (let y = originY; y <= height; y += gridScale) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+      }
+      for (let y = originY; y >= 0; y -= gridScale) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+      }
+
+      // Eixos Principais em Giz Branco
+      ctx.strokeStyle = '#f4efe0';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0, originY); ctx.lineTo(width, originY); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(originX, 0); ctx.lineTo(originX, height); ctx.stroke();
+    }
+
+    function renderParabola() {
+      let a = parseFloat(inputA.value);
+      if (isNaN(a) || a === 0) a = 0.01;
+      const b = parseFloat(inputB.value) || 0;
+      const c = parseFloat(inputC.value) || 0;
+      const isHidden = hideAnswer.checked;
+      const zoomFactor = parseFloat(zoomScale.value) || 1.0;
+
+      zoomVal.innerText = `${zoomFactor.toFixed(1)}x`;
+
+      const xv = -b / (2 * a);
+      const yv = a * xv * xv + b * xv + c;
+      const delta = b * b - 4 * a * c;
+
+      // Base de cálculo do enquadramento adaptativo + zoom manual do usuário
+      let limit = 15;
+      if (Math.abs(c) > limit) limit = Math.ceil(Math.abs(c));
+      if (Math.abs(xv) > limit) limit = Math.ceil(Math.abs(xv));
+      if (Math.abs(yv) > limit) limit = Math.ceil(Math.abs(yv));
+
+      if (delta >= 0) {
+        const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+        if (Math.abs(x1) > limit) limit = Math.ceil(Math.abs(x1));
+        if (Math.abs(x2) > limit) limit = Math.ceil(Math.abs(x2));
+      }
+
+      limit += 2;
+      // Aplica o fator de zoom no tamanho das células da grade
+      const gridScale = (originX / limit) * zoomFactor;
+
+      drawGrid(gridScale);
+
+      // --- CURVA DA PARÁBOLA (Giz Amarelo/Dourado) ---
+      ctx.strokeStyle = '#d99a1f';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+
+      let first = true;
+      for (let px = 0; px <= width; px += 2) {
+        const x = (px - originX) / gridScale;
+        const y = a * x * x + b * x + c;
+        const py = originY - y * gridScale;
+
+        if (first) {
+          ctx.moveTo(px, py);
+          first = false;
+        } else {
+          ctx.lineTo(px, py);
+        }
+      }
+      ctx.stroke();
+
+      // Tamanho de fonte fixo e legível (não sofre distorção)
+      ctx.font = '600 12px "JetBrains Mono", monospace';
+
+      // --- PONTO Y (0, c) ---
+      const yPtX = originX;
+      const yPtY = originY - c * gridScale;
+      ctx.fillStyle = '#f4efe0';
+      ctx.beginPath(); ctx.arc(yPtX, yPtY, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.textAlign = 'left'; 
+      ctx.textBaseline = 'bottom';
+      ctx.fillText(isHidden ? '(0, ?)' : `(0, ${c})`, yPtX + 8, yPtY - 4);
+
+      // --- VÉRTICE V(Xv, Yv) ---
+      const cvX = originX + xv * gridScale;
+      const cvY = originY - yv * gridScale;
+      ctx.fillStyle = '#d99a1f';
+      ctx.beginPath(); ctx.arc(cvX, cvY, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.textAlign = 'center'; 
+      ctx.textBaseline = a > 0 ? 'top' : 'bottom';
+      ctx.fillText(isHidden ? 'V(?, ?)' : `V(${xv.toFixed(1)}, ${yv.toFixed(1)})`, cvX, cvY + (a > 0 ? 10 : -10));
+
+      // --- RAÍZES NO EIXO X (Giz Verde) ---
+      if (delta >= 0) {
+        const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+        ctx.fillStyle = '#659c76';
+        const cx1 = originX + x1 * gridScale;
+        ctx.beginPath(); ctx.arc(cx1, originY, 5, 0, Math.PI * 2); ctx.fill();
+        ctx.textAlign = 'center'; 
+        ctx.textBaseline = 'top';
+        ctx.fillText(isHidden ? '?' : x1.toFixed(1), cx1, originY + 8);
+
+        if (delta > 0) {
+          const cx2 = originX + x2 * gridScale;
+          ctx.beginPath(); ctx.arc(cx2, originY, 5, 0, Math.PI * 2); ctx.fill();
+          ctx.fillText(isHidden ? '?' : x2.toFixed(1), cx2, originY + 8);
+        }
+      }
+
+      // --- ATUALIZAÇÃO DO PAINEL LATERAL ---
+      const bSign = b >= 0 ? `+ ${b}` : `- ${Math.abs(b)}`;
+      const cSign = c >= 0 ? `+ ${c}` : `- ${Math.abs(c)}`;
+      document.getElementById('eqOutput').innerText = `f(x) = ${a}x² ${bSign}x ${cSign}`;
+
+      if (isHidden) {
+        document.getElementById('deltaVal').innerText = '?';
+        document.getElementById('vertexVal').innerText = '(?, ?)';
+        document.getElementById('rootsVal').innerText = '?';
+      } else {
+        document.getElementById('deltaVal').innerText = delta.toFixed(2);
+        document.getElementById('vertexVal').innerText = `(${xv.toFixed(2)}, ${yv.toFixed(2)})`;
+        if (delta > 0) {
+          const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+          const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+          document.getElementById('rootsVal').innerText = `${x1.toFixed(2)}, ${x2.toFixed(2)}`;
+        } else if (delta === 0) {
+          document.getElementById('rootsVal').innerText = `x = ${xv.toFixed(2)}`;
+        } else {
+          document.getElementById('rootsVal').innerText = 'Sem raízes reais';
+        }
+      }
+    }
+
+    inputA.addEventListener('input', renderParabola);
+    inputB.addEventListener('input', renderParabola);
+    inputC.addEventListener('input', renderParabola);
+    hideAnswer.addEventListener('change', renderParabola);
+    zoomScale.addEventListener('input', renderParabola);
+
+    renderParabola();
+  </script>
+</body>
+</html>

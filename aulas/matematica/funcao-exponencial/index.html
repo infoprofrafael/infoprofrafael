@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Apostila Interativa: Função Exponencial | Prof. Rafael Guimarães</title>
+  <style>
+    /* Estilos da Apostila (Teoria) */
+    .apostila-section {
+      background: var(--surface-1);
+      padding: 32px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      margin-bottom: 32px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .apostila-section h2 { margin-top: 0; color: var(--ink-dark); margin-bottom: 16px; }
+    .apostila-section h3 { margin-top: 24px; color: var(--ink-dark); margin-bottom: 8px; }
+    .apostila-section p { margin-bottom: 16px; }
+    .apostila-section ul { margin-left: 24px; margin-bottom: 16px; }
+    .apostila-section li { margin-bottom: 8px; }
+    
+    .math-block {
+      background: var(--surface-2);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      margin: 16px 0;
+      border-left: 4px solid var(--brand);
+    }
+
+    .highlight-box {
+      background: rgba(231, 76, 60, 0.1);
+      border-left: 4px solid #e74c3c;
+      padding: 16px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 16px 0;
+    }
+
+    /* Estilos do Laboratório (UI) */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      background: var(--surface-2);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+    
+    @media (max-width: 768px) { .dashboard { grid-template-columns: 1fr; } }
+
+    .control-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .range-group { display: flex; flex-direction: column; gap: 6px; }
+    .range-group input[type="range"] { width: 100%; accent-color: var(--brand); cursor: pointer; }
+    
+    .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .data-point { font-family: var(--font-mono); font-size: 1rem; }
+    .data-label {
+      font-size: 0.8rem; color: var(--ink-light); text-transform: uppercase;
+      margin-bottom: 4px; display: block; font-family: var(--font-sans);
+    }
+
+    .canvas-wrapper {
+      width: 100%; overflow-x: auto; background: var(--surface-2);
+      border-radius: var(--radius-md); border: 1px solid var(--line);
+      padding: 16px; box-sizing: border-box;
+    }
+    canvas {
+      display: block; margin: 0 auto; background: #1e2e24; 
+      border-radius: 8px; touch-action: none; cursor: crosshair;
+      max-width: 100%; height: auto;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-badge">RG</span>
+        <span class="brand-text">
+          <strong>Rafael Guimarães</strong>
+          <span>Matemática: Apostilas Interativas</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: 110px; padding-bottom: 80px;">
+    <div class="container">
+      <span class="eyebrow">Ensino Médio / Álgebra e Funções</span>
+      <h1 class="section-title">1. A Função Exponencial</h1>
+      
+      <!-- APOSTILA: TEORIA -->
+      <section class="apostila-section">
+        <h2>O que é uma Função Exponencial?</h2>
+        <p>Enquanto uma função de 1º grau (linear) cresce através de somas constantes, a <strong>função exponencial</strong> descreve fenômenos que crescem através de multiplicações constantes. Ela é o modelo matemático por trás da reprodução de bactérias, juros compostos e decaimento radioativo.</p>
+        
+        <div class="math-block">
+          f(x) = a<sup>x</sup>
+        </div>
+
+        <p>Onde <strong>a</strong> é a base (um número real) e <strong>x</strong> é o expoente (a variável). Para que essa função exista nos números reais e não se torne uma simples reta, a base possui duas regras invioláveis:</p>
+        
+        <ul>
+          <li><strong>a > 0</strong> (A base deve ser estritamente positiva, evitando raízes de números negativos).</li>
+          <li><strong>a ≠ 1</strong> (Se a = 1, o resultado seria sempre 1, tornando-se uma função constante).</li>
+        </ul>
+
+        <h3>Comportamento Gráfico</h3>
+        <p>O gráfico exponencial nunca toca o eixo X (o zero absoluto). Dependendo da base escolhida, a curva se comporta de duas maneiras:</p>
+        
+        <div class="data-grid" style="margin-bottom: 16px;">
+          <div class="highlight-box" style="margin: 0; border-left-color: #3498db; background: rgba(52, 152, 219, 0.1);">
+            <strong>Crescente (a > 1):</strong><br>
+            Quanto maior o X, maior o Y de forma acelerada. A curva dispara para o alto no lado direito.
+          </div>
+          <div class="highlight-box" style="margin: 0; border-left-color: #e67e22; background: rgba(230, 126, 34, 0.1);">
+            <strong>Decrescente (0 < a < 1):</strong><br>
+            Quanto maior o X, mais o Y se aproxima de zero (sem nunca encostar).
+          </div>
+        </div>
+        
+        <p><strong>Ponto Fundamental:</strong> Qualquer que seja a base válida, a curva <em>sempre</em> cruzará o eixo Y no ponto <strong>(0, 1)</strong>. Isso ocorre porque qualquer número não nulo elevado a zero é igual a 1 (a<sup>0</sup> = 1).</p>
+      </section>
+
+      <!-- PAINEL DE CONTROLE -->
+      <h2 class="section-title" style="font-size: 1.5rem;">Laboratório: Simulador de Crescimento</h2>
+      <p class="section-lede">Altere a Base da função abaixo. Depois, <strong>arraste o mouse pelo quadro escuro</strong> para explorar os valores de X e ver a explosão exponencial em tempo real.</p>
+      
+      <div class="dashboard">
+        <!-- Controles -->
+        <div>
+          <div class="control-group range-group">
+            <label for="baseSlider" style="display: flex; justify-content: space-between;">
+              <span class="data-label">Modifique a Base (a)</span>
+              <strong id="baseVal" style="color:var(--brand-strong); font-size: 1.2rem;">2.0</strong>
+            </label>
+            <input type="range" id="baseSlider" min="0.1" max="4.0" value="2.0" step="0.1">
+          </div>
+          
+          <div class="math-block" id="eqReadout" style="margin-top: 24px; font-size: 1.5rem;">
+            f(x) = 2.0<sup>x</sup>
+          </div>
+        </div>
+
+        <!-- Dados Dinâmicos -->
+        <div>
+          <div class="data-grid">
+            <div class="data-point">
+              <span class="data-label">Comportamento</span>
+              <span id="comportamentoText" style="color:#3498db; font-weight:bold;">Crescente</span>
+            </div>
+            <div class="data-point">
+              <span class="data-label">Interseção Eixo Y</span>
+              <span>(0, 1)</span>
+            </div>
+            <div class="data-point" style="grid-column: span 2; background: var(--background); padding: 12px; border-radius: 8px; border: 1px solid var(--line);">
+              <span class="data-label">Projeção Dinâmica (Arraste no Quadro)</span>
+              <span style="font-size: 1.3rem;">
+                X = <strong id="dynamicX">1.00</strong> 
+                <span style="margin: 0 10px;">→</span> 
+                Y = <strong id="dynamicY" style="color:#e74c3c;">2.00</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUADRO INTERATIVO -->
+      <div class="canvas-wrapper">
+        <canvas id="expoCanvas" width="900" height="500"></canvas>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../../../src/js/aula-base.js"></script>
+  <script>
+    const canvas = document.getElementById('expoCanvas');
+    const ctx = canvas.getContext('2d');
+    const baseSlider = document.getElementById('baseSlider');
+    
+    // Configurações do Plano Cartesiano
+    const w = canvas.width;
+    const h = canvas.height;
+    
+    // Limites lógicos do gráfico
+    const xMin = -4; const xMax = 4;
+    const yMin = -2; const yMax = 16;
+    
+    // Origem visual na tela (Eixos 0,0)
+    const originX = w / 2; 
+    const originY = h - 60; // Deslocado para baixo para focar no quadrante positivo
+
+    // Escala de pixels por unidade lógica
+    const scaleX = w / (xMax - xMin);
+    const scaleY = (h - 80) / (yMax - yMin); // Deixa margem em cima
+
+    let currentInputX = 1.0; // Ponto X que o usuário está focando
+    let baseA = 2.0;
+
+    // Conversores de Matemática -> Tela
+    function toScreenX(mathX) { return originX + (mathX * scaleX); }
+    function toScreenY(mathY) { return originY - (mathY * scaleY); }
+    
+    // Conversor de Tela -> Matemática
+    function toMathX(screenX) { return (screenX - originX) / scaleX; }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      
+      // Validação da Base a=1 (Proibida, mas mostramos como linha reta)
+      if (baseA === 1.0) baseA = 1.01; 
+
+      // 1. GRADE E EIXOS
+      ctx.strokeStyle = '#2b4234'; ctx.lineWidth = 1;
+      
+      // Linhas verticais e números no eixo X
+      ctx.font = '12px "JetBrains Mono", monospace'; ctx.fillStyle = '#a8b5aa'; ctx.textAlign = 'center';
+      for(let i = Math.ceil(xMin); i <= Math.floor(xMax); i++) {
+        let sx = toScreenX(i);
+        ctx.beginPath(); ctx.moveTo(sx, 0); ctx.lineTo(sx, h); ctx.stroke();
+        if(i !== 0) ctx.fillText(i, sx, originY + 20);
+      }
+      
+      // Linhas horizontais e números no eixo Y
+      ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+      for(let i = Math.ceil(yMin); i <= Math.floor(yMax); i+=2) {
+        let sy = toScreenY(i);
+        ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(w, sy); ctx.stroke();
+        if(i !== 0) ctx.fillText(i, originX - 10, sy);
+      }
+
+      // Eixos Principais
+      ctx.strokeStyle = '#f4efe0'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0, originY); ctx.lineTo(w, originY); ctx.stroke(); // Eixo X
+      ctx.beginPath(); ctx.moveTo(originX, 0); ctx.lineTo(originX, h); ctx.stroke(); // Eixo Y
+      ctx.fillText('0', originX - 10, originY + 15);
+
+      // 2. CURVA EXPONENCIAL
+      const curveColor = baseA > 1 ? '#3498db' : '#e67e22'; // Azul crescente, Laranja decrescente
+      ctx.strokeStyle = curveColor; 
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      
+      for (let mx = xMin; mx <= xMax; mx += 0.05) {
+        let my = Math.pow(baseA, mx);
+        let sx = toScreenX(mx);
+        let sy = toScreenY(my);
+        
+        // Evita desenhar pontos absurdamente altos fora da tela
+        if (my > yMax + 5) {
+            ctx.lineTo(sx, toScreenY(yMax + 5));
+            break; 
+        }
+        
+        if (mx === xMin) ctx.moveTo(sx, sy);
+        else ctx.lineTo(sx, sy);
+      }
+      ctx.stroke();
+
+      // 3. MARCAÇÃO DO PONTO FIXO (0,1)
+      const fixedX = toScreenX(0);
+      const fixedY = toScreenY(1);
+      ctx.fillStyle = '#f1c40f';
+      ctx.beginPath(); ctx.arc(fixedX, fixedY, 6, 0, Math.PI*2); ctx.fill();
+      ctx.strokeStyle = '#222'; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = '#f1c40f'; ctx.textAlign = 'left';
+      ctx.fillText('(0, 1)', fixedX + 10, fixedY - 10);
+
+      // 4. PROJEÇÃO INTERATIVA (Mouser/Hover)
+      // Limita o Y calculado para não travar a UI caso passe do teto
+      let calcY = Math.pow(baseA, currentInputX);
+      
+      if (calcY <= yMax + 2) {
+        const dynX = toScreenX(currentInputX);
+        const dynY = toScreenY(calcY);
+        
+        // Linhas tracejadas de projeção
+        ctx.strokeStyle = '#e74c3c'; ctx.lineWidth = 2; ctx.setLineDash([5, 5]);
+        ctx.beginPath(); 
+        ctx.moveTo(dynX, originY); ctx.lineTo(dynX, dynY); // Vertical
+        ctx.lineTo(originX, dynY); // Horizontal
+        ctx.stroke();
+        ctx.setLineDash([]); // Reseta
+
+        // Ponto Dinâmico na Curva
+        ctx.fillStyle = '#e74c3c';
+        ctx.beginPath(); ctx.arc(dynX, dynY, 7, 0, Math.PI*2); ctx.fill();
+        
+        // Texto no Quadro
+        ctx.font = 'bold 14px "JetBrains Mono", monospace';
+        ctx.fillStyle = '#f4efe0';
+        ctx.fillText(`y = ${calcY.toFixed(2)}`, dynX + 12, dynY - 12);
+      }
+
+      updateUI(calcY);
+    }
+
+    function updateUI(calcY) {
+      document.getElementById('baseVal').innerText = baseA.toFixed(1);
+      document.getElementById('eqReadout').innerHTML = `f(x) = ${baseA.toFixed(1)}<sup>x</sup>`;
+      
+      const compText = document.getElementById('comportamentoText');
+      if (baseA > 1) {
+        compText.innerText = "Crescente";
+        compText.style.color = "#3498db";
+      } else {
+        compText.innerText = "Decrescente";
+        compText.style.color = "#e67e22";
+      }
+
+      document.getElementById('dynamicX').innerText = currentInputX.toFixed(2);
+      
+      if (calcY > 999) {
+          document.getElementById('dynamicY').innerText = "Fora de Escala (Muito Alto)";
+      } else {
+          document.getElementById('dynamicY').innerText = calcY.toFixed(2);
+      }
+    }
+
+    // Interações de Mouse e Touch no Quadro
+    function handleInteraction(evt) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleToCanvas = canvas.width / rect.width;
+      let clientX = evt.clientX;
+      
+      if (evt.touches && evt.touches.length > 0) {
+        clientX = evt.touches[0].clientX;
+      }
+      
+      let screenX = (clientX - rect.left) * scaleToCanvas;
+      let mathX = toMathX(screenX);
+      
+      // Limita a área interativa aos limites de X
+      if (mathX >= xMin && mathX <= xMax) {
+        currentInputX = mathX;
+        draw();
+      }
+    }
+
+    canvas.addEventListener('mousemove', handleInteraction);
+    canvas.addEventListener('touchmove', (e) => { e.preventDefault(); handleInteraction(e); }, { passive: false });
+
+    // Atualização do Slider de Base
+    baseSlider.addEventListener('input', (e) => {
+      baseA = parseFloat(e.target.value);
+      draw();
+    });
+
+    // Render Inicial
+    draw();
+  </script>
+</body>
+</html>

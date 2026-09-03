@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Teorema de Pitágoras | Prof. Rafael Guimarães</title>
+  <style>
+    /* Ajuste para inputs numéricos personalizados */
+    .input-number-custom {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .input-number-custom:focus {
+      outline: 2px solid var(--brand);
+      border-color: transparent;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-2);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--brand-strong);
+      font-weight: 600;
+    }
+    .checkbox-container input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--brand);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-badge">RG</span>
+        <span class="brand-text">
+          <strong>Rafael Guimarães</strong>
+          <span>Teorema de Pitágoras</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="../index.html" class="btn btn-ghost btn-sm">← Voltar às Aulas</a>
+        <button id="theme-toggle" type="button" class="icon-btn" aria-label="Alternar tema">
+          <svg id="theme-toggle-dark-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: 110px;">
+    <div class="container">
+      <span class="eyebrow">Ensino Fundamental II</span>
+      <h1 class="section-title">Relação Métrica: $a^2 + b^2 = c^2$</h1>
+      <p class="section-lede">Digite os valores dos catetos para construir o triângulo. Ative o modo desafio para ocultar a resposta da hipotenusa durante os exercícios.</p>
+
+      <div class="lab-container">
+        <!-- Canvas da Figura -->
+        <div class="canvas-card">
+          <canvas id="pitagorasCanvas" width="400" height="400"></canvas>
+        </div>
+
+        <!-- Painel de Entrada de Dados -->
+        <div class="control-panel">
+          <label class="checkbox-container">
+            <input type="checkbox" id="hideHypotenuse">
+            <span>Ocultar Hipotenusa (Modo Desafio)</span>
+          </label>
+
+          <div class="control-group">
+            <label for="legA">Cateto $a$ (Base):</label>
+            <input type="number" id="legA" class="input-number-custom" value="3" min="0.1" step="any" placeholder="Digite a base">
+          </div>
+
+          <div class="control-group">
+            <label for="legB">Cateto $b$ (Altura):</label>
+            <input type="number" id="legB" class="input-number-custom" value="4" min="0.1" step="any" placeholder="Digite a altura">
+          </div>
+
+          <div class="math-readout" id="mathOutput">
+            $3.0^2 + 4.0^2 = 5.0^2$
+          </div>
+
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-light); line-height: 1.6;">
+            • Área $a^2$: <span id="areaA" style="color:var(--brand-strong);">9.00</span> u²<br>
+            • Área $b^2$: <span id="areaB" style="color:var(--brand-strong);">16.00</span> u²<br>
+            • Área $c^2$ (Hipotenusa): <span id="areaC" style="color:var(--brand-strong); font-weight:bold;">25.00</span> u²
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../../src/js/aula-base.js"></script>
+  <script>
+    const canvas = document.getElementById('pitagorasCanvas');
+    const ctx = canvas.getContext('2d');
+    const inputA = document.getElementById('legA');
+    const inputB = document.getElementById('legB');
+    const hideHypotenuse = document.getElementById('hideHypotenuse');
+
+    const originX = 100;
+    const originY = 300;
+
+    function render() {
+      const a = Math.abs(parseFloat(inputA.value)) || 0.1;
+      const b = Math.abs(parseFloat(inputB.value)) || 0.1;
+      const isHidden = hideHypotenuse.checked;
+      const c = Math.sqrt(a * a + b * b);
+
+      // Escala dinâmica para evitar que triângulos com números grandes estourem a tela
+      const maxSide = Math.max(a, b);
+      const scale = Math.min(220 / maxSide, 35); 
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Posição dos vértices
+      const p1 = { x: originX, y: originY };
+      const p2 = { x: originX + a * scale, y: originY };
+      const p3 = { x: originX, y: originY - b * scale };
+
+      // Área do Triângulo
+      ctx.fillStyle = 'rgba(217, 154, 31, 0.20)';
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.lineTo(p3.x, p3.y);
+      ctx.closePath();
+      ctx.fill();
+
+      // Contorno
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#f4efe0';
+      ctx.stroke();
+
+      // Ângulo Reto (90°)
+      ctx.strokeStyle = '#d99a1f';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(originX, originY - 15, 15, 15);
+
+      // --- RÓTULOS (a, b, c) ---
+      ctx.font = '600 15px "JetBrains Mono", monospace';
+
+      // Cateto a
+      ctx.fillStyle = '#f4efe0';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(`a = ${a}`, (p1.x + p2.x) / 2, p1.y + 12);
+
+      // Cateto b
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`b = ${b}`, p1.x - 12, (p1.y + p3.y) / 2);
+
+      // Hipotenusa c (Oculta ou Visível)
+      ctx.fillStyle = '#d99a1f';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'bottom';
+      
+      const textC = isHidden ? 'c = ?' : `c = ${Number.isInteger(c) ? c : c.toFixed(2)}`;
+      ctx.fillText(textC, (p2.x + p3.x) / 2 + 12, (p2.y + p3.y) / 2 - 6);
+
+      // --- ATUALIZAÇÃO DO PAINEL LATERAL ---
+      const a2 = a * a;
+      const b2 = b * b;
+      const c2 = c * c;
+
+      document.getElementById('areaA').innerText = Number.isInteger(a2) ? a2 : a2.toFixed(2);
+      document.getElementById('areaB').innerText = Number.isInteger(b2) ? b2 : b2.toFixed(2);
+
+      if (isHidden) {
+        document.getElementById('areaC').innerText = '?';
+        document.getElementById('mathOutput').innerText = `${a}² + ${b}² = c²`;
+      } else {
+        const strC = Number.isInteger(c) ? c : c.toFixed(2);
+        const strC2 = Number.isInteger(c2) ? c2 : c2.toFixed(2);
+        document.getElementById('areaC').innerText = strC2;
+        document.getElementById('mathOutput').innerText = `${a}² + ${b}² = ${strC}² (${strC2})`;
+      }
+    }
+
+    inputA.addEventListener('input', render);
+    inputB.addEventListener('input', render);
+    hideHypotenuse.addEventListener('change', render);
+
+    render();
+  </script>
+</body>
+</html>

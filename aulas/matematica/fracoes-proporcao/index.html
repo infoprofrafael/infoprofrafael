@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Frações & Proporção | Prof. Rafael Guimarães</title>
+  <style>
+    .input-number-custom {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .input-number-custom:focus {
+      outline: 2px solid var(--brand);
+      border-color: transparent;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-2);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--brand-strong);
+      font-weight: 600;
+    }
+    .checkbox-container input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--brand);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-badge">RG</span>
+        <span class="brand-text">
+          <strong>Rafael Guimarães</strong>
+          <span>Frações & Proporção</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="../index.html" class="btn btn-ghost btn-sm">← Voltar às Aulas</a>
+        <button id="theme-toggle" type="button" class="icon-btn" aria-label="Alternar tema">
+          <svg id="theme-toggle-dark-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.951.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: 110px;">
+    <div class="container">
+      <span class="eyebrow">Ensino Fundamental II</span>
+      <h1 class="section-title">Representação Visual de Frações</h1>
+      <p class="section-lede">Digite o numerador e o denominador. Ative o modo desafio para ocultar o cálculo decimal, a simplificação e a porcentagem.</p>
+
+      <div class="lab-container">
+        <div class="canvas-card">
+          <canvas id="fractionCanvas" width="400" height="400"></canvas>
+        </div>
+
+        <div class="control-panel">
+          <label class="checkbox-container">
+            <input type="checkbox" id="hideAnswer">
+            <span>Ocultar Respostas (Modo Desafio)</span>
+          </label>
+
+          <div class="control-group">
+            <label for="numInput">Numerador:</label>
+            <input type="number" id="numInput" class="input-number-custom" value="3" min="0" step="1">
+          </div>
+
+          <div class="control-group">
+            <label for="denInput">Denominador:</label>
+            <input type="number" id="denInput" class="input-number-custom" value="8" min="1" step="1">
+          </div>
+
+          <div class="math-readout" id="mathOutput">
+            Fração: 3 / 8
+          </div>
+
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-light); line-height: 1.6;">
+            • Valor Decimal: <span id="decVal" style="color:var(--brand-strong);">0.375</span><br>
+            • Porcentagem: <span id="percVal" style="color:var(--brand-strong);">37.5%</span><br>
+            • Forma Irredutível: <span id="simpVal" style="color:var(--brand-strong); font-weight:bold;">3 / 8</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../../src/js/aula-base.js"></script>
+  <script>
+    const canvas = document.getElementById('fractionCanvas');
+    const ctx = canvas.getContext('2d');
+    const numInput = document.getElementById('numInput');
+    const denInput = document.getElementById('denInput');
+    const hideAnswer = document.getElementById('hideAnswer');
+
+    function gcd(a, b) {
+      return b === 0 ? a : gcd(b, a % b);
+    }
+
+    function render() {
+      const num = Math.max(0, parseInt(numInput.value) || 0);
+      const den = Math.max(1, parseInt(denInput.value) || 1);
+      const isHidden = hideAnswer.checked;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = 140;
+
+      // Desenho das fatias da pizza
+      const sliceAngle = (2 * Math.PI) / den;
+
+      for (let i = 0; i < den; i++) {
+        const startAngle = i * sliceAngle - Math.PI / 2;
+        const endAngle = startAngle + sliceAngle;
+
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.closePath();
+
+        if (i < num) {
+          ctx.fillStyle = '#d99a1f';
+          ctx.fill();
+        } else {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+          ctx.fill();
+        }
+
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#2b4234';
+        ctx.stroke();
+      }
+
+      // Atualização dos Textos e Painel
+      document.getElementById('mathOutput').innerText = `Fração: ${num} / ${den}`;
+
+      if (isHidden) {
+        document.getElementById('decVal').innerText = '?';
+        document.getElementById('percVal').innerText = '?';
+        document.getElementById('simpVal').innerText = '?';
+      } else {
+        const decimal = (num / den).toFixed(3);
+        const percent = ((num / den) * 100).toFixed(1);
+        const divisor = gcd(num, den);
+        const simpNum = num / divisor;
+        const simpDen = den / divisor;
+
+        document.getElementById('decVal').innerText = decimal;
+        document.getElementById('percVal').innerText = `${percent}%`;
+        document.getElementById('simpVal').innerText = `${simpNum} / ${simpDen}`;
+      }
+    }
+
+    numInput.addEventListener('input', render);
+    denInput.addEventListener('input', render);
+    hideAnswer.addEventListener('change', render);
+
+    render();
+  </script>
+</body>
+</html>

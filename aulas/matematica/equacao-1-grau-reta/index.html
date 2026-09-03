@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Equação do 1º Grau & Reta | Prof. Rafael Guimarães</title>
+  <style>
+    .input-number-custom {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .input-number-custom:focus {
+      outline: 2px solid var(--brand);
+      border-color: transparent;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-2);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--brand-strong);
+      font-weight: 600;
+    }
+    .checkbox-container input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--brand);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-badge">RG</span>
+        <span class="brand-text">
+          <strong>Rafael Guimarães</strong>
+          <span>Equação do 1º Grau</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="../index.html" class="btn btn-ghost btn-sm">← Voltar às Aulas</a>
+        <button id="theme-toggle" type="button" class="icon-btn" aria-label="Alternar tema">
+          <svg id="theme-toggle-dark-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top: 110px;">
+    <div class="container">
+      <span class="eyebrow">Ensino Fundamental II / Ensino Médio</span>
+      <h1 class="section-title">Estudo da Função Afim: $f(x) = ax + b$</h1>
+      <p class="section-lede">Digite a inclinação ($a$) e o coeficiente linear ($b$). Ative o modo desafio para ocultar a raiz e a intersecção Y do painel.</p>
+
+      <div class="lab-container">
+        <div class="canvas-card">
+          <canvas id="lineCanvas" width="400" height="400"></canvas>
+        </div>
+
+        <div class="control-panel">
+          <label class="checkbox-container">
+            <input type="checkbox" id="hideAnswer">
+            <span>Ocultar Raiz / Intersecção (Modo Desafio)</span>
+          </label>
+
+          <div class="control-group">
+            <label for="coeffA">Coeficiente Angular ($a$):</label>
+            <input type="number" id="coeffA" class="input-number-custom" value="1" step="any">
+          </div>
+
+          <div class="control-group">
+            <label for="coeffB">Coeficiente Linear ($b$):</label>
+            <input type="number" id="coeffB" class="input-number-custom" value="2" step="any">
+          </div>
+
+          <div class="math-readout" id="eqOutput">
+            $f(x) = 1.0x + 2.0$
+          </div>
+
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-light); line-height: 1.6;">
+            <strong>Análise Dinâmica:</strong><br>
+            • Intersecção no Eixo Y: <span id="yIntercept" style="color:var(--brand-strong);">(0, 2.0)</span><br>
+            • Raiz / Zero da Função: <span id="xRoot" style="color:var(--brand-strong); font-weight:bold;">x = -2.0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../../src/js/aula-base.js"></script>
+ <script>
+  const canvas = document.getElementById('lineCanvas');
+  const ctx = canvas.getContext('2d');
+  const inputA = document.getElementById('coeffA');
+  const inputB = document.getElementById('coeffB');
+  const hideAnswer = document.getElementById('hideAnswer');
+
+  const width = canvas.width;
+  const height = canvas.height;
+  const originX = width / 2;
+  const originY = height / 2;
+
+  function drawGrid(gridScale) {
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = '#2b4234';
+    ctx.lineWidth = 1;
+
+    // Desenha as linhas da grade a partir da origem para manter simetria
+    for (let x = originX; x <= width; x += gridScale) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+    }
+    for (let x = originX; x >= 0; x -= gridScale) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+    }
+    for (let y = originY; y <= height; y += gridScale) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+    }
+    for (let y = originY; y >= 0; y -= gridScale) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+    }
+
+    // Eixos Principais
+    ctx.strokeStyle = '#f4efe0';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(0, originY); ctx.lineTo(width, originY); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(originX, 0); ctx.lineTo(originX, height); ctx.stroke();
+  }
+
+  function renderLine() {
+    const a = parseFloat(inputA.value) || 0;
+    const b = parseFloat(inputB.value) || 0;
+    const isHidden = hideAnswer.checked;
+
+    // --- LÓGICA DE ZOOM AUTOMÁTICO ---
+    // Começa com a exigência mínima de mostrar até o ponto 15
+    let limit = 15; 
+    
+    // Se a intersecção Y for maior que o limite, afasta o zoom
+    if (Math.abs(b) > limit) {
+      limit = Math.ceil(Math.abs(b));
+    }
+    
+    // Se a raiz X for maior que o limite, afasta o zoom
+    if (a !== 0) {
+      const root = -b / a;
+      if (Math.abs(root) > limit) {
+        limit = Math.ceil(Math.abs(root));
+      }
+    }
+    
+    // Adiciona uma margem de segurança de 2 unidades para os pontos não colarem nas bordas
+    limit += 2; 
+
+    // Calcula a nova escala em pixels por unidade
+    const gridScale = originX / limit;
+
+    drawGrid(gridScale);
+
+    // --- RETA PRINCIPAL ---
+    ctx.strokeStyle = '#d99a1f';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    
+    // Estica a reta além dos limites visíveis para cruzar todo o quadro
+    const xMin = -limit - 5; 
+    const xMax = limit + 5;
+    const y1 = a * xMin + b;
+    const y2 = a * xMax + b;
+    
+    ctx.moveTo(originX + xMin * gridScale, originY - y1 * gridScale);
+    ctx.lineTo(originX + xMax * gridScale, originY - y2 * gridScale);
+    ctx.stroke();
+
+    ctx.font = '600 13px "JetBrains Mono", monospace';
+
+    // --- PONTO Y: Intersecção (0, b) ---
+    const yIntX = originX;
+    const yIntY = originY - b * gridScale;
+    
+    ctx.fillStyle = '#f4efe0';
+    ctx.beginPath(); ctx.arc(yIntX, yIntY, 5, 0, Math.PI * 2); ctx.fill();
+    
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'bottom';
+    const textY = isHidden ? '(0, ?)' : `(0, ${b})`;
+    ctx.fillText(textY, yIntX + 8, yIntY - 8);
+
+    // --- PONTO X: Raiz da Função ---
+    if (a !== 0) {
+      const root = -b / a;
+      const xIntX = originX + root * gridScale;
+      const xIntY = originY;
+
+      ctx.fillStyle = '#d99a1f';
+      ctx.beginPath(); ctx.arc(xIntX, xIntY, 5, 0, Math.PI * 2); ctx.fill();
+
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      const textX = isHidden ? '(?, 0)' : `(${Number.isInteger(root) ? root : root.toFixed(1)}, 0)`;
+      ctx.fillText(textX, xIntX, xIntY + 10);
+    }
+
+    // --- ATUALIZAÇÃO DO PAINEL LATERAL ---
+    const bSign = b >= 0 ? `+ ${b}` : `- ${Math.abs(b)}`;
+    document.getElementById('eqOutput').innerText = `f(x) = ${a}x ${bSign}`;
+
+    if (isHidden) {
+      document.getElementById('yIntercept').innerText = '(0, ?)';
+      document.getElementById('xRoot').innerText = 'x = ?';
+    } else {
+      document.getElementById('yIntercept').innerText = `(0, ${b})`;
+      if (a !== 0) {
+        const root = -b / a;
+        document.getElementById('xRoot').innerText = `x = ${Number.isInteger(root) ? root : root.toFixed(2)}`;
+      } else {
+        document.getElementById('xRoot').innerText = b === 0 ? 'Infinitas raízes' : 'Sem raiz';
+      }
+    }
+  }
+
+  inputA.addEventListener('input', renderLine);
+  inputB.addEventListener('input', renderLine);
+  hideAnswer.addEventListener('change', renderLine);
+  
+  renderLine();
+</script>
+
+
+
+</body>
+</html>

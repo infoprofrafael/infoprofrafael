@@ -1,0 +1,122 @@
+@import url('./style.css');
+
+/* --- Layout da Bancada Interativa --- */
+.lab-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-top: 32px;
+}
+
+@media (min-width: 900px) {
+  .lab-container {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.canvas-card {
+  background: var(--board-bg);
+  border: 8px solid var(--board-frame);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 380px;
+}
+
+.canvas-card canvas {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: grab;
+}
+
+.canvas-card canvas:active {
+  cursor: grabbing;
+}
+
+/* Panel de Controles */
+.control-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-group label {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  display: flex;
+  justify-content: space-between;
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  accent-color: var(--brand);
+  cursor: pointer;
+}
+
+.math-readout {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--brand-strong);
+  text-align: center;
+}
+
+/* Grids de Módulos (Hub) */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.module-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.module-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand);
+}
+
+.module-card .badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--chalk);
+  background: color-mix(in srgb, var(--chalk) 15%, transparent);
+  padding: 4px 10px;
+  border-radius: 999px;
+  align-self: flex-start;
+  margin-bottom: 12px;
+}
