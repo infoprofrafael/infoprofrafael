@@ -34,9 +34,9 @@
     .data-point { font-family: var(--font-mono); font-size: 1.2rem; background: var(--surface-1); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--line); text-align: center; }
     .data-label { font-size: 0.85rem; color: var(--ink); text-transform: uppercase; margin-bottom: 4px; display: block; font-family: var(--font-sans); font-weight: bold;}
     
-    .btn { background: var(--brand); color: white; border: none; padding: 16px 24px; border-radius: var(--radius-sm); font-size: 1.1rem; cursor: pointer; font-weight: bold; transition: background 0.2s; width: 100%; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3); }
-    .btn:hover { background: var(--brand-strong); }
-    .btn:disabled { background: #94a3b8; cursor: not-allowed; box-shadow: none; }
+    .btn-multiply { background: var(--brand); color: white; border: none; padding: 16px 24px; border-radius: var(--radius-sm); font-size: 1.1rem; cursor: pointer; font-weight: bold; transition: background 0.2s; width: 100%; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3); }
+    .btn-multiply:hover { background: var(--brand-strong); }
+    .btn-multiply:disabled { background: #94a3b8; cursor: not-allowed; box-shadow: none; }
 
     .canvas-wrapper { width: 100%; overflow: hidden; background: var(--surface-1); border-radius: var(--radius-md); border: 1px solid var(--line); padding: 0; box-sizing: border-box; position: relative; display: flex; justify-content: center; }
     canvas { display: block; background: #fafafa; cursor: crosshair; max-width: 100%; height: auto; }
@@ -99,7 +99,7 @@
             <span id="polarReadout">|z| = 3.61, θ = 33.7°</span>
           </div>
           
-          <button id="multiplyBtn" class="btn">Multiplicar vetor por <i>i</i> (Girar 90°)</button>
+          <button id="multiplyBtn" class="btn-multiply">Multiplicar vetor por <i>i</i> (Girar 90°)</button>
 
           <div class="math-block" id="calcReadout" style="font-size: 1rem; text-align: left; margin: 0; min-height: 80px;">
             Aguardando interação...
@@ -110,6 +110,9 @@
 
   </div>
   </main>
+
+  
+  <site-footer> </site-footer>
 
   <!-- SCRIPTS EXTERNOS DO PROJETO -->
   <script src="/src/js/components.js"></script>

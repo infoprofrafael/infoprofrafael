@@ -9,7 +9,7 @@
   <style>
 /*     
     body { font-family: var(--font-sans); background-color: var(--bg-color); color: var(--ink); margin: 0; line-height: 1.6; } 
-    
+
     .container { max-width: 900px; margin: 0 auto; padding: 20px; }*/
     
     .apostila-section { background: var(--surface-1); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line); margin-bottom: 32px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
@@ -36,32 +36,7 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO MODULAR DIRETO NO HTML -->
-  <!-- <script>
-    class SiteHeader extends HTMLElement {
-      connectedCallback() {
-        this.innerHTML = `
-          <header class="site-header" style="background: var(--surface-1, #ffffff); border-bottom: 1px solid var(--line, #dee2e6); padding: 16px 0; position: sticky; top: 0; z-index: 100;">
-            <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;">
-              <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
-                <span style="background: var(--brand, #3b82f6); color: white; padding: 8px 12px; border-radius: 8px; font-weight: bold; font-family: monospace; font-size: 1.2rem;">RG</span>
-                <span style="display: flex; flex-direction: column; color: var(--ink-dark, #212529);">
-                  <strong style="font-size: 1.1rem; line-height: 1.1;">Rafael Guimarães</strong>
-                  <span style="font-size: 0.8rem; color: var(--ink, #495057);">Matemática: Apostilas Interativas</span>
-                </span>
-              </a>
-              <nav style="display: flex; gap: 20px;">
-                <a href="geometria.html" style="text-decoration: none; color: var(--ink, #495057); font-weight: 500; transition: 0.2s;">Geometria 3D</a>
-                <a href="combinatoria.html" style="text-decoration: none; color: var(--ink, #495057); font-weight: 500; transition: 0.2s;">Combinatória</a>
-                <a href="conicas.html" style="text-decoration: none; color: var(--brand, #3b82f6); font-weight: bold; transition: 0.2s;">Cônicas</a>
-              </nav>
-            </div>
-          </header>
-        `;
-      }
-    }
-    customElements.define('site-header', SiteHeader);
-  </script> -->
+ 
   <site-header> </site-header>
 
   <main class="section" style="padding-top: 110px; padding-bottom: 80px;">
@@ -133,10 +108,11 @@
   
   </main>
   
-  <!-- CHAMA O ARQUIVO DE COMPONENTES AQUI -->
-  <script src="/src/js/components.js"></script>
-
+  <site-footer> </site-footer>
   
+  <!-- CHAMA O ARQUIVO DE COMPONENTES AQUI -->
+ 
+  <script src="/src/js/components.js"></script>
   <script src="../../../src/js/aula-base.js"></script>
 
 
