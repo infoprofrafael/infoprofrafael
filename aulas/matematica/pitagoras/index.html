@@ -50,146 +50,199 @@
   <site-header> </site-header>
 
   <main class="section" style="padding-top: 110px;">
-    <div class="container">
-      <span class="eyebrow">Ensino Fundamental II</span>
-      <h1 class="section-title">Relação Métrica: $a^2 + b^2 = c^2$</h1>
-      <p class="section-lede">Digite os valores dos catetos para construir o triângulo. Ative o modo desafio para ocultar a resposta da hipotenusa durante os exercícios.</p>
+  <div class="container">
+    <span class="eyebrow">Ensino Fundamental II</span>
+    <h1 class="section-title">Relação Métrica: <strong>a² + b² = c²</strong></h1>
+    <p class="section-lede">Escolha o que você quer descobrir: a hipotenusa ou um dos catetos. Preencha os valores conhecidos e ative o modo desafio para testar seus cálculos.</p>
 
-      <div class="lab-container">
-        <!-- Canvas da Figura -->
-        <div class="canvas-card">
-          <canvas id="pitagorasCanvas" width="400" height="400"></canvas>
+    <div class="lab-container">
+      <div class="canvas-card">
+        <canvas id="pitagorasCanvas" width="400" height="400"></canvas>
+      </div>
+
+      <div class="control-panel">
+
+        <!-- NOVO: escolha do que calcular -->
+        <div class="control-group">
+          <label for="calcMode">O que você quer descobrir?</label>
+          <select id="calcMode" class="input-number-custom">
+            <option value="hipotenusa">A Hipotenusa (c)</option>
+            <option value="cateto">Um Cateto (a ou b)</option>
+          </select>
         </div>
 
-        <!-- Painel de Entrada de Dados -->
-        <div class="control-panel">
-          <label class="checkbox-container">
-            <input type="checkbox" id="hideHypotenuse">
-            <span>Ocultar Hipotenusa (Modo Desafio)</span>
-          </label>
+        <!-- NOVO: só aparece no modo "cateto" -->
+        <div class="control-group" id="legChoiceGroup" style="display: none;">
+          <label for="unknownLeg">Qual cateto é a incógnita?</label>
+          <select id="unknownLeg" class="input-number-custom">
+            <option value="a">Cateto a</option>
+            <option value="b">Cateto b</option>
+          </select>
+        </div>
 
-          <div class="control-group">
-            <label for="legA">Cateto $a$ (Base):</label>
-            <input type="number" id="legA" class="input-number-custom" value="3" min="0.1" step="any" placeholder="Digite a base">
-          </div>
+        <label class="checkbox-container">
+          <input type="checkbox" id="hideUnknown">
+          <span>Ocultar valor da incógnita (Modo Desafio)</span>
+        </label>
 
-          <div class="control-group">
-            <label for="legB">Cateto $b$ (Altura):</label>
-            <input type="number" id="legB" class="input-number-custom" value="4" min="0.1" step="any" placeholder="Digite a altura">
-          </div>
+        <div class="control-group" id="inputGroupA">
+          <label for="legA">Cateto $a$ (Base):</label>
+          <input type="number" id="legA" class="input-number-custom" value="3" min="0.1" step="any">
+        </div>
 
-          <div class="math-readout" id="mathOutput">
-            $3.0^2 + 4.0^2 = 5.0^2$
-          </div>
+        <div class="control-group" id="inputGroupB">
+          <label for="legB">Cateto $b$ (Altura):</label>
+          <input type="number" id="legB" class="input-number-custom" value="4" min="0.1" step="any">
+        </div>
 
-          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-light); line-height: 1.6;">
-            • Área $a^2$: <span id="areaA" style="color:var(--brand-strong);">9.00</span> u²<br>
-            • Área $b^2$: <span id="areaB" style="color:var(--brand-strong);">16.00</span> u²<br>
-            • Área $c^2$ (Hipotenusa): <span id="areaC" style="color:var(--brand-strong); font-weight:bold;">25.00</span> u²
-          </div>
+        <!-- NOVO: campo da hipotenusa, aparece só no modo "cateto" -->
+        <div class="control-group" id="inputGroupC" style="display:none;">
+          <label for="sideC">Hipotenusa $c$:</label>
+          <input type="number" id="sideC" class="input-number-custom" value="5" min="0.1" step="any">
+        </div>
+
+        <div class="math-readout" id="mathOutput">
+          $3.0^2 + 4.0^2 = 5.0^2$
+        </div>
+
+        <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-light); line-height: 1.6;">
+          • Área <strong> a^2:</strong> <span id="areaA" style="color:var(--brand-strong);">9.00</span> u²<br>
+          • Área <strong> b^2:</strong> <span id="areaB" style="color:var(--brand-strong);">16.00</span> u²<br>
+          • Área <strong> c^2 (Hipotenusa):</strong> <span id="areaC" style="color:var(--brand-strong); font-weight:bold;">25.00</span> u²
         </div>
       </div>
     </div>
-  </main>
+  </div>
+</main>
 
-  
-  <site-footer> </site-footer>
+<site-footer> </site-footer>
 
-  <script src="/src/js/components.js"></script>
-  <script src="../../../src/js/aula-base.js"></script>
+<script src="/src/js/components.js"></script>
+<script src="../../../src/js/aula-base.js"></script>
 
-  <script>
-    const canvas = document.getElementById('pitagorasCanvas');
-    const ctx = canvas.getContext('2d');
-    const inputA = document.getElementById('legA');
-    const inputB = document.getElementById('legB');
-    const hideHypotenuse = document.getElementById('hideHypotenuse');
+<script>
+  const canvas = document.getElementById('pitagorasCanvas');
+  const ctx = canvas.getContext('2d');
 
-    const originX = 100;
-    const originY = 300;
+  const calcMode = document.getElementById('calcMode');
+  const legChoiceGroup = document.getElementById('legChoiceGroup');
+  const unknownLeg = document.getElementById('unknownLeg');
+  const hideUnknown = document.getElementById('hideUnknown');
 
-    function render() {
-      const a = Math.abs(parseFloat(inputA.value)) || 0.1;
-      const b = Math.abs(parseFloat(inputB.value)) || 0.1;
-      const isHidden = hideHypotenuse.checked;
-      const c = Math.sqrt(a * a + b * b);
+  const inputA = document.getElementById('legA');
+  const inputB = document.getElementById('legB');
+  const inputC = document.getElementById('sideC');
 
-      // Escala dinâmica para evitar que triângulos com números grandes estourem a tela
-      const maxSide = Math.max(a, b);
-      const scale = Math.min(220 / maxSide, 35); 
+  const inputGroupA = document.getElementById('inputGroupA');
+  const inputGroupB = document.getElementById('inputGroupB');
+  const inputGroupC = document.getElementById('inputGroupC');
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const originX = 100;
+  const originY = 300;
 
-      // Posição dos vértices
-      const p1 = { x: originX, y: originY };
-      const p2 = { x: originX + a * scale, y: originY };
-      const p3 = { x: originX, y: originY - b * scale };
+  // Mostra/esconde os campos certos dependendo do modo escolhido
+  function updateVisibleFields() {
+    const mode = calcMode.value;
 
-      // Área do Triângulo
-      ctx.fillStyle = 'rgba(217, 154, 31, 0.20)';
-      ctx.beginPath();
-      ctx.moveTo(p1.x, p1.y);
-      ctx.lineTo(p2.x, p2.y);
-      ctx.lineTo(p3.x, p3.y);
-      ctx.closePath();
-      ctx.fill();
+    if (mode === 'hipotenusa') {
+      legChoiceGroup.style.display = 'none';
+      inputGroupA.style.display = 'block';
+      inputGroupB.style.display = 'block';
+      inputGroupC.style.display = 'none';
+    } else {
+      legChoiceGroup.style.display = 'block';
+      inputGroupC.style.display = 'block';
+      inputGroupA.style.display = unknownLeg.value === 'a' ? 'none' : 'block';
+      inputGroupB.style.display = unknownLeg.value === 'b' ? 'none' : 'block';
+    }
+    render();
+  }
 
-      // Contorno
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = '#f4efe0';
-      ctx.stroke();
+  function render() {
+    const mode = calcMode.value;
+    const isHidden = hideUnknown.checked;
+    let a, b, c;
 
-      // Ângulo Reto (90°)
-      ctx.strokeStyle = '#d99a1f';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(originX, originY - 15, 15, 15);
-
-      // --- RÓTULOS (a, b, c) ---
-      ctx.font = '600 15px "JetBrains Mono", monospace';
-
-      // Cateto a
-      ctx.fillStyle = '#f4efe0';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'top';
-      ctx.fillText(`a = ${a}`, (p1.x + p2.x) / 2, p1.y + 12);
-
-      // Cateto b
-      ctx.textAlign = 'right';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(`b = ${b}`, p1.x - 12, (p1.y + p3.y) / 2);
-
-      // Hipotenusa c (Oculta ou Visível)
-      ctx.fillStyle = '#d99a1f';
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'bottom';
-      
-      const textC = isHidden ? 'c = ?' : `c = ${Number.isInteger(c) ? c : c.toFixed(2)}`;
-      ctx.fillText(textC, (p2.x + p3.x) / 2 + 12, (p2.y + p3.y) / 2 - 6);
-
-      // --- ATUALIZAÇÃO DO PAINEL LATERAL ---
-      const a2 = a * a;
-      const b2 = b * b;
-      const c2 = c * c;
-
-      document.getElementById('areaA').innerText = Number.isInteger(a2) ? a2 : a2.toFixed(2);
-      document.getElementById('areaB').innerText = Number.isInteger(b2) ? b2 : b2.toFixed(2);
-
-      if (isHidden) {
-        document.getElementById('areaC').innerText = '?';
-        document.getElementById('mathOutput').innerText = `${a}² + ${b}² = c²`;
+    if (mode === 'hipotenusa') {
+      // Sabemos "a" e "b" -> calculamos "c"
+      a = Math.abs(parseFloat(inputA.value)) || 0.1;
+      b = Math.abs(parseFloat(inputB.value)) || 0.1;
+      c = Math.sqrt(a * a + b * b);
+    } else {
+      // Sabemos "c" e um cateto -> calculamos o outro cateto
+      c = Math.abs(parseFloat(inputC.value)) || 0.1;
+      if (unknownLeg.value === 'a') {
+        b = Math.min(Math.abs(parseFloat(inputB.value)) || 0.1, c - 0.01);
+        a = Math.sqrt(Math.max(c * c - b * b, 0));
       } else {
-        const strC = Number.isInteger(c) ? c : c.toFixed(2);
-        const strC2 = Number.isInteger(c2) ? c2 : c2.toFixed(2);
-        document.getElementById('areaC').innerText = strC2;
-        document.getElementById('mathOutput').innerText = `${a}² + ${b}² = ${strC}² (${strC2})`;
+        a = Math.min(Math.abs(parseFloat(inputA.value)) || 0.1, c - 0.01);
+        b = Math.sqrt(Math.max(c * c - a * a, 0));
       }
     }
 
-    inputA.addEventListener('input', render);
-    inputB.addEventListener('input', render);
-    hideHypotenuse.addEventListener('change', render);
+    const maxSide = Math.max(a, b);
+    const scale = Math.min(220 / maxSide, 35);
 
-    render();
-  </script>
-</body>
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const p1 = { x: originX, y: originY };
+    const p2 = { x: originX + a * scale, y: originY };
+    const p3 = { x: originX, y: originY - b * scale };
+
+    ctx.fillStyle = 'rgba(217, 154, 31, 0.20)';
+    ctx.beginPath();
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+    ctx.lineTo(p3.x, p3.y);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#f4efe0';
+    ctx.stroke();
+
+    ctx.strokeStyle = '#d99a1f';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(originX, originY - 15, 15, 15);
+
+    ctx.font = '600 15px "JetBrains Mono", monospace';
+
+    const isAHidden = isHidden && mode === 'cateto' && unknownLeg.value === 'a';
+    const isBHidden = isHidden && mode === 'cateto' && unknownLeg.value === 'b';
+    const isCHidden = isHidden && mode === 'hipotenusa';
+
+    ctx.fillStyle = isAHidden ? '#d99a1f' : '#f4efe0';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText(isAHidden ? 'a = ?' : `a = ${Number.isInteger(a) ? a : a.toFixed(2)}`, (p1.x + p2.x) / 2, p1.y + 12);
+
+    ctx.fillStyle = isBHidden ? '#d99a1f' : '#f4efe0';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(isBHidden ? 'b = ?' : `b = ${Number.isInteger(b) ? b : b.toFixed(2)}`, p1.x - 12, (p1.y + p3.y) / 2);
+
+    ctx.fillStyle = '#d99a1f';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText(isCHidden ? 'c = ?' : `c = ${Number.isInteger(c) ? c : c.toFixed(2)}`, (p2.x + p3.x) / 2 + 12, (p2.y + p3.y) / 2 - 6);
+
+    const a2 = a * a, b2 = b * b, c2 = c * c;
+    document.getElementById('areaA').innerText = isAHidden ? '?' : (Number.isInteger(a2) ? a2 : a2.toFixed(2));
+    document.getElementById('areaB').innerText = isBHidden ? '?' : (Number.isInteger(b2) ? b2 : b2.toFixed(2));
+    document.getElementById('areaC').innerText = isCHidden ? '?' : (Number.isInteger(c2) ? c2 : c2.toFixed(2));
+
+    const strA = isAHidden ? 'a' : (Number.isInteger(a) ? a : a.toFixed(2));
+    const strB = isBHidden ? 'b' : (Number.isInteger(b) ? b : b.toFixed(2));
+    const strC = isCHidden ? 'c' : (Number.isInteger(c) ? c : c.toFixed(2));
+    document.getElementById('mathOutput').innerText = `${strA}² + ${strB}² = ${strC}²`;
+  }
+
+  calcMode.addEventListener('change', updateVisibleFields);
+  unknownLeg.addEventListener('change', updateVisibleFields);
+  inputA.addEventListener('input', render);
+  inputB.addEventListener('input', render);
+  inputC.addEventListener('input', render);
+  hideUnknown.addEventListener('change', render);
+
+  updateVisibleFields();
+</script>
 </html>
