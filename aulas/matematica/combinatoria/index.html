@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <!-- <title>Laboratório de Matemática | Prof. Rafael Guimarães</title> -->
+  <title>Apostila Interativa: Combinatória e Probabilidade | Prof. Rafael Guimarães</title>
+  <style>
+    /* Aqui começam as definições do HEADER */
+
+    .input-number-custom {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .input-number-custom:focus {
+      outline: 2px solid var(--brand);
+      border-color: transparent;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-2);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--brand-strong);
+      font-weight: 600;
+    }
+    .checkbox-container input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--brand);
+      cursor: pointer;
+    }
+
+    /* Aqui termina as definições do HEADER */
+/*     
+    :root {
+      --bg-color: #f8f9fa;
+      --surface-1: #ffffff;
+      --surface-2: #f1f3f5;
+      --line: #dee2e6;
+      --ink: #495057;
+      --ink-dark: #212529;
+      --brand: #3b82f6;
+      --brand-strong: #2563eb;
+      --success: #10b981;
+      --danger: #ef4444;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --font-sans: system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    } */
+/* 
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-color);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .site-header { background: var(--surface-1); border-bottom: 1px solid var(--line); padding: 16px 0; position: sticky; top: 0; z-index: 100; } */
+    /* .brand { font-size: 1.2rem; font-weight: bold; color: var(--ink-dark); text-decoration: none; } */
+    
+    .apostila-section { background: var(--surface-1); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line); margin-bottom: 32px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+    .apostila-section h2 { color: var(--brand-strong); border-bottom: 2px solid var(--surface-2); padding-bottom: 8px; }
+    .apostila-section h3 { color: var(--ink-dark); margin-top: 24px; }
+    
+    .math-block { background: var(--surface-2); padding: 16px; border-radius: var(--radius-sm); text-align: center; font-family: var(--font-mono); font-size: 1.2rem; margin: 16px 0; border-left: 4px solid var(--brand); color: var(--ink-dark); }
+    
+    /* Controles Interativos */
+    .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; background: var(--surface-2); padding: 24px; border-radius: var(--radius-md); }
+    @media(max-width: 768px) { .dashboard { grid-template-columns: 1fr; } }
+    .control-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .control-group label { font-weight: bold; color: var(--ink-dark); font-size: 0.9rem; }
+    input[type="number"], select { padding: 10px; border: 1px solid var(--line); border-radius: 4px; font-size: 1rem; }
+    
+    /* Gráfico Probabilidade */
+    .chart-container { height: 250px; display: flex; align-items: flex-end; justify-content: space-between; gap: 4px; padding: 20px 0; border-bottom: 2px solid var(--line); margin-top: 20px; }
+    .chart-bar { flex: 1; background-color: var(--brand); border-radius: 4px 4px 0 0; transition: height 0.3s ease; position: relative; min-height: 2px; }
+    .chart-bar span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 0.7rem; color: var(--ink); }
+/*     
+    .btn { background: var(--brand); color: white; border: none; padding: 12px 24px; border-radius: var(--radius-sm); font-size: 1rem; cursor: pointer; font-weight: bold; transition: background 0.2s; }
+    .btn:hover { background: var(--brand-strong); } */
+
+    /* Quiz */
+    .question { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+    .options { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+    .option-label { display: flex; align-items: center; gap: 10px; padding: 12px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; transition: 0.2s; }
+    .option-label:hover { background: #e2e8f0; }
+    .option-label input { width: 18px; height: 18px; cursor: pointer; }
+    .feedback { margin-top: 12px; padding: 12px; border-radius: var(--radius-sm); display: none; font-weight: 500; }
+    .feedback.correct { display: block; background: #d1fae5; color: #065f46; border: 1px solid #10b981; }
+    .feedback.incorrect { display: block; background: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+  </style>
+</head>
+<body>
+
+
+  <!--  Chamando o componets.js "Cabeçalho" -->
+  <site-header>   </site-header>
+
+
+  <main class="section" style="padding-top: 110px;">
+    <div class="container" >
+      <br>
+    <span class="eyebrow">Ensino Médio</span>
+
+    <h1 class="section-title" style="color: var(--ink-dark);">Análise Combinatória e Probabilidade</h1>
+    <p>A arte de contar possibilidades e prever as chances de um evento acontecer. Muito frequente no ENEM, o segredo aqui está na <strong>interpretação de texto</strong>.</p>
+
+    <!-- FATORIAL -->
+    <section class="apostila-section">
+      <h2>1. Fatorial (!)</h2>
+      <p>O fatorial de um número natural <strong>n</strong> é a multiplicação desse número por todos os seus antecessores até o 1. Ele é usado quando queremos misturar todos os elementos de um conjunto (Permutação).</p>
+      <div class="math-block">
+        n! = n × (n - 1) × (n - 2) × ... × 1<br><br>
+        <small>Exemplo: 5! = 5 × 4 × 3 × 2 × 1 = 120</small>
+      </div>
+      <p><strong>Cuidado:</strong> Por definição matemática, 0! = 1 e 1! = 1.</p>
+    </section>
+
+    <!-- ARRANJO E COMBINAÇÃO -->
+    <section class="apostila-section">
+      <h2>2. Arranjo vs. Combinação</h2>
+      <p>A pergunta de ouro da Combinatória é: <strong>"A ORDEM IMPORTA?"</strong></p>
+      <ul>
+        <li><strong>Arranjo (A ordem IMPORTA):</strong> Usado para senhas, pódios (1º, 2º, 3º lugar), placas de carro. A troca de posição gera um resultado diferente. (AB ≠ BA)</li>
+        <li><strong>Combinação (A ordem NÃO importa):</strong> Usado para comissões, sorteios de loteria, times, sucos mistos. A troca de posição não muda o grupo. (AB = BA)</li>
+      </ul>
+
+      <!-- Calculadora Interativa -->
+      <div class="dashboard" style="margin-top: 32px;">
+        <div>
+          <h3>Calculadora de Agrupamentos</h3>
+          <div class="control-group">
+            <label>Tipo de Problema (A ordem importa?)</label>
+            <select id="tipoCalc">
+              <option value="arranjo">SIM, a ordem importa (Arranjo - An,p)</option>
+              <option value="combinacao">NÃO, a ordem não importa (Combinação - Cn,p)</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label>Total de elementos disponíveis (n):</label>
+            <input type="number" id="valN" value="5" min="1" max="20">
+          </div>
+          <div class="control-group">
+            <label>Tamanho do grupo escolhido (p):</label>
+            <input type="number" id="valP" value="3" min="1" max="20">
+          </div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <h3 style="text-align: center; margin-top: 0;">Fórmula Dinâmica</h3>
+          <div class="math-block" id="formulaVis" style="font-size: 1.1rem; text-align: left;">
+            A<sub>5,3</sub> = 5! / (5-3)!<br>
+            = 120 / 2<br>
+            <strong>= 60 possibilidades</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBABILIDADE -->
+    <section class="apostila-section">
+      <h2>3. Probabilidade e a Tábua de Galton</h2>
+      <p>A Probabilidade clássica é dada pela razão entre o que eu QUERO (eventos favoráveis) e TUDO O QUE PODE ACONTECER (espaço amostral).</p>
+      <div class="math-block">
+        P = Eventos Favoráveis / Casos Possíveis
+      </div>
+      
+      <h3>Simulador Estatístico (Distribuição Normal)</h3>
+      <p>Imagine jogar <strong>1.000 bolinhas</strong> que caem por um labirinto de pinos. Em cada pino, a bolinha tem 50% de chance de ir pra esquerda e 50% de ir pra direita. Qual o resultado final? Simule abaixo para ver o nascimento da <strong>Curva de Sino</strong>.</p>
+      
+      <div style="text-align: center; margin-top: 24px;">
+        <button class="btn" onclick="simularGalton()">Soltar 500 Bolinhas</button>
+        <button class="btn" style="background: var(--ink-light);" onclick="resetarGalton()">Zerar</button>
+      </div>
+
+      <div class="chart-container" id="galtonChart">
+        <!-- Barras geradas por JS -->
+      </div>
+    </section>
+
+    <!-- QUIZ ENEM -->
+    <section class="apostila-section">
+      <h2>4. Simulado (Padrão ENEM)</h2>
+      <p>Teste seus conhecimentos. Escolha a alternativa e clique em "Corrigir".</p>
+
+      <div id="quiz-container">
+        <!-- Q1 -->
+        <div class="question" data-answer="B">
+          <p><strong>1. (ENEM)</strong> Uma lanchonete oferece 8 tipos de frutas para fazer sucos. O cliente pode escolher 3 frutas diferentes para compor seu suco. Quantos sucos distintos podem ser feitos?</p>
+          <div class="options">
+            <label class="option-label"><input type="radio" name="q1" value="A"> A) 336 (Arranjo)</label>
+            <label class="option-label"><input type="radio" name="q1" value="B"> B) 56 (Combinação)</label>
+            <label class="option-label"><input type="radio" name="q1" value="C"> C) 24 (Permutação)</label>
+            <label class="option-label"><input type="radio" name="q1" value="D"> D) 512</label>
+          </div>
+          <div class="feedback">A ordem das frutas no liquidificador NÃO altera o suco (Laranja e Maçã = Maçã e Laranja). É uma Combinação de 8 tomados 3 a 3: C(8,3) = 8! / (3! * 5!) = (8*7*6) / 6 = 56.</div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question" data-answer="C">
+          <p><strong>2. (ENEM)</strong> Em uma urna há 4 bolas vermelhas e 6 bolas azuis. Sorteando uma bola ao acaso, qual a probabilidade de ela ser vermelha?</p>
+          <div class="options">
+            <label class="option-label"><input type="radio" name="q2" value="A"> A) 20%</label>
+            <label class="option-label"><input type="radio" name="q2" value="B"> B) 60%</label>
+            <label class="option-label"><input type="radio" name="q2" value="C"> C) 40%</label>
+            <label class="option-label"><input type="radio" name="q2" value="D"> D) 4%</label>
+          </div>
+          <div class="feedback">Eventos favoráveis: 4 (vermelhas). Casos possíveis: 10 (total de bolas). Probabilidade = 4/10 = 0,4 = 40%.</div>
+        </div>
+      </div>
+      
+      <button class="btn" onclick="corrigirQuiz()">Corrigir Simulado</button>
+    </section>
+  </div>
+  </main>
+  
+  <!-- CHAMA O ARQUIVO DE COMPONENTES AQUI -->
+  <script src="/src/js/components.js"></script>
+
+  
+  <script src="../../../src/js/aula-base.js"></script>
+
+  <script>
+    // --- CALCULADORA DE COMBINATÓRIA ---
+    const valN = document.getElementById('valN');
+    const valP = document.getElementById('valP');
+    const tipoCalc = document.getElementById('tipoCalc');
+    const formulaVis = document.getElementById('formulaVis');
+
+    function fatorial(num) {
+      if (num < 0) return 0;
+      if (num === 0 || num === 1) return 1;
+      let fat = 1;
+      for (let i = num; i > 1; i--) fat *= i;
+      return fat;
+    }
+
+    function atualizarCalculadora() {
+      let n = parseInt(valN.value);
+      let p = parseInt(valP.value);
+      let tipo = tipoCalc.value;
+
+      if (p > n) {
+        formulaVis.innerHTML = "<span style='color: var(--danger);'>Erro: O grupo (p) não pode ser maior que o total (n).</span>";
+        return;
+      }
+
+      let nFat = fatorial(n);
+      let pFat = fatorial(p);
+      let difFat = fatorial(n - p);
+
+      if (tipo === 'arranjo') {
+        let resultado = nFat / difFat;
+        formulaVis.innerHTML = `
+          A<sub>${n},${p}</sub> = ${n}! / (${n}-${p})!<br>
+          = ${n}! / ${n-p}!<br>
+          = ${nFat} / ${difFat}<br><br>
+          <strong style="color: var(--brand-strong); font-size:1.4rem;">= ${resultado} possibilidades</strong>
+        `;
+      } else {
+        let resultado = nFat / (pFat * difFat);
+        formulaVis.innerHTML = `
+          C<sub>${n},${p}</sub> = ${n}! / (${p}! × (${n}-${p})!)<br>
+          = ${n}! / (${p}! × ${n-p}!)<br>
+          = ${nFat} / (${pFat} × ${difFat})<br><br>
+          <strong style="color: var(--brand-strong); font-size:1.4rem;">= ${resultado} grupos possíveis</strong>
+        `;
+      }
+    }
+
+    valN.addEventListener('input', atualizarCalculadora);
+    valP.addEventListener('input', atualizarCalculadora);
+    tipoCalc.addEventListener('change', atualizarCalculadora);
+    atualizarCalculadora();
+
+    // --- TÁBUA DE GALTON (PROBABILIDADE) ---
+    const numClasses = 13; // Pinos/Caminhos
+    let distribuicao = new Array(numClasses).fill(0);
+    const chartContainer = document.getElementById('galtonChart');
+
+    // Inicializar barras
+    function initChart() {
+      chartContainer.innerHTML = '';
+      for (let i = 0; i < numClasses; i++) {
+        let bar = document.createElement('div');
+        bar.className = 'chart-bar';
+        bar.style.height = '0%';
+        bar.id = 'bar-' + i;
+        
+        let label = document.createElement('span');
+        label.id = 'label-' + i;
+        label.innerText = '0';
+        
+        bar.appendChild(label);
+        chartContainer.appendChild(bar);
+      }
+    }
+
+    function simularGalton() {
+      const numBolas = 500;
+      for (let i = 0; i < numBolas; i++) {
+        let posicao = 0;
+        // Bolinha cai por 'numClasses - 1' níveis
+        for (let j = 0; j < numClasses - 1; j++) {
+          if (Math.random() > 0.5) posicao++;
+        }
+        distribuicao[posicao]++;
+      }
+      desenharGrafico();
+    }
+
+    function resetarGalton() {
+      distribuicao = new Array(numClasses).fill(0);
+      desenharGrafico();
+    }
+
+    function desenharGrafico() {
+      let maxBolas = Math.max(...distribuicao, 1); // Evitar divisão por zero
+      for (let i = 0; i < numClasses; i++) {
+        let bar = document.getElementById('bar-' + i);
+        let label = document.getElementById('label-' + i);
+        let percent = (distribuicao[i] / maxBolas) * 100;
+        
+        bar.style.height = percent + '%';
+        label.innerText = distribuicao[i];
+      }
+    }
+
+    initChart();
+
+    // --- CORREÇÃO DO QUIZ ---
+    function corrigirQuiz() {
+      const questions = document.querySelectorAll('.question');
+      
+      questions.forEach((q, index) => {
+        const correta = q.getAttribute('data-answer');
+        const selecionada = q.querySelector('input[type="radio"]:checked');
+        const feedback = q.querySelector('.feedback');
+        
+        if (!selecionada) {
+          alert(`Por favor, responda a questão ${index + 1}`);
+          return;
+        }
+
+        if (selecionada.value === correta) {
+          feedback.className = 'feedback correct';
+          feedback.innerHTML = '<strong>Correto!</strong> ' + feedback.innerText.replace('Correto! ', '').replace('Incorreto. ', '');
+        } else {
+          feedback.className = 'feedback incorrect';
+          feedback.innerHTML = '<strong>Incorreto.</strong> ' + feedback.innerText.replace('Correto! ', '').replace('Incorreto. ', '');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

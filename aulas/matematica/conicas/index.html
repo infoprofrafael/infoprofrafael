@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Apostila Interativa: Cônicas | Prof. Rafael Guimarães</title>
+  <style>
+/*     
+    body { font-family: var(--font-sans); background-color: var(--bg-color); color: var(--ink); margin: 0; line-height: 1.6; } 
+    
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }*/
+    
+    .apostila-section { background: var(--surface-1); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line); margin-bottom: 32px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+    .apostila-section h2 { color: var(--brand-strong); border-bottom: 2px solid var(--surface-2); padding-bottom: 8px; }
+    .apostila-section h3 { color: var(--ink-dark); margin-top: 24px; }
+    
+    .math-block { background: var(--surface-2); padding: 16px; border-radius: var(--radius-sm); text-align: center; font-family: var(--font-mono); font-size: 1.1rem; margin: 16px 0; border-left: 4px solid var(--brand); color: var(--ink-dark); }
+    
+    .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; background: var(--surface-2); padding: 24px; border-radius: var(--radius-md); margin-bottom: 24px;}
+    @media(max-width: 768px) { .dashboard { grid-template-columns: 1fr; } }
+    .control-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .control-group label { font-weight: bold; color: var(--ink-dark); font-size: 0.9rem; }
+    input[type="range"] { width: 100%; accent-color: var(--brand); cursor: pointer; }
+    
+    .canvas-wrapper { width: 100%; overflow-x: auto; background: var(--surface-1); border-radius: var(--radius-md); border: 1px solid var(--line); padding: 16px; box-sizing: border-box; position: relative; }
+    canvas { display: block; margin: 0 auto; background: #fafafa; border-radius: 8px; cursor: default; max-width: 100%; height: auto; border: 1px solid #e9ecef; }
+    
+    .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .data-point { font-family: var(--font-mono); font-size: 1.1rem; background: var(--surface-1); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--line); text-align: center; }
+    .data-label { font-size: 0.8rem; color: var(--ink); text-transform: uppercase; margin-bottom: 4px; display: block; font-family: var(--font-sans); font-weight: bold;}
+    
+    .instruction-badge { position: absolute; top: 30px; left: 30px; background: rgba(59, 130, 246, 0.1); color: var(--brand-strong); padding: 8px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; pointer-events: none; border: 1px solid rgba(59, 130, 246, 0.2); }
+  </style>
+</head>
+<body>
+
+  <!-- CABEÇALHO MODULAR DIRETO NO HTML -->
+  <!-- <script>
+    class SiteHeader extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <header class="site-header" style="background: var(--surface-1, #ffffff); border-bottom: 1px solid var(--line, #dee2e6); padding: 16px 0; position: sticky; top: 0; z-index: 100;">
+            <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;">
+              <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                <span style="background: var(--brand, #3b82f6); color: white; padding: 8px 12px; border-radius: 8px; font-weight: bold; font-family: monospace; font-size: 1.2rem;">RG</span>
+                <span style="display: flex; flex-direction: column; color: var(--ink-dark, #212529);">
+                  <strong style="font-size: 1.1rem; line-height: 1.1;">Rafael Guimarães</strong>
+                  <span style="font-size: 0.8rem; color: var(--ink, #495057);">Matemática: Apostilas Interativas</span>
+                </span>
+              </a>
+              <nav style="display: flex; gap: 20px;">
+                <a href="geometria.html" style="text-decoration: none; color: var(--ink, #495057); font-weight: 500; transition: 0.2s;">Geometria 3D</a>
+                <a href="combinatoria.html" style="text-decoration: none; color: var(--ink, #495057); font-weight: 500; transition: 0.2s;">Combinatória</a>
+                <a href="conicas.html" style="text-decoration: none; color: var(--brand, #3b82f6); font-weight: bold; transition: 0.2s;">Cônicas</a>
+              </nav>
+            </div>
+          </header>
+        `;
+      }
+    }
+    customElements.define('site-header', SiteHeader);
+  </script> -->
+  <site-header> </site-header>
+
+  <main class="section" style="padding-top: 110px; padding-bottom: 80px;">
+    <div class="container">
+      
+    <span style="text-transform: uppercase; font-size: 0.8rem; font-weight: bold; color: var(--brand); letter-spacing: 1px;">3º Ano / Geometria Analítica</span>
+    <h1 style="color: var(--ink-dark); margin-top: 4px;">Estudo das Cônicas: A Elipse</h1>
+    <p>As seções cônicas (Elipse, Parábola e Hipérbole) são curvas obtidas pela interseção de um plano com um cone duplo. Vamos focar na propriedade mais fascinante da <strong>Elipse</strong>.</p>
+
+    <!-- TEORIA -->
+    <section class="apostila-section">
+      <h2>O que define uma Elipse?</h2>
+      <p>Geometricamente, uma elipse é o conjunto de todos os pontos em um plano onde a soma das distâncias até dois pontos fixos (chamados de <strong>Focos</strong>, $F_1$ e $F_2$) é sempre constante.</p>
+      
+      <div class="math-block">
+        $d(P, F_1) + d(P, F_2) = 2a$
+      </div>
+      
+      <p>Onde <strong>$2a$</strong> é a medida do eixo maior da elipse. Essa propriedade geométrica deu origem a uma técnica prática muito antiga: o <strong>Método do Jardineiro</strong>.</p>
+      
+      <h3>O Método do Jardineiro (Barbante Virtual)</h3>
+      <p>Se você fincar duas estacas no chão ($F_1$ e $F_2$), amarrar as pontas de um barbante folgado nelas e usar um graveto para esticar o barbante, ao deslizar o graveto pelo chão mantendo o barbante tenso, você desenhará uma elipse perfeita.</p>
+    </section>
+
+    <!-- LABORATÓRIO INTERATIVO -->
+    <section class="apostila-section" style="background: transparent; padding: 0; border: none; box-shadow: none;">
+      <h2>Laboratório: Focos Móveis e Barbante Virtual</h2>
+      <p>Interaja com o quadro abaixo. Arraste os focos azul e vermelho e altere o tamanho do barbante para ver como a excentricidade da curva muda em tempo real.</p>
+
+      <div class="dashboard">
+        <div>
+          <div class="control-group">
+            <label for="stringSlider" style="display: flex; justify-content: space-between;">
+              <span>Tamanho do Barbante (Constante $2a$)</span>
+              <strong id="stringValLabel" style="color: var(--brand-strong);">500 px</strong>
+            </label>
+            <input type="range" id="stringSlider" min="300" max="700" value="500" step="10">
+          </div>
+          <p style="font-size: 0.85rem; color: var(--ink-light); margin-top: 16px;">
+            * A distância entre os focos ($2c$) nunca pode ser maior que o barbante ($2a$). Se você afastar demais os focos, o limite será bloqueado pela física.
+          </p>
+        </div>
+        
+        <div class="data-grid">
+          <div class="data-point">
+            <span class="data-label">Distância $d(P, F_1)$</span>
+            <span id="d1Readout" style="color: #3b82f6;">0 px</span>
+          </div>
+          <div class="data-point">
+            <span class="data-label">Distância $d(P, F_2)$</span>
+            <span id="d2Readout" style="color: #ef4444;">0 px</span>
+          </div>
+          <div class="data-point" style="grid-column: span 2; background: #f0fdf4; border-color: #86efac;">
+            <span class="data-label" style="color: #166534;">Soma Constante ($d_1 + d_2$)</span>
+            <span id="sumReadout" style="color: #15803d; font-weight: bold;">0 px</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="canvas-wrapper">
+        <div class="instruction-badge">Mova os pontos F1 e F2</div>
+        <canvas id="conicCanvas" width="800" height="500"></canvas>
+      </div>
+    </section>
+
+  
+  
+    </div>
+  
+  </main>
+  
+  <!-- CHAMA O ARQUIVO DE COMPONENTES AQUI -->
+  <script src="/src/js/components.js"></script>
+
+  
+  <script src="../../../src/js/aula-base.js"></script>
+
+
+
+  <script>
+    const canvas = document.getElementById('conicCanvas');
+    const ctx = canvas.getContext('2d');
+    const stringSlider = document.getElementById('stringSlider');
+    
+    // UI Elements
+    const d1Readout = document.getElementById('d1Readout');
+    const d2Readout = document.getElementById('d2Readout');
+    const sumReadout = document.getElementById('sumReadout');
+    const stringValLabel = document.getElementById('stringValLabel');
+
+    // Estado da Simulação
+    let stringLength = parseInt(stringSlider.value); // Constante 2a
+    let f1 = { x: 250, y: 250, radius: 10, color: '#3b82f6', label: 'F1', isDragging: false };
+    let f2 = { x: 550, y: 250, radius: 10, color: '#ef4444', label: 'F2', isDragging: false };
+    let t = 0; // Parâmetro de tempo para animar o ponto P
+
+    // Distância Euclidiana
+    function dist(p1, p2) {
+      return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+    }
+
+    // Desenhar plano cartesiano sutil
+    function drawGrid() {
+      ctx.strokeStyle = '#e9ecef';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= canvas.width; i += 50) {
+        ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+      }
+      for (let i = 0; i <= canvas.height; i += 50) {
+        ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
+      }
+    }
+
+    // Loop de Animação Principal
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawGrid();
+
+      // Cálculos da Elipse
+      let cx = (f1.x + f2.x) / 2;
+      let cy = (f1.y + f2.y) / 2;
+      let focalDist = dist(f1, f2); // 2c
+      
+      // Restrição Física: O barbante deve ser maior que a distância entre os focos
+      if (focalDist >= stringLength - 2) {
+        stringLength = focalDist + 2;
+        stringSlider.value = stringLength;
+        stringValLabel.innerText = Math.round(stringLength) + " px";
+      }
+
+      let a = stringLength / 2; // Semieixo maior
+      let c = focalDist / 2;    // Distância focal
+      let b = Math.sqrt(a * a - c * c); // Semieixo menor
+      let rotation = Math.atan2(f2.y - f1.y, f2.x - f1.x);
+
+      // Desenhar a Elipse
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, a, b, rotation, 0, 2 * Math.PI);
+      ctx.strokeStyle = 'rgba(16, 185, 129, 0.8)';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // Calcular a posição do ponto P (Lápis girando)
+      let px = cx + a * Math.cos(t) * Math.cos(rotation) - b * Math.sin(t) * Math.sin(rotation);
+      let py = cy + a * Math.cos(t) * Math.sin(rotation) + b * Math.sin(t) * Math.cos(rotation);
+      let p = { x: px, y: py };
+
+      let d1 = dist(p, f1);
+      let d2 = dist(p, f2);
+
+      // Desenhar "Barbante"
+      ctx.beginPath();
+      ctx.moveTo(f1.x, f1.y);
+      ctx.lineTo(p.x, p.y);
+      ctx.lineTo(f2.x, f2.y);
+      ctx.strokeStyle = '#94a3b8';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 5]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Desenhar Ponto P
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
+      ctx.fillStyle = '#10b981';
+      ctx.fill();
+      ctx.fillStyle = '#065f46';
+      ctx.font = 'bold 14px system-ui';
+      ctx.fillText("P", p.x + 10, p.y - 10);
+
+      // Desenhar Focos
+      [f1, f2].forEach(foco => {
+        ctx.beginPath();
+        ctx.arc(foco.x, foco.y, foco.radius, 0, Math.PI * 2);
+        ctx.fillStyle = foco.color;
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        ctx.fillStyle = foco.color;
+        ctx.fillText(foco.label, foco.x - 8, foco.y + 25);
+      });
+
+      // Atualizar Leituras
+      d1Readout.innerText = d1.toFixed(1) + " px";
+      d2Readout.innerText = d2.toFixed(1) + " px";
+      sumReadout.innerText = (d1 + d2).toFixed(1) + " px";
+
+      t += 0.015; // Velocidade do ponto P
+      requestAnimationFrame(draw);
+    }
+
+    // Interações de Mouse/Touch para arrastar Focos
+    function getMousePos(evt) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      let clientX = evt.clientX;
+      let clientY = evt.clientY;
+      
+      if (evt.touches && evt.touches.length > 0) {
+        clientX = evt.touches[0].clientX;
+        clientY = evt.touches[0].clientY;
+      }
+      
+      return {
+        x: (clientX - rect.left) * scaleX,
+        y: (clientY - rect.top) * scaleY
+      };
+    }
+
+    function handleDown(e) {
+      const pos = getMousePos(e);
+      if (dist(pos, f1) < f1.radius + 10) f1.isDragging = true;
+      else if (dist(pos, f2) < f2.radius + 10) f2.isDragging = true;
+    }
+
+    function handleMove(e) {
+      if (!f1.isDragging && !f2.isDragging) return;
+      if (e.type === 'touchmove') e.preventDefault(); // Evitar scroll
+      
+      const pos = getMousePos(e);
+      let targetFoco = f1.isDragging ? f1 : f2;
+      let otherFoco = f1.isDragging ? f2 : f1;
+
+      // Movimentação com restrição do barbante
+      let potentialDist = dist(pos, otherFoco);
+      if (potentialDist < stringLength - 2) {
+        targetFoco.x = pos.x;
+        targetFoco.y = pos.y;
+      } else {
+        // Se tentar puxar além do barbante, trava na borda máxima permitida pelo vetor
+        let angle = Math.atan2(pos.y - otherFoco.y, pos.x - otherFoco.x);
+        targetFoco.x = otherFoco.x + (stringLength - 3) * Math.cos(angle);
+        targetFoco.y = otherFoco.y + (stringLength - 3) * Math.sin(angle);
+      }
+    }
+
+    function handleUp() {
+      f1.isDragging = false;
+      f2.isDragging = false;
+    }
+
+    canvas.addEventListener('mousedown', handleDown);
+    canvas.addEventListener('mousemove', handleMove);
+    window.addEventListener('mouseup', handleUp);
+    
+    canvas.addEventListener('touchstart', handleDown, {passive: false});
+    canvas.addEventListener('touchmove', handleMove, {passive: false});
+    window.addEventListener('touchend', handleUp);
+
+    // Controle do Slider
+    stringSlider.addEventListener('input', (e) => {
+      stringLength = parseInt(e.target.value);
+      stringValLabel.innerText = stringLength + " px";
+    });
+
+    // Iniciar animação
+    draw();
+  </script>
+</body>
+</html>

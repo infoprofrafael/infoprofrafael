@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Apostila Interativa: Números Complexos | Prof. Rafael Guimarães</title>
+  <style>
+    /* :root {
+      --bg-color: #f8f9fa; --surface-1: #ffffff; --surface-2: #f1f3f5;
+      --line: #dee2e6; --ink: #495057; --ink-dark: #212529;
+      --brand: #3b82f6; --brand-strong: #2563eb;
+      --radius-sm: 8px; --radius-md: 12px;
+      --font-sans: system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    } */
+
+    /* O aula-base.js assumidamente lida com o modo escuro alternando essas variáveis ou aplicando uma classe ao body */
+
+    /* body { font-family: var(--font-sans); background-color: var(--bg-color); color: var(--ink); margin: 0; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; } */
+    
+    .apostila-section { background: var(--surface-1); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line); margin-bottom: 32px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+    .apostila-section h2 { color: var(--brand-strong); border-bottom: 2px solid var(--surface-2); padding-bottom: 8px; margin-top: 0; }
+    .apostila-section h3 { color: var(--ink-dark); margin-top: 24px; }
+    
+    .math-block { background: var(--surface-2); padding: 16px; border-radius: var(--radius-sm); text-align: center; font-family: var(--font-mono); font-size: 1.1rem; margin: 16px 0; border-left: 4px solid var(--brand); color: var(--ink-dark); overflow-x: auto; }
+    
+    .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; background: var(--surface-2); padding: 24px; border-radius: var(--radius-md); margin-bottom: 24px;}
+    @media(max-width: 768px) { .dashboard { grid-template-columns: 1fr; } }
+    
+    .data-grid { display: flex; flex-direction: column; gap: 16px; }
+    .data-point { font-family: var(--font-mono); font-size: 1.2rem; background: var(--surface-1); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--line); text-align: center; }
+    .data-label { font-size: 0.85rem; color: var(--ink); text-transform: uppercase; margin-bottom: 4px; display: block; font-family: var(--font-sans); font-weight: bold;}
+    
+    .btn { background: var(--brand); color: white; border: none; padding: 16px 24px; border-radius: var(--radius-sm); font-size: 1.1rem; cursor: pointer; font-weight: bold; transition: background 0.2s; width: 100%; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3); }
+    .btn:hover { background: var(--brand-strong); }
+    .btn:disabled { background: #94a3b8; cursor: not-allowed; box-shadow: none; }
+
+    .canvas-wrapper { width: 100%; overflow: hidden; background: var(--surface-1); border-radius: var(--radius-md); border: 1px solid var(--line); padding: 0; box-sizing: border-box; position: relative; display: flex; justify-content: center; }
+    canvas { display: block; background: #fafafa; cursor: crosshair; max-width: 100%; height: auto; }
+    
+    .instruction-badge { position: absolute; top: 16px; left: 16px; background: rgba(59, 130, 246, 0.1); color: var(--brand-strong); padding: 8px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; pointer-events: none; border: 1px solid rgba(59, 130, 246, 0.2); }
+  </style>
+  
+  <!-- MathJax para renderização do LaTeX -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+  <!-- CABEÇALHO MODULAR -->
+  <site-header></site-header>
+
+  <main class="section" style="padding-top: 110px; padding-bottom: 80px;">
+    <div class="container">
+    <span style="text-transform: uppercase; font-size: 0.8rem; font-weight: bold; color: var(--brand); letter-spacing: 1px;">3º Ano / Álgebra</span>
+    <h1 style="color: var(--ink-dark); margin-top: 4px;">Números Complexos e o Plano de Argand-Gauss</h1>
+    
+    <!-- TEORIA -->
+    <section class="apostila-section">
+      <h2>O fim da regra do "Não existe raiz negativa"</h2>
+      <p>Durante muito tempo na matemática, equações como $x^2 + 1 = 0$ não tinham solução. Para resolver isso, definiu-se a unidade imaginária <strong>$i$</strong>, tal que:</p>
+      
+      <div class="math-block">
+        $$ i = \sqrt{-1} \quad \text{ou} \quad i^2 = -1 $$
+      </div>
+      
+      <p>Um número complexo é escrito na forma <strong>$z = a + bi$</strong>, onde $a$ é a parte real e $b$ é a parte imaginária. Em vez de representá-los em uma reta numérica padrão, usamos o <strong>Plano de Argand-Gauss</strong>. Nele, o eixo X representa a parte Real ($Re$) e o eixo Y representa a parte Imaginária ($Im$). O número complexo se torna um vetor bidimensional.</p>
+      
+      <h3>A Magia da Multiplicação por $i$</h3>
+      <p>Algebricamente, multiplicar um complexo $z = a + bi$ por $i$ resulta em:</p>
+      <div class="math-block">
+        $$ z \cdot i = (a + bi) \cdot i = ai + bi^2 = ai + b(-1) = -b + ai $$
+      </div>
+      <p>Geometricamente, isso tem um significado visual poderoso: <strong>multiplicar por $i$ rotaciona o vetor exatamente $90^\circ$ no sentido anti-horário</strong>.</p>
+    </section>
+
+    <!-- LABORATÓRIO INTERATIVO -->
+    <section class="apostila-section" style="background: transparent; padding: 0; border: none; box-shadow: none;">
+      <h2>Laboratório: A Rotação Complexa</h2>
+      <p>Arraste a ponta do vetor (ponto azul) para definir um número complexo. Em seguida, clique em "Multiplicar por $i$" para observar a rotação geométrica.</p>
+
+      <div class="dashboard">
+        <div class="canvas-wrapper">
+          <div class="instruction-badge">Arraste o vetor</div>
+          <canvas id="complexCanvas" width="500" height="500"></canvas>
+        </div>
+        
+        <div class="data-grid">
+          <div class="data-point">
+            <span class="data-label">Número Complexo (z)</span>
+            <span id="zReadout" style="color: var(--brand-strong); font-size: 1.5rem;">3 + 2i</span>
+          </div>
+          
+          <div class="data-point">
+            <span class="data-label">Forma Trigonométrica (Módulo e Argumento)</span>
+            <span id="polarReadout">|z| = 3.61, θ = 33.7°</span>
+          </div>
+          
+          <button id="multiplyBtn" class="btn">Multiplicar vetor por <i>i</i> (Girar 90°)</button>
+
+          <div class="math-block" id="calcReadout" style="font-size: 1rem; text-align: left; margin: 0; min-height: 80px;">
+            Aguardando interação...
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </main>
+
+  <!-- SCRIPTS EXTERNOS DO PROJETO -->
+  <script src="/src/js/components.js"></script>
+
+  
+  <script src="../../../src/js/aula-base.js"></script>
+
+  <!-- SCRIPT DO LABORATÓRIO DE COMPLEXOS -->
+  <script>
+    const canvas = document.getElementById('complexCanvas');
+    const ctx = canvas.getContext('2d');
+    const multiplyBtn = document.getElementById('multiplyBtn');
+    
+    // UI Elements
+    const zReadout = document.getElementById('zReadout');
+    const polarReadout = document.getElementById('polarReadout');
+    const calcReadout = document.getElementById('calcReadout');
+
+    // Configurações do Plano
+    const gridSize = 10; // De -10 a 10
+    const scale = canvas.width / (gridSize * 2);
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+
+    // Estado do Vetor
+    let z = { a: 4, b: 3 }; // z = a + bi
+    let isDragging = false;
+    let isAnimating = false;
+
+    // Funções de Conversão de Coordenadas
+    function toCanvasX(a) { return cx + a * scale; }
+    function toCanvasY(b) { return cy - b * scale; } // Eixo Y inverte no canvas
+    function toMathA(x) { return (x - cx) / scale; }
+    function toMathB(y) { return (cy - y) / scale; }
+
+    function formatComplex(a, b) {
+      const aRound = a.toFixed(1).replace('.0', '');
+      const bRound = b.toFixed(1).replace('.0', '');
+      if (b >= 0) return `${aRound} + ${bRound}i`;
+      return `${aRound} - ${Math.abs(bRound)}i`;
+    }
+
+    function drawGrid() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Fundo dependendo do tema (simplificado, mas se integra ao CSS global)
+      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--surface-1') || '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.lineWidth = 1;
+      
+      // Linhas da grade
+      for (let i = -gridSize; i <= gridSize; i++) {
+        let x = toCanvasX(i);
+        let y = toCanvasY(i);
+        
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+
+      // Eixos Principais
+      ctx.strokeStyle = '#94a3b8';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, canvas.height); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(canvas.width, cy); ctx.stroke();
+
+      // Rótulos dos Eixos
+      ctx.fillStyle = '#64748b';
+      ctx.font = '12px system-ui';
+      ctx.fillText('Re', canvas.width - 25, cy - 10);
+      ctx.fillText('Im', cx + 10, 20);
+    }
+
+    function drawVector(a, b, color, label) {
+      const x = toCanvasX(a);
+      const y = toCanvasY(b);
+
+      // Linha do vetor
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(x, y);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // Ponta (círculo)
+      ctx.beginPath();
+      ctx.arc(x, y, 6, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+
+      // Seta direcional
+      const angle = Math.atan2(y - cy, x - cx);
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x - 12 * Math.cos(angle - Math.PI / 6), y - 12 * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(x - 12 * Math.cos(angle + Math.PI / 6), y - 12 * Math.sin(angle + Math.PI / 6));
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+
+      // Rótulo
+      ctx.fillStyle = '#1e293b';
+      ctx.font = 'bold 14px system-ui';
+      ctx.fillText(label, x + 10, y - 10);
+    }
+
+    function drawArc(radius, startAngle, endAngle) {
+      ctx.beginPath();
+      // O canvas inverte o Y, então os ângulos são negativos para anti-horário
+      ctx.arc(cx, cy, radius * scale, -startAngle, -endAngle, true); 
+      ctx.strokeStyle = 'rgba(16, 185, 129, 0.4)'; // Verde translúcido
+      ctx.lineWidth = 20;
+      ctx.stroke();
+    }
+
+    function updateUI() {
+      drawGrid();
+      drawVector(z.a, z.b, '#3b82f6', 'z');
+      
+      const r = Math.sqrt(z.a * z.a + z.b * z.b);
+      let theta = Math.atan2(z.b, z.a) * (180 / Math.PI);
+      if (theta < 0) theta += 360;
+
+      zReadout.innerText = formatComplex(z.a, z.b);
+      polarReadout.innerText = `|z| = ${r.toFixed(2)}, θ = ${theta.toFixed(1)}°`;
+    }
+
+    // Interações de Mouse
+    function getMousePos(evt) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      let clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+      let clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+      return {
+        x: (clientX - rect.left) * scaleX,
+        y: (clientY - rect.top) * scaleY
+      };
+    }
+
+    function handleDown(e) {
+      if (isAnimating) return;
+      const pos = getMousePos(e);
+      const vx = toCanvasX(z.a);
+      const vy = toCanvasY(z.b);
+      // Verifica se clicou perto da ponta do vetor
+      if (Math.hypot(pos.x - vx, pos.y - vy) < 20) {
+        isDragging = true;
+      }
+    }
+
+    function handleMove(e) {
+      if (!isDragging || isAnimating) return;
+      if (e.type === 'touchmove') e.preventDefault();
+      
+      const pos = getMousePos(e);
+      let newA = toMathA(pos.x);
+      let newB = toMathB(pos.y);
+      
+      // Limitar aos limites do gráfico
+      newA = Math.max(-gridSize, Math.min(gridSize, newA));
+      newB = Math.max(-gridSize, Math.min(gridSize, newB));
+      
+      z.a = newA;
+      z.b = newB;
+      updateUI();
+      calcReadout.innerHTML = "Vetor ajustado. Clique em multiplicar.";
+    }
+
+    function handleUp() { isDragging = false; }
+
+    canvas.addEventListener('mousedown', handleDown);
+    canvas.addEventListener('mousemove', handleMove);
+    window.addEventListener('mouseup', handleUp);
+    canvas.addEventListener('touchstart', handleDown, {passive: false});
+    canvas.addEventListener('touchmove', handleMove, {passive: false});
+    window.addEventListener('touchend', handleUp);
+
+    // Animação da Multiplicação por i
+    multiplyBtn.addEventListener('click', () => {
+      if (isAnimating) return;
+      isAnimating = true;
+      multiplyBtn.disabled = true;
+
+      const startA = z.a;
+      const startB = z.b;
+      // Regra de multiplicação por i: a + bi -> -b + ai
+      const targetA = -startB;
+      const targetB = startA;
+      
+      const radius = Math.sqrt(startA * startA + startB * startB);
+      let startAngle = Math.atan2(startB, startA);
+      let targetAngle = startAngle + (Math.PI / 2); // Rotaciona 90 graus
+
+      const strZ = formatComplex(startA, startB);
+      const strZnew = formatComplex(targetA, targetB);
+      calcReadout.innerHTML = `Multiplicando: (${strZ}) · <i>i</i><br>= ${startA.toFixed(1)}i + ${startB.toFixed(1)}i²<br>= ${startA.toFixed(1)}i + ${startB.toFixed(1)}(-1)<br><strong>= ${strZnew}</strong>`;
+
+      let startTime = null;
+      const duration = 1000; // 1 segundo
+
+      function animate(time) {
+        if (!startTime) startTime = time;
+        const progress = Math.min((time - startTime) / duration, 1);
+        
+        // Curva de interpolação (EaseInOut)
+        const ease = 0.5 - Math.cos(progress * Math.PI) / 2;
+        const currentAngle = startAngle + (Math.PI / 2) * ease;
+
+        z.a = radius * Math.cos(currentAngle);
+        z.b = radius * Math.sin(currentAngle);
+
+        drawGrid();
+        
+        // Desenha rastro do arco durante o movimento
+        if (progress > 0) {
+           drawArc(radius, startAngle, currentAngle);
+        }
+        
+        // Desenha vetor opaco original como sombra
+        ctx.globalAlpha = 0.3;
+        drawVector(startA, startB, '#94a3b8', '');
+        ctx.globalAlpha = 1.0;
+        
+        drawVector(z.a, z.b, '#10b981', 'z·i');
+        
+        // Atualiza UI textual
+        zReadout.innerText = formatComplex(z.a, z.b);
+        let thetaDeg = currentAngle * (180 / Math.PI);
+        if (thetaDeg < 0) thetaDeg += 360;
+        polarReadout.innerText = `|z| = ${radius.toFixed(2)}, θ = ${thetaDeg.toFixed(1)}°`;
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          // Finaliza e ajusta cravado para evitar erros de ponto flutuante
+          z.a = targetA;
+          z.b = targetB;
+          isAnimating = false;
+          multiplyBtn.disabled = false;
+          updateUI();
+        }
+      }
+      
+      requestAnimationFrame(animate);
+    });
+
+    // Início
+    updateUI();
+  </script>
+</body>
+</html>

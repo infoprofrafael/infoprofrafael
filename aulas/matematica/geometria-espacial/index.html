@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../../src/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../src/css/aula.css">
+  <title>Apostila Interativa: Geometria Espacial 3D | Prof. Rafael Guimarães</title>
+  <style>
+    /* Estilos da Apostila */
+    .apostila-section { background: var(--surface-1); padding: 32px; border-radius: var(--radius-md); border: 1px solid var(--line); margin-bottom: 32px; color: var(--ink); line-height: 1.6; }
+    .apostila-section h2 { margin-top: 0; color: var(--ink-dark); margin-bottom: 16px; }
+    .apostila-section h3 { margin-top: 24px; color: var(--ink-dark); margin-bottom: 8px; }
+    .apostila-section p { margin-bottom: 16px; }
+    
+    .math-block { background: var(--surface-2); padding: 16px; border-radius: var(--radius-sm); text-align: center; font-family: var(--font-mono); font-size: 1.2rem; margin: 16px 0; border-left: 4px solid var(--brand); }
+    
+    .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; background: var(--surface-2); padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--line); margin-bottom: 24px; }
+    @media (max-width: 768px) { .dashboard { grid-template-columns: 1fr; } }
+    
+    .control-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .range-group input[type="range"] { width: 100%; accent-color: var(--brand); cursor: pointer; }
+    .input-select { padding: 8px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface-1); color: var(--ink); font-family: inherit; }
+    
+    .checkbox-group { display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 12px; background: rgba(46, 204, 113, 0.1); border: 1px solid #2ecc71; border-radius: var(--radius-sm); }
+    .checkbox-group label { color: #2ecc71; font-weight: bold; cursor: pointer; }
+    .checkbox-group input { width: 18px; height: 18px; cursor: pointer; accent-color: #2ecc71; }
+
+    .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .data-point { font-family: var(--font-mono); font-size: 1rem; }
+    .data-label { font-size: 0.8rem; color: var(--ink-light); text-transform: uppercase; margin-bottom: 4px; display: block; font-family: var(--font-sans); }
+
+    .canvas-wrapper { width: 100%; overflow-x: auto; background: var(--surface-2); border-radius: var(--radius-md); border: 1px solid var(--line); padding: 16px; box-sizing: border-box; }
+    canvas { display: block; margin: 0 auto; background: #1e2e24; border-radius: 8px; cursor: grab; max-width: 100%; height: auto; }
+    canvas:active { cursor: grabbing; }
+  </style>
+</head>
+<body>
+
+  
+
+  <!--  Chamando o componets.js "Cabeçalho" -->
+  <site-header>   </site-header>
+
+  <!-- <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="brand">
+        <span class="brand-badge">RG</span>
+        <span class="brand-text">
+          <strong>Rafael Guimarães</strong>
+          <span>Matemática: Apostilas Interativas</span>
+        </span>
+      </a>
+      <div class="header-actions">
+        <a href="../index.html" class="btn btn-ghost btn-sm">← Voltar às Aulas</a>
+        <button id="theme-toggle" type="button" class="icon-btn" aria-label="Alternar tema">
+          <svg id="theme-toggle-dark-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          <svg id="theme-toggle-light-icon" class="hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header> -->
+
+  <main class="section" style="padding-top: 110px; padding-bottom: 80px;">
+    <div class="container">
+      <span class="eyebrow">Ensino Médio / Geometria Espacial (2º Ano)</span>
+      <h1 class="section-title">Seções 3D e Sólidos de Revolução</h1>
+      
+      <!-- APOSTILA: TEORIA -->
+      <section class="apostila-section">
+        <h2>Visão Espacial e Cortes (Seções)</h2>
+        <p>A superfície plana gerada quando um <strong>Plano</strong> atravessa um <strong>Sólido 3D</strong> é chamada de <strong>Seção</strong>. A forma dessa seção depende inteiramente da geometria do objeto original.</p>
+        
+        <h3>Sólidos de Revolução no ENEM</h3>
+        <p>O ENEM adora cobrar uma classe específica de formas: os <strong>Sólidos de Revolução</strong> (como Cilindros, Cones e Esferas). Eles recebem esse nome porque podem ser gerados pela rotação de uma figura plana 2D (a <strong>Figura Geratriz</strong>) em torno de um eixo central (o <strong>Eixo de Rotação</strong>).</p>
+        <ul>
+          <li>Se você girar um <strong>Retângulo</strong> por um de seus lados, você cria um <strong>Cilindro</strong>.</li>
+          <li>Se você girar um <strong>Triângulo Retângulo</strong> por um de seus catetos, você cria um <strong>Cone</strong>.</li>
+        </ul>
+      </section>
+
+      <!-- PAINEL DE CONTROLE -->
+      <h2 class="section-title" style="font-size: 1.5rem;">Laboratório: O Plano de Corte Móvel</h2>
+      <p class="section-lede">Altere o sólido, ative a visão do eixo de rotação e mova o plano de corte. Arraste o quadro 3D para rotacionar a câmera.</p>
+      
+      <div class="dashboard">
+        <!-- Controles -->
+        <div>
+          <div class="control-group">
+            <label class="data-label" for="shapeToggle">Sólido 3D</label>
+            <select id="shapeToggle" class="input-select">
+              <option value="cylinder">Cilindro (Sólido de Revolução)</option>
+              <option value="cone">Cone (Sólido de Revolução)</option>
+              <option value="pyramid">Pirâmide de Base Quadrada</option>
+              <option value="cube">Cubo</option>
+            </select>
+          </div>
+
+          <div id="revolutionBox" class="checkbox-group">
+            <input type="checkbox" id="showGeratriz">
+            <label for="showGeratriz">Mostrar Eixo e Figura Geratriz (ENEM)</label>
+          </div>
+
+          <div class="control-group range-group" style="margin-top: 24px;">
+            <label for="cutSlider" style="display: flex; justify-content: space-between;">
+              <span class="data-label">Altura do Corte (Eixo Y)</span>
+              <strong id="cutVal" style="color:var(--brand-strong); font-size: 1.2rem;">50%</strong>
+            </label>
+            <input type="range" id="cutSlider" min="0" max="100" value="50" step="1">
+          </div>
+        </div>
+
+        <!-- Dados Dinâmicos -->
+        <div>
+          <div class="data-grid">
+            <div class="data-point">
+              <span class="data-label">Forma da Seção (2D)</span>
+              <span id="shapeReadout" style="color:#3498db; font-weight:bold; font-size: 1.2rem;">Círculo Constante</span>
+            </div>
+            <div class="data-point">
+              <span class="data-label">Área Relativa da Seção</span>
+              <span id="areaReadout" style="color:#e74c3c; font-weight:bold; font-size: 1.2rem;">100.0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUADRO INTERATIVO -->
+      <div class="canvas-wrapper">
+        <canvas id="geoCanvas" width="900" height="450"></canvas>
+      </div>
+
+    </div>
+  </main>
+
+   
+  <!-- CHAMA O ARQUIVO DE COMPONENTES AQUI -->
+  <script src="/src/js/components.js"></script>
+
+  
+  <script src="../../../src/js/aula-base.js"></script>
+
+  <script>
+    const canvas = document.getElementById('geoCanvas');
+    const ctx = canvas.getContext('2d');
+    const cutSlider = document.getElementById('cutSlider');
+    const shapeToggle = document.getElementById('shapeToggle');
+    const showGeratriz = document.getElementById('showGeratriz');
+    const revolutionBox = document.getElementById('revolutionBox');
+    
+    // Câmeras e Configuração
+    const view3DW = 500;
+    const view2DW = 400;
+    
+    let angleX = Math.PI / 6;
+    let angleY = Math.PI / 4;
+    let isDragging = false;
+    let lastMouseX = 0, lastMouseY = 0;
+
+    let cutZ = 0; // Altura do plano (-100 a 100)
+    const baseSize = 90;
+    const height = 100;
+    
+    // Projeção 3D
+    function project3D(x, y, z) {
+      let x1 = x * Math.cos(angleY) - z * Math.sin(angleY);
+      let z1 = x * Math.sin(angleY) + z * Math.cos(angleY);
+      let y2 = y * Math.cos(angleX) - z1 * Math.sin(angleX);
+      return { screenX: view3DW / 2 + x1, screenY: canvas.height / 2 + y2 };
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const shapeType = shapeToggle.value;
+      const isRevol = (shapeType === 'cylinder' || shapeType === 'cone');
+      const showAxis = isRevol && showGeratriz.checked;
+      
+      // Controle de visibilidade da UI de Revolução
+      revolutionBox.style.display = isRevol ? 'flex' : 'none';
+      if (!isRevol) showGeratriz.checked = false;
+
+      let vertices = [], edges = [], cutPoints = [];
+      let t = (cutZ + height) / (2 * height); // 0 a 1
+      let areaRelativa = 0;
+      let shapeName = "";
+      let isCutValid = (t >= 0 && t <= 1);
+      
+      const sides = 24; // para cilindro e cone
+
+      // GERAÇÃO DOS SÓLIDOS
+      if (shapeType === 'cylinder') {
+        shapeName = "Círculo Constante";
+        for(let i=0; i<sides; i++) {
+          let a = (i/sides) * Math.PI * 2;
+          let cx = Math.cos(a) * baseSize, cz = Math.sin(a) * baseSize;
+          vertices.push({x: cx, y: -height, z: cz}); 
+          vertices.push({x: cx, y: height, z: cz});  
+          let next = (i+1)%sides;
+          edges.push([i*2, next*2]); 
+          edges.push([i*2+1, next*2+1]); 
+          if (i%4 === 0) edges.push([i*2, i*2+1]); 
+        }
+        if (isCutValid) {
+          areaRelativa = 100;
+          for(let i=0; i<sides; i++) cutPoints.push(project3D(Math.cos((i/sides)*Math.PI*2) * baseSize, cutZ, Math.sin((i/sides)*Math.PI*2) * baseSize));
+        }
+      } 
+      else if (shapeType === 'cone') {
+        shapeName = "Círculo (Decrescente)";
+        vertices.push({x: 0, y: -height, z: 0}); // 0: Ápice
+        for(let i=0; i<sides; i++) {
+          let a = (i/sides) * Math.PI * 2;
+          vertices.push({x: Math.cos(a) * baseSize, y: height, z: Math.sin(a) * baseSize});
+          let currentBaseIdx = i + 1;
+          let nextBaseIdx = ((i+1)%sides) + 1;
+          edges.push([currentBaseIdx, nextBaseIdx]); // Perímetro base
+          if (i%4 === 0) edges.push([0, currentBaseIdx]); // Linha pro ápice
+        }
+        if (isCutValid) {
+          let r = t * baseSize;
+          areaRelativa = (t * t * 100);
+          for(let i=0; i<sides; i++) cutPoints.push(project3D(Math.cos((i/sides)*Math.PI*2) * r, cutZ, Math.sin((i/sides)*Math.PI*2) * r));
+        }
+      }
+      else if (shapeType === 'pyramid') {
+        shapeName = "Quadrado (Decrescente)";
+        vertices = [
+          { x: 0, y: -height, z: 0 },
+          { x: -baseSize, y: height, z: -baseSize }, { x: baseSize, y: height, z: -baseSize },
+          { x: baseSize, y: height, z: baseSize }, { x: -baseSize, y: height, z: baseSize }
+        ];
+        edges = [[0,1], [0,2], [0,3], [0,4], [1,2], [2,3], [3,4], [4,1]];
+        if (isCutValid) {
+          let sectionSize = t * baseSize;
+          areaRelativa = (t * t * 100);
+          cutPoints = [
+            project3D(-sectionSize, cutZ, -sectionSize), project3D(sectionSize, cutZ, -sectionSize),
+            project3D(sectionSize, cutZ, sectionSize), project3D(-sectionSize, cutZ, sectionSize)
+          ];
+        }
+      } 
+      else if (shapeType === 'cube') {
+        shapeName = "Quadrado Constante";
+        vertices = [
+          { x: -baseSize, y: -height, z: -baseSize }, { x: baseSize, y: -height, z: -baseSize },
+          { x: baseSize, y: -height, z: baseSize }, { x: -baseSize, y: -height, z: baseSize },
+          { x: -baseSize, y: height, z: -baseSize }, { x: baseSize, y: height, z: -baseSize },
+          { x: baseSize, y: height, z: baseSize }, { x: -baseSize, y: height, z: baseSize }
+        ];
+        edges = [[0,1], [1,2], [2,3], [3,0], [4,5], [5,6], [6,7], [7,4], [0,4], [1,5], [2,6], [3,7]];
+        if (isCutValid) {
+          areaRelativa = 100;
+          cutPoints = [
+            project3D(-baseSize, cutZ, -baseSize), project3D(baseSize, cutZ, -baseSize),
+            project3D(baseSize, cutZ, baseSize), project3D(-baseSize, cutZ, baseSize)
+          ];
+        }
+      }
+
+      // DESENHO: LADO ESQUERDO (3D)
+      ctx.fillStyle = '#f4efe0'; ctx.font = '14px "JetBrains Mono", monospace'; ctx.textAlign = 'center';
+      ctx.fillText('Rotação 3D (Arraste)', view3DW/2, 30);
+      ctx.strokeStyle = '#2b4234'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(view3DW, 0); ctx.lineTo(view3DW, canvas.height); ctx.stroke();
+
+      const projected = vertices.map(v => project3D(v.x, v.y, v.z));
+
+      // Sólido 3D (Wireframe) - Baixa opacidade se estiver mostrando a geratriz
+      ctx.strokeStyle = showAxis ? 'rgba(241, 196, 15, 0.2)' : '#f1c40f'; 
+      ctx.lineWidth = 2;
+      edges.forEach(edge => {
+        ctx.beginPath(); ctx.moveTo(projected[edge[0]].screenX, projected[edge[0]].screenY);
+        ctx.lineTo(projected[edge[1]].screenX, projected[edge[1]].screenY); ctx.stroke();
+      });
+
+      // EIXO E GERATRIZ (ENEM)
+      if (showAxis) {
+        // Eixo Y
+        ctx.strokeStyle = '#e74c3c'; ctx.lineWidth = 2; ctx.setLineDash([5, 5]);
+        let axisTop = project3D(0, -height - 40, 0);
+        let axisBot = project3D(0, height + 40, 0);
+        ctx.beginPath(); ctx.moveTo(axisTop.screenX, axisTop.screenY); ctx.lineTo(axisBot.screenX, axisBot.screenY); ctx.stroke();
+        ctx.setLineDash([]);
+        
+        // Figura Plana
+        ctx.fillStyle = 'rgba(46, 204, 113, 0.4)';
+        ctx.strokeStyle = '#2ecc71'; ctx.lineWidth = 3;
+        ctx.beginPath();
+        if (shapeType === 'cylinder') {
+          let g1 = project3D(0, -height, 0), g2 = project3D(baseSize, -height, 0);
+          let g3 = project3D(baseSize, height, 0), g4 = project3D(0, height, 0);
+          ctx.moveTo(g1.screenX, g1.screenY); ctx.lineTo(g2.screenX, g2.screenY);
+          ctx.lineTo(g3.screenX, g3.screenY); ctx.lineTo(g4.screenX, g4.screenY);
+        } else if (shapeType === 'cone') {
+          let g1 = project3D(0, -height, 0), g2 = project3D(baseSize, height, 0), g3 = project3D(0, height, 0);
+          ctx.moveTo(g1.screenX, g1.screenY); ctx.lineTo(g2.screenX, g2.screenY); ctx.lineTo(g3.screenX, g3.screenY);
+        }
+        ctx.closePath(); ctx.fill(); ctx.stroke();
+        
+        ctx.fillStyle = '#2ecc71';
+        ctx.fillText('Figura Geratriz', view3DW/2, canvas.height - 20);
+      }
+
+      // Plano Translúcido
+      const planeSize = 150;
+      ctx.fillStyle = 'rgba(52, 152, 219, 0.2)';
+      ctx.beginPath();
+      let p1 = project3D(-planeSize, cutZ, -planeSize), p2 = project3D(planeSize, cutZ, -planeSize);
+      let p3 = project3D(planeSize, cutZ, planeSize), p4 = project3D(-planeSize, cutZ, planeSize);
+      ctx.moveTo(p1.screenX, p1.screenY); ctx.lineTo(p2.screenX, p2.screenY);
+      ctx.lineTo(p3.screenX, p3.screenY); ctx.lineTo(p4.screenX, p4.screenY);
+      ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = '#3498db'; ctx.lineWidth = 1; ctx.stroke();
+
+      // Seção Interceptada (Vermelho no 3D)
+      if (isCutValid && cutPoints.length > 0) {
+        ctx.fillStyle = 'rgba(231, 76, 60, 0.6)';
+        ctx.beginPath();
+        ctx.moveTo(cutPoints[0].screenX, cutPoints[0].screenY);
+        cutPoints.forEach(p => ctx.lineTo(p.screenX, p.screenY));
+        ctx.closePath(); ctx.fill();
+        ctx.strokeStyle = '#e74c3c'; ctx.lineWidth = 2; ctx.stroke();
+      }
+
+      // DESENHO: LADO DIREITO (2D)
+      const rightCenterX = view3DW + (view2DW / 2);
+      const rightCenterY = canvas.height / 2;
+      
+      ctx.fillStyle = '#f4efe0'; ctx.fillText('Vista da Seção (Plano 2D)', rightCenterX, 30);
+      
+      if (isCutValid) {
+          ctx.fillStyle = 'rgba(231, 76, 60, 0.2)';
+          ctx.strokeStyle = '#e74c3c'; ctx.lineWidth = 3;
+          let drawScale = 1.3;
+          
+          if (shapeType === 'pyramid' || shapeType === 'cube') {
+             let currentSize = (shapeType === 'pyramid') ? t * baseSize : baseSize;
+             let s = currentSize * drawScale;
+             ctx.fillRect(rightCenterX - s, rightCenterY - s, s*2, s*2);
+             ctx.strokeRect(rightCenterX - s, rightCenterY - s, s*2, s*2);
+             ctx.fillStyle = '#a8b5aa'; ctx.fillText(`Lado = ${(currentSize).toFixed(1)} cm`, rightCenterX, rightCenterY + s + 25);
+          } else if (shapeType === 'cylinder' || shapeType === 'cone') {
+             let currentRadius = (shapeType === 'cone') ? t * baseSize : baseSize;
+             let r = currentRadius * drawScale;
+             ctx.beginPath(); ctx.arc(rightCenterX, rightCenterY, r, 0, Math.PI*2);
+             ctx.fill(); ctx.stroke();
+             ctx.fillStyle = '#a8b5aa'; ctx.fillText(`Raio = ${currentRadius.toFixed(1)} cm`, rightCenterX, rightCenterY + r + 25);
+          }
+      } else {
+          ctx.fillStyle = '#a8b5aa'; ctx.fillText('Nenhuma interseção.', rightCenterX, rightCenterY);
+      }
+
+      // Atualiza UI
+      document.getElementById('cutVal').innerText = (t * 100).toFixed(0) + '%';
+      document.getElementById('shapeReadout').innerText = shapeName;
+      document.getElementById('areaReadout').innerText = areaRelativa.toFixed(1) + '%';
+    }
+
+    // Eventos
+    shapeToggle.addEventListener('change', draw);
+    showGeratriz.addEventListener('change', draw);
+    cutSlider.addEventListener('input', (e) => { cutZ = -100 + (parseFloat(e.target.value) * 2); draw(); });
+
+    // Eventos de Mouse/Touch
+    const handleDown = (e) => {
+      let clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      let clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const rect = canvas.getBoundingClientRect();
+      if ((clientX - rect.left) < view3DW) { isDragging = true; lastMouseX = clientX; lastMouseY = clientY; }
+    };
+    const handleMove = (e) => {
+      if (isDragging) {
+        if (e.touches) e.preventDefault();
+        let clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        let clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        angleY += (clientX - lastMouseX) * 0.01;
+        angleX += (clientY - lastMouseY) * 0.01;
+        angleX = Math.max(-Math.PI/2, Math.min(Math.PI/2, angleX));
+        lastMouseX = clientX; lastMouseY = clientY;
+        draw();
+      }
+    };
+    const handleUp = () => isDragging = false;
+
+    canvas.addEventListener('mousedown', handleDown);
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('mouseup', handleUp);
+    canvas.addEventListener('touchstart', handleDown, {passive: false});
+    window.addEventListener('touchmove', handleMove, {passive: false});
+    window.addEventListener('touchend', handleUp);
+
+    draw();
+  </script>
+</body>
+</html>
